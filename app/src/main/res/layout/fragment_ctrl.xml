@@ -2,6 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff0">
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/line_frag_ctrl_1"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="4"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+       <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+           android:padding="10dp"
+           android:id="@+id/node_warm"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_humify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_fan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_lamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_drenching"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_shade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
+            android:padding="10dp"
+            android:id="@+id/node_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

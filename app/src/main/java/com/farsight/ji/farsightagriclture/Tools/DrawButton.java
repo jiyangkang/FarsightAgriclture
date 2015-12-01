@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.farsight.ji.farsightagriclture.R;
@@ -25,19 +24,12 @@ public class DrawButton extends View{
 
     private Paint mPaint;
 
-    private Bitmap bitmapDefault, bitmapClicked, bitmapStand;
+    private Bitmap bitmapDefault;
 
     public void setBitmapDefault(int bitmapDefault){
         this.bitmapDefault = BitmapFactory.decodeResource(getResources(), bitmapDefault);
     }
 
-    public void setBitmapStand(int bitmapStand){
-        this.bitmapStand = BitmapFactory.decodeResource(getResources(), bitmapStand);
-    }
-
-    public void setBitmapClicked(int bitmapClicked){
-        this.bitmapClicked = BitmapFactory.decodeResource(getResources(), bitmapClicked);
-    }
 
     public DrawButton(Context context){
         this(context, null);
@@ -65,7 +57,13 @@ public class DrawButton extends View{
         int oX = bitmapDefault.getWidth();
         int oY = bitmapDefault.getHeight();
 
-        int rX = widthMetrics/5;
+        int rX ;
+        if(oX > widthMetrics/4){
+            rX = oX;
+        } else {
+            rX = widthMetrics/4;
+        }
+
         int rY = rX * oY / oX;
 
         orRect = new Rect(0, 0, oX, oY);
@@ -80,30 +78,6 @@ public class DrawButton extends View{
         canvas.drawBitmap(bitmapDefault,orRect,dstRect,mPaint);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        float x, y;
-        x = event.getX();
-        y = event.getY();
-        if (x > dstRect.left && x < dstRect.right && dstRect.top < y && dstRect.bottom > y){
-
-
-            switch (event.getAction()){
-                case MotionEvent.ACTION_DOWN:
-                    bitmapDefault = bitmapClicked;
-                    invalidate();
-                    break;
-                case MotionEvent.ACTION_UP:
-                    bitmapDefault = bitmapStand;
-                    invalidate();
-                    break;
-                default:
-                    break;
-            }
-        }
-        return true;
-    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -128,4 +102,6 @@ public class DrawButton extends View{
         }
         setMeasuredDimension(width, height);
     }
+
+
 }

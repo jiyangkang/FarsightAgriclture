@@ -9,24 +9,47 @@ public class NodeCtrl {
     private byte addrH;
     private byte addrL;
     private byte state;
-    private byte[] value = new byte[3];
+    private byte power;
+    public int timeOut = -1;
 
     public NodeCtrl(byte[] datas){
         this.datas = datas;
         type = datas[4];
-        addrH = datas[2];
-        addrL = datas[3];
+        addrH = datas[3];
+        addrL = datas[2];
         state = datas[7];
-        for (int i = 0; i <value.length; i++){
-            value[i] = datas[5+i];
-        }
+        power = datas[10];
+        timeOut = 10;
     }
 
     public void setAllValue(byte[] datas){
         this.datas = datas;
         state = datas[7];
-        for (int i = 0; i <value.length; i++){
-            value[i] = datas[5+i];
-        }
+        power = datas[10];
+        timeOut = 10;
+    }
+
+    public byte[] getDatas(){
+        return datas;
+    }
+
+    public byte getState(){
+        return state;
+    }
+
+    public byte getType(){
+        return type;
+    }
+
+    public byte getAddrH(){
+        return addrH;
+    }
+
+    public byte getAddrL(){
+        return addrL;
+    }
+
+    public byte getPower(){
+        return power;
     }
 }

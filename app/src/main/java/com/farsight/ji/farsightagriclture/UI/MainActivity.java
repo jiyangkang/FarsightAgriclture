@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -17,14 +18,16 @@ import android.widget.RelativeLayout;
 import com.farsight.ji.farsightagriclture.R;
 import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnTouchListener{
 
     private DrawButton btnVoir, btnCtrl;
     private ImageView imageTab;
     private VoirFragment voirFragment;
     private CtrlFragment ctrlFragment;
+
 
     private ViewPager mViewPager;
 
@@ -32,6 +35,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private int screenWidth;
     private int currentTab;
+
 
 
     @Override
@@ -44,33 +48,33 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initShow();
 
-        btnCtrl.setOnClickListener(this);
-        btnVoir.setOnClickListener(this);
 
-        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth/2,btnVoir.getMeasuredHeight());
+        btnVoir.setOnTouchListener(this);
+        btnCtrl.setOnTouchListener(this);
+        //设置ImageView的属性
+        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth/2,btnVoir.getMeasuredHeight()/10);
         imgParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         imageTab.setLayoutParams(imgParams);
 
         mViewPager.setAdapter(new SwitchFragmentAdapter(getSupportFragmentManager()));
+
+
     }
 
     private void initShow() {
         btnVoir = (DrawButton) findViewById(R.id.btn_voir);
         btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
-        btnVoir.setBitmapClicked(R.drawable.part_voir_clicked);
-        btnVoir.setBitmapStand(R.drawable.part_voir_noclicked);
         btnVoir.invalidate();
 
         btnCtrl = (DrawButton) findViewById(R.id.btn_ctrl);
         btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
-        btnCtrl.setBitmapStand(R.drawable.part_ctrl_noclicked);
-        btnCtrl.setBitmapClicked(R.drawable.part_ctrl_clicked);
         btnCtrl.invalidate();
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
 
         voirFragment = new VoirFragment();
         ctrlFragment = new CtrlFragment();
+        fragmentList = new ArrayList<Fragment>();
         fragmentList.add(voirFragment);
         fragmentList.add(ctrlFragment);
 
@@ -79,6 +83,34 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btnVoir.measure(0, 0);
 
         imageTab = (ImageView) findViewById(R.id.img_tab);
+
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (v.getId()){
+            case R.id.btn_voir:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    btnVoir.setBitmapDefault(R.drawable.part_voir_clicked);
+                    btnVoir.invalidate();
+                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                    btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
+                    changeView(0);
+                    btnVoir.invalidate();
+                }
+                break;
+            case R.id.btn_ctrl:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    btnCtrl.setBitmapDefault(R.drawable.part_ctrl_clicked);
+                    btnCtrl.invalidate();
+                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                    btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
+                    changeView(1);
+                    btnCtrl.invalidate();
+                }
+                break;
+        }
+        return true;//自定义的绝对是恶心人的---啊啊啊啊
 
     }
 
@@ -123,20 +155,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         imageTab.startAnimation(translateAnimation);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btn_voir:
-                changeView(0);
-                break;
-            case R.id.btn_ctrl:
-                changeView(1);
-                break;
-        }
-    }
+
 
     private void changeView(int desTab)
     {
         mViewPager.setCurrentItem(desTab, true);
     }
+
+
 }

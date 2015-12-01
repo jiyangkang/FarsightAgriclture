@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/bg">
 
    <LinearLayout
        android:id="@+id/line_select"
@@ -11,6 +12,8 @@
        android:layout_height="wrap_content"
        android:layout_alignParentBottom="true"
        android:gravity="center_horizontal"
+       android:paddingTop="10dp"
+       android:paddingBottom="15dp"
        android:orientation="horizontal">
        <com.farsight.ji.farsightagriclture.Tools.DrawButton
            android:id="@+id/btn_voir"
@@ -29,7 +32,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#ff0"
+        android:background="#a4a4a4"
         android:paddingBottom="10dp"
         android:layout_above="@id/line_select"/>
 
@@ -41,10 +44,11 @@
         android:layout_height="match_parent"/>
 
     <ImageView
+        android:contentDescription="@string/app_name"
         android:id="@+id/img_tab"
         android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/red"
+        android:layout_height="20dp"
+        android:background="@drawable/a"
         android:layout_alignParentBottom="true"/>
 
 

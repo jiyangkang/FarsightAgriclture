@@ -11,6 +11,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 /**
+ * WIFI使用UDP交互模式
  * Created by jiyan on 2015/11/28.
  */
 public class UDPTool {
@@ -35,15 +36,12 @@ public class UDPTool {
         this.host = host;
         this.receivPort = port;
         this.sendPort = sendPort;
-        //wifi管理工具和锁
         try {
             inetAddress = InetAddress.getByName(this.host);
         } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         wifiManager = (WifiManager) this.context.getSystemService(Context.WIFI_SERVICE);
-//		lock = wifiManager.createMulticastLock("UDPWifi");
     }
 
     /**
@@ -60,17 +58,13 @@ public class UDPTool {
 
             DatagramPacket packet = new DatagramPacket(datas, datas.length);
 
-//			lock.acquire();
             socket.receive(packet);
-//			lock.release();
             socket.close();
             return packet.getData();
         } catch (SocketException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
@@ -92,11 +86,9 @@ public class UDPTool {
             socket.close();
             return true;
         } catch (SocketException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return false;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return false;
         }
