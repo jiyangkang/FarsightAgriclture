@@ -78,112 +78,59 @@ public class DueDatasService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private void envTempBroadCast(byte[] datas, String action) {
+    private void voirBroadCast(NodeVoir nodeVoir, String action) {
 
-        int temp, power, humify;
-        int[] send = new int[3];
+        int value1, value2;
+        int[] send = new int[2];
         Intent intent = new Intent();
 
-        temp = datas[6];
-        humify = datas[7];
-        power = datas[10];
-
-        send[0] = temp;
-        send[1] = humify;
-        send[2] = power;
-
-        intent.setAction(action);
-        intent.putExtra(action, send);
-        sendBroadcast(intent);
-    }
-
-    private void soilTemBroadCast(byte[] datas, String action) {
-        int temp, power, humify;
-        int[] send = new int[3];
-        Intent intent = new Intent();
-
-        temp = datas[5];
-        humify = (datas[6] << 8 | datas[7]) / 100;
-        power = datas[10];
-
-        send[0] = temp;
-        send[1] = humify;
-        send[2] = power;
-
-        intent.setAction(action);
-        intent.putExtra(action, send);
-        sendBroadcast(intent);
-    }
-
-    private void lightBroadCast(byte[] datas, String action) {
-        int isValidate, lux, power;
-        int[] send = new int[3];
-        Intent intent = new Intent();
-
-        if (datas[5] == 0) {
-            isValidate = 0;
-            lux = datas[6] << 8 | datas[7];
-            power = datas[10];
-        } else {
-            isValidate = 1;
-            lux = 1;
-            power = datas[10];
+        switch (action) {
+            case NodeInfo.ENVTEMPFIRST:
+            case NodeInfo.ENVTEMPSECOND:
+                value1 = nodeVoir.getValue()[1];
+                value2 = nodeVoir.getValue()[2];
+                break;
+            case NodeInfo.SOILTEMPFIRST:
+            case NodeInfo.SOILTEMPSECOND:
+                value1 = nodeVoir.getValue()[0];
+                value2 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
+                break;
+            case NodeInfo.LIGHTFIRST:
+            case NodeInfo.LIGHTSECOND:
+                value1 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
+                value2 = nodeVoir.getValue()[0];
+                break;
+            case NodeInfo.INFRARED:
+                value1 = nodeVoir.getState();
+                value2 = -1;
+                break;
+            case NodeInfo.CARBONDIOXID:
+                value1 = nodeVoir.getValue()[1]*256 + nodeVoir.getValue()[2];
+                value2 = -1;
+                break;
+            default:
+                value1 = -1;
+                value2 = -1;
+                break;
         }
 
-
-        send[0] = isValidate;
-        send[1] = lux;
-        send[2] = power;
-
-        intent.setAction(action);
-        intent.putExtra(action, send);
-    }
-
-    private void carbondioxidBroadCast(byte[] datas, String action) {
-        int power, ppm;
-        int[] send = new int[2];
-        Intent intent = new Intent();
-
-        ppm = datas[6] << 8 | datas[7];
-        power = datas[10];
-
-        send[0] = ppm;
-        send[1] = power;
+        send[0] = value1;
+        send[1] = value2;
 
         intent.setAction(action);
         intent.putExtra(action, send);
         sendBroadcast(intent);
     }
 
-    private void infraredBroadCast(byte[] datas, String action) {
-        int state, power;
-        int[] send = new int[2];
+
+    private void ctrlBroadCast(NodeCtrl nodeCtrl, String action) {
+        int state;
         Intent intent = new Intent();
 
-        state = datas[6];
-        power = datas[10];
-
-        send[0] = state;
-        send[1] = power;
+        state = nodeCtrl.getState();
 
         intent.setAction(action);
-        intent.putExtra(action, send);
-        sendBroadcast(intent);
-    }
-
-    private void ctrlBroadCast(byte[] datas, String action) {
-        int state, power;
-        int[] send = new int[2];
-        Intent intent = new Intent();
-
-        state = datas[6];
-        power = datas[10];
-
-        send[0] = state;
-        send[1] = power;
-
-        intent.setAction(action);
-        intent.putExtra(action, send);
+        intent.putExtra(action, state);
         sendBroadcast(intent);
     }
 
@@ -195,7 +142,7 @@ public class DueDatasService extends Service {
             try {
                 while (threadOn && (datas = TotalDatas.qData.take()) != null) {
                     //有线无线判断--1201
-                    if(datas[1] != TotalDatas.netType){
+                    if (datas[1] != TotalDatas.netType) {
                         TotalDatas.netType = datas[1];
                     }
                     switch (datas[4]) {
@@ -207,7 +154,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         envTempAndHumiFirst = new NodeVoir(datas);
                                     }
-                                    envTempBroadCast(datas, NodeInfo.ENVTEMPFIRST);
+                                    voirBroadCast(envTempAndHumiFirst, NodeInfo.ENVTEMPFIRST);
                                     break;
                                 case NodeInfo.ADDR_SECOND_TEMP://环境温湿度2
                                     if (envTempAndHumiSecond != null) {
@@ -215,7 +162,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         envTempAndHumiSecond = new NodeVoir(datas);
                                     }
-                                    envTempBroadCast(datas, NodeInfo.ENVTEMPSECOND);
+                                    voirBroadCast(envTempAndHumiSecond, NodeInfo.ENVTEMPSECOND);
                                     break;
                                 case NodeInfo.ADDR_FIRST_SOIL://土壤温湿度1
                                     if (soilTempAndHumiFirst != null) {
@@ -223,7 +170,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         soilTempAndHumiFirst = new NodeVoir(datas);
                                     }
-                                    soilTemBroadCast(datas, NodeInfo.SOILTEMPFIRST);
+                                    voirBroadCast(soilTempAndHumiFirst, NodeInfo.SOILTEMPFIRST);
                                     break;
                                 case NodeInfo.ADDR_SECOND_SOIL://土壤温湿度2
                                     if (soilTempAndHumiSecond != null) {
@@ -231,7 +178,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         soilTempAndHumiSecond = new NodeVoir(datas);
                                     }
-                                    soilTemBroadCast(datas, NodeInfo.SOILTEMPSECOND);
+                                    voirBroadCast(soilTempAndHumiSecond, NodeInfo.SOILTEMPSECOND);
                                     break;
                             }
                             break;
@@ -244,7 +191,7 @@ public class DueDatasService extends Service {
                                         lightFirst = new NodeVoir(datas);
                                     }
 
-                                    lightBroadCast(datas, NodeInfo.LIGHTFIRST);
+                                    voirBroadCast(lightFirst, NodeInfo.LIGHTFIRST);
                                     break;
                                 case NodeInfo.ADDR_SECOND_LIGHT:
                                     if (lightSecond != null) {
@@ -253,7 +200,7 @@ public class DueDatasService extends Service {
                                         lightSecond = new NodeVoir(datas);
                                     }
 
-                                    lightBroadCast(datas, NodeInfo.LIGHTSECOND);
+                                    voirBroadCast(lightSecond, NodeInfo.LIGHTSECOND);
                                     break;
                             }
                             break;
@@ -265,7 +212,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         carbonDioxid = new NodeVoir(datas);
                                     }
-                                    carbondioxidBroadCast(datas, NodeInfo.CARBONDIOXID);
+                                    voirBroadCast(carbonDioxid, NodeInfo.CARBONDIOXID);
                                     break;
                             }
                             break;
@@ -277,10 +224,12 @@ public class DueDatasService extends Service {
                                     } else {
                                         infrared = new NodeVoir(datas);
                                     }
-                                    infraredBroadCast(datas, NodeInfo.INFRARED);
+                                    voirBroadCast(infrared, NodeInfo.INFRARED);
                                     break;
                             }
                             break;
+
+
                         case NodeInfo.TYPE_WARM://加热器--一个
                             switch (datas[2]) {
                                 case NodeInfo.ADDR_WARM:
@@ -289,7 +238,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         warm = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.WARM);
+                                    ctrlBroadCast(warm, NodeInfo.WARM);
                                     break;
                             }
                             break;
@@ -301,7 +250,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         humify = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.HUMIFY);
+                                    ctrlBroadCast(humify, NodeInfo.HUMIFY);
                                     break;
                             }
                             break;
@@ -313,7 +262,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         fan = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.FAN);
+                                    ctrlBroadCast(fan, NodeInfo.FAN);
                                     break;
                             }
                             break;
@@ -325,7 +274,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         lamp = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.LAMP);
+                                    ctrlBroadCast(lamp, NodeInfo.LAMP);
                                     break;
                             }
                             break;
@@ -337,7 +286,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         drenching = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.DRENCHING);
+                                    ctrlBroadCast(drenching, NodeInfo.DRENCHING);
                                     break;
                             }
                             break;
@@ -349,7 +298,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         shade = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.SHADE);
+                                    ctrlBroadCast(shade, NodeInfo.SHADE);
                                     break;
                             }
                             break;
@@ -361,7 +310,7 @@ public class DueDatasService extends Service {
                                     } else {
                                         alarm = new NodeCtrl(datas);
                                     }
-                                    ctrlBroadCast(datas, NodeInfo.ALARM);
+                                    ctrlBroadCast(alarm, NodeInfo.ALARM);
                                     break;
                             }
                             break;

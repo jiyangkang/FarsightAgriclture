@@ -60,6 +60,7 @@ public class CtrlFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_ctrl, container, false);
+
         initShow();
 
         receiver = new DueBroadCastReceiver();
@@ -72,48 +73,41 @@ public class CtrlFragment extends Fragment {
     private void initShow() {
         warmNode = (CtrlableState) view.findViewById(R.id.node_warm);
         warmNode.setName(NodeInfo.TYPE_WARM);
-        setNode(warmNode, -2, 100);
-        warmNode.invalidate();
+        setNode(warmNode, -2);
 
         humifyNode = (CtrlableState) view.findViewById(R.id.node_humify);
         humifyNode.setName(NodeInfo.TYPE_HUMIFY);
-        setNode(humifyNode, -2, 100);
-        humifyNode.invalidate();
+        setNode(humifyNode, -2);
 
         fanNode = (CtrlableState) view.findViewById(R.id.node_fan);
         fanNode.setName(NodeInfo.TYPE_FAN);
-        setNode(fanNode, -2, 100);
-        fanNode.invalidate();
+        setNode(fanNode, -2);
 
         lampNode = (CtrlableState) view.findViewById(R.id.node_lamp);
         lampNode.setName(NodeInfo.TYPE_LAMP);
-        setNode(lampNode, -2, 100);
-        lampNode.invalidate();
+        setNode(lampNode, -2);
 
         drenchingNode = (CtrlableState) view.findViewById(R.id.node_drenching);
         drenchingNode.setName(NodeInfo.TYPE_DRENCHING);
-        setNode(drenchingNode, -2, 100);
-        drenchingNode.invalidate();
+        setNode(drenchingNode, -2);
 
         shadeNode = (CtrlableState) view.findViewById(R.id.node_shade);
         shadeNode.setName(NodeInfo.TYPE_SHADE);
-        setNode(shadeNode, -2, 100);
-        shadeNode.invalidate();
+        setNode(shadeNode, -2);
 
         alarmNode = (CtrlableState) view.findViewById(R.id.node_alarm);
         alarmNode.setName(NodeInfo.TYPE_ALARM);
-        setNode(alarmNode, -2, 100);
-        alarmNode.invalidate();
+        setNode(alarmNode, -2);
     }
 
-    private void setNode(CtrlableState node, int state, int power) {
-        node.setPower(power, state);
+    private void setNode(CtrlableState node, int state) {
+        node.setState(state);
         node.invalidate();
     }
 
 
     private class DueBroadCastReceiver extends BroadcastReceiver {
-        int[] get = new int[2];
+        int get;
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -121,53 +115,53 @@ public class CtrlFragment extends Fragment {
 
             switch (action) {
                 case NodeInfo.WARM://加热器
-                    get = intent.getIntArrayExtra(NodeInfo.WARM);
-                    setNode(warmNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.WARM, -1);
+                    setNode(warmNode, get);
                     break;
                 case NodeInfo.WARM_D:
-                    setNode(warmNode, -1, 100);
+                    setNode(warmNode, -1);
                     break;
                 case NodeInfo.HUMIFY://加湿器
-                    get = intent.getIntArrayExtra(NodeInfo.HUMIFY);
-                    setNode(humifyNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.HUMIFY, -1);
+                    setNode(humifyNode, get);
                     break;
                 case NodeInfo.HUMIFY_D:
-                    setNode(humifyNode, -1, 100);
+                    setNode(humifyNode, -1);
                     break;
                 case NodeInfo.FAN://风扇
-                    get = intent.getIntArrayExtra(NodeInfo.FAN);
-                    setNode(fanNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.FAN, -1);
+                    setNode(fanNode, get);
                     break;
                 case NodeInfo.FAN_D:
-                    setNode(fanNode, -1, 100);
+                    setNode(fanNode, -1);
                     break;
                 case NodeInfo.DRENCHING://喷淋
-                    get = intent.getIntArrayExtra(NodeInfo.DRENCHING);
-                    setNode(drenchingNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.DRENCHING, -1);
+                    setNode(drenchingNode, get);
                     break;
                 case NodeInfo.DRENCHING_D:
-                    setNode(drenchingNode, -1, 100);
+                    setNode(drenchingNode, -1);
                     break;
                 case NodeInfo.LAMP://照明
-                    get = intent.getIntArrayExtra(NodeInfo.LAMP);
-                    setNode(lampNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.LAMP, -1);
+                    setNode(lampNode, get);
                     break;
                 case NodeInfo.LAMP_D:
-                    setNode(lampNode, -1, 100);
+                    setNode(lampNode, -1);
                     break;
                 case NodeInfo.SHADE://遮阳棚
-                    get = intent.getIntArrayExtra(NodeInfo.SHADE);
-                    setNode(shadeNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.SHADE, -1);
+                    setNode(shadeNode, get);
                     break;
                 case NodeInfo.SHADE_D:
-                    setNode(shadeNode, -1, 100);
+                    setNode(shadeNode, -1);
                     break;
                 case NodeInfo.ALARM://警报
-                    get = intent.getIntArrayExtra(NodeInfo.ALARM);
-                    setNode(alarmNode, get[0], get[1]);
+                    get = intent.getIntExtra(NodeInfo.ALARM, -1);
+                    setNode(alarmNode, get);
                     break;
                 case NodeInfo.ALARM_D:
-                    setNode(alarmNode, -1, 100);
+                    setNode(alarmNode, -1);
                     break;
 
             }

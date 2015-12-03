@@ -26,23 +26,15 @@ public class ShowState extends View{
     private String name;
     private String valueNode1;
     private String valueNode2;
-    private Bitmap bitmapPower;
-    private int power = 0;
 
     private Rect rectOri;
     private Rect rectDst;
-
-
-    private Rect rectPowerOri;
-    private Rect rectPowerDst;
 
     public void setBitmapNode(int id){
         bitmapNode = BitmapFactory.decodeResource(getResources(), id);
     }
 
-    public void setPower(int power){
-        this.power = power;
-    }
+
 
     public void setName(String name){
         this.name = name;
@@ -70,7 +62,6 @@ public class ShowState extends View{
 
         bitmapNode = BitmapFactory.decodeResource(getResources(), R.drawable.node);
         bitmapBaseLine = BitmapFactory.decodeResource(getResources(), R.drawable.base_line);
-        bitmapPower = BitmapFactory.decodeResource(getResources(),R.drawable.power);
 
         valueNode1 = "节点未连接";
 
@@ -85,16 +76,6 @@ public class ShowState extends View{
         int rY = rX * oY / oX;
         rectOri = new Rect(0, 0, oX, oY);
         rectDst = new Rect(0, 0, rX, rY);
-
-        int oPX = bitmapPower.getWidth();
-        int oPY = bitmapPower.getHeight();
-
-        if (oPY > rectDst.height()-4){
-            oPY = rectDst.height()-4;
-        }
-
-        rectPowerOri = new Rect(rectDst.right-4, rectDst.top+2, rectDst.right-4 + oPX, rectDst.top+2+oPY);
-        rectPowerDst = new Rect(rectPowerOri.left, rectPowerOri.top+(rectPowerOri.height()*(100-power)/100), rectPowerOri.right, rectPowerOri.bottom);
 
     }
 
@@ -114,10 +95,6 @@ public class ShowState extends View{
             canvas.drawText(valueNode2, rectDst.right + 1, rectDst.bottom + rectDst.height() / 2 - 3, mPaint);
         } else {
             canvas.drawBitmap(bitmapBaseLine, rectDst.right, rectDst.bottom - 2, mPaint);
-        }
-        if (power >=0  && power <= 100){
-            rectPowerDst.top = rectPowerOri.top+(rectPowerOri.height()*(100-power)/100);
-            canvas.drawBitmap(bitmapPower, rectPowerOri, rectPowerDst, mPaint);
         }
 
         if (name != null){

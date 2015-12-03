@@ -127,7 +127,7 @@ public class SoapTool {
 
         try {
 
-            soapObject = new SoapObject(TotalDatas.NAMESPACE, "CliGet");
+            soapObject = new SoapObject(TotalDatas.NAMESPACE, "UserCheck");
             soapObject.addProperty("name", name);
             soapObject.addProperty("pswd", pswd);
 

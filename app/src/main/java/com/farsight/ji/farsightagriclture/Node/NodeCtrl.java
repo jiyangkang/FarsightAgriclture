@@ -1,6 +1,7 @@
 package com.farsight.ji.farsightagriclture.Node;
 
 /**
+ *
  * Created by jiyan on 2015/11/28.
  */
 public class NodeCtrl {
@@ -9,7 +10,6 @@ public class NodeCtrl {
     private byte addrH;
     private byte addrL;
     private byte state;
-    private byte power;
     public int timeOut = -1;
 
     public NodeCtrl(byte[] datas){
@@ -18,14 +18,12 @@ public class NodeCtrl {
         addrH = datas[3];
         addrL = datas[2];
         state = datas[6];
-        power = datas[10];
         timeOut = 10;
     }
 
     public void setAllValue(byte[] datas){
         this.datas = datas;
         state = datas[6];
-        power = datas[10];
         timeOut = 10;
     }
 
@@ -49,7 +47,7 @@ public class NodeCtrl {
         return addrL;
     }
 
-    public byte getPower(){
-        return power;
-    }
+//    public byte getPower(){
+//        return power;
+//    }
 }

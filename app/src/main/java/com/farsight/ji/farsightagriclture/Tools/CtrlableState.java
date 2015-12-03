@@ -77,12 +77,12 @@ public class CtrlableState extends View {
         }
     }
 
-    public void setPower(int power, int state) {
+    public void setState(int state) {
         this.state = state;
         if (state == 1) {
-            setStringState("\"开\"" + "，电量：" + power + "%");
+            setStringState("\"开\"" );
         } else if (state == 0) {
-            setStringState("\"关\"" + "，电量：" + power + "%");
+            setStringState("\"关\"");
         } else if(state == -1){
             setStringState("断开连接");
         } else {
@@ -91,7 +91,7 @@ public class CtrlableState extends View {
     }
 
     public void setStringState(String state) {
-        stringState = state;
+        this.stringState = state;
     }
 
     public CtrlableState(Context context) {

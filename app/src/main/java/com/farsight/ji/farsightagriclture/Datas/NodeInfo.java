@@ -27,7 +27,7 @@ public class NodeInfo {
     public static final String SOILTEMPSECOND = "土壤温湿度二";
     public static final String SOILTEMPSECOND_D = "土壤温湿度二断开连接";
     public static final byte ADDR_SECOND_SOIL = 0x04;
-    public static final byte TYPE_LIGHT = 0x59;//光感
+    public static final byte TYPE_LIGHT = 0x6c;//光感l=108=0x6c---2015
     public static final String LIGHTFIRST = "光感传感器一";
     public static final String LIGHTFIRST_D = "光感传感器一断开连接";
     public static final byte ADDR_FIRST_LIGHT = 0x05;

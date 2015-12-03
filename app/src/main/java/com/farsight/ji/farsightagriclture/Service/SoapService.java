@@ -20,6 +20,8 @@ public class SoapService extends Service{
 
     private SoapTool send;
     private SoapTool get;
+    private GetThread getThread;
+    private SendThread sendThread;
 
     private boolean threadOn = false;
 
@@ -39,7 +41,20 @@ public class SoapService extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        threadOn = true;
+        getThread = new GetThread();
+        getThread.start();
+        sendThread = new SendThread();
+        sendThread.start();
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        threadOn = false;
+        getThread = null;
+        sendThread = null;
     }
 
     private class GetThread extends Thread{
@@ -49,8 +64,10 @@ public class SoapService extends Service{
         public void run() {
             super.run();
             while(threadOn){
+                Log.d("SOAP", "GetThread");
                 strGet = get.CliGet(TotalDatas.DEVICE);
                 if (strGet != null){
+                    Log.d("SOAP", strGet);
                     datas = StringTool.getHexSer(strGet);
                     if (datas != null){
                         for (byte[] data : datas) {

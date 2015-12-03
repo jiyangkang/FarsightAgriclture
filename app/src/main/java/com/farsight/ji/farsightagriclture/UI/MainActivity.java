@@ -16,15 +16,17 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
 import com.farsight.ji.farsightagriclture.R;
 import com.farsight.ji.farsightagriclture.Service.DueDatasService;
+import com.farsight.ji.farsightagriclture.Service.SoapService;
 import com.farsight.ji.farsightagriclture.Service.UDPService;
 import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements View.OnTouchListener{
+public class MainActivity extends FragmentActivity implements View.OnTouchListener {
 
     private DrawButton btnVoir, btnCtrl;
     private ImageView imageTab;
@@ -38,7 +40,6 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
     private int screenWidth;
     private int currentTab;
-
 
 
     @Override
@@ -55,14 +56,18 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         btnVoir.setOnTouchListener(this);
         btnCtrl.setOnTouchListener(this);
         //设置ImageView的属性
-        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth/2,btnVoir.getMeasuredHeight()/10);
+        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 2, btnVoir.getMeasuredHeight() / 10);
         imgParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         imageTab.setLayoutParams(imgParams);
 
         mViewPager.setAdapter(new SwitchFragmentAdapter(getSupportFragmentManager()));
-
-        Intent intent = new Intent(MainActivity.this, UDPService.class);
-        startService(intent);
+        if (TotalDatas.isUDP) {
+            Intent intent = new Intent(MainActivity.this, UDPService.class);
+            startService(intent);
+        } else {
+            Intent intent = new Intent(MainActivity.this, SoapService.class);
+            startService(intent);
+        }
         Intent intent1 = new Intent(MainActivity.this, DueDatasService.class);
         startService(intent1);
 
@@ -95,22 +100,22 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_voir:
-                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     btnVoir.setBitmapDefault(R.drawable.part_voir_clicked);
                     btnVoir.invalidate();
-                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
                     changeView(0);
                     btnVoir.invalidate();
                 }
                 break;
             case R.id.btn_ctrl:
-                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     btnCtrl.setBitmapDefault(R.drawable.part_ctrl_clicked);
                     btnCtrl.invalidate();
-                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
                     changeView(1);
                     btnCtrl.invalidate();
@@ -121,7 +126,7 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
     }
 
-    private class SwitchFragmentAdapter extends FragmentPagerAdapter{
+    private class SwitchFragmentAdapter extends FragmentPagerAdapter {
 
         public SwitchFragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -141,7 +146,7 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         public void finishUpdate(ViewGroup container) {
             super.finishUpdate(container);
             int currentItem = mViewPager.getCurrentItem();
-            if (currentTab == currentItem){
+            if (currentTab == currentItem) {
                 return;
             }
             imageMove(mViewPager.getCurrentItem());
@@ -153,21 +158,30 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         int startPositon = 0;
         int moveToPosition = 0;
 
-        startPositon = currentTab * (screenWidth/2);
-        moveToPosition = currentItem * (screenWidth/2);
+        startPositon = currentTab * (screenWidth / 2);
+        moveToPosition = currentItem * (screenWidth / 2);
 
-        TranslateAnimation translateAnimation = new TranslateAnimation(startPositon,moveToPosition, 0,0);
+        TranslateAnimation translateAnimation = new TranslateAnimation(startPositon, moveToPosition, 0, 0);
         translateAnimation.setFillAfter(true);
         translateAnimation.setDuration(200);
         imageTab.startAnimation(translateAnimation);
     }
 
 
-
-    private void changeView(int desTab)
-    {
+    private void changeView(int desTab) {
         mViewPager.setCurrentItem(desTab, true);
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(this, DueDatasService.class);
+        stopService(intent);
+        Intent intent1 = new Intent(this, SoapService.class);
+        stopService(intent1);
+        Intent intent2 = new Intent(this, UDPService.class);
+        stopService(intent2);
+
+    }
 }

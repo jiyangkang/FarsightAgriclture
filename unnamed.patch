@@ -1,0 +1,3228 @@
+Index: app/src/main/res/layout/fragment_ctrl.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_ctrl.xml	(revision )
++++ app/src/main/res/layout/fragment_ctrl.xml	(revision )
+@@ -0,0 +1,68 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical">
++
++    <LinearLayout
++        android:id="@+id/line_frag_ctrl_1"
++        android:layout_width="match_parent"
++        android:orientation="horizontal"
++        android:layout_height="0dp"
++        android:layout_weight="4"/>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="9"
++        android:orientation="horizontal"
++        android:gravity="center">
++
++       <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++           android:padding="10dp"
++           android:id="@+id/node_warm"
++           android:layout_width="wrap_content"
++           android:layout_height="wrap_content" />
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_humify"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_fan"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_lamp"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++
++    </LinearLayout>
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="9"
++        android:orientation="horizontal"
++        android:gravity="center">
++
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_drenching"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_shade"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++        <com.farsight.ji.farsightagriclture.Tools.CtrlableState
++            android:padding="10dp"
++            android:id="@+id/node_alarm"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++
++    </LinearLayout>
++
++</LinearLayout>
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,11 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!-- Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++    </style>
++
++</resources>
+Index: app/src/main/res/layout/fragment_voir.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_voir.xml	(revision )
++++ app/src/main/res/layout/fragment_voir.xml	(revision )
+@@ -0,0 +1,82 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:orientation="vertical">
++
++    <LinearLayout
++        android:id="@+id/line_frag_voir_1"
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:orientation="horizontal"
++        android:layout_weight="3"/>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="9"
++        android:orientation="horizontal">
++
++        <LinearLayout
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            android:gravity="center_vertical|end">
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:padding="5dp"
++                android:id="@+id/node_env_1"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_soil_1"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_light_1"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_infrered"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++
++
++        </LinearLayout>
++        <LinearLayout
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="match_parent"
++            android:orientation="vertical"
++            android:gravity="center_vertical|start">
++
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:padding="5dp"
++                android:id="@+id/node_env_2"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_soil_2"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_light_2"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++            <com.farsight.ji.farsightagriclture.Tools.ShowState
++                android:id="@+id/node_carbon_dioxide"
++                android:padding="5dp"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content" />
++
++        </LinearLayout>
++
++
++    </LinearLayout>
++
++</LinearLayout>
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java	(revision )
+@@ -0,0 +1,172 @@
++package com.farsight.ji.farsightagriclture.UI;
++
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.content.IntentFilter;
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
++import com.farsight.ji.farsightagriclture.R;
++import com.farsight.ji.farsightagriclture.Tools.CtrlableState;
++
++/**
++ * 控制页面
++ * Created by jiyan on 2015/11/28.
++ */
++public class CtrlFragment extends Fragment {
++
++    private View view;
++    private CtrlableState warmNode, humifyNode, fanNode, lampNode, drenchingNode, shadeNode, alarmNode;
++    private IntentFilter intentFilter;
++    private DueBroadCastReceiver receiver;
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        registerIntentFilter();
++    }
++
++    private void registerIntentFilter() {
++        intentFilter = new IntentFilter();
++        intentFilter.addAction(NodeInfo.WARM);
++        intentFilter.addAction(NodeInfo.WARM_D);
++        intentFilter.addAction(NodeInfo.HUMIFY);
++        intentFilter.addAction(NodeInfo.HUMIFY_D);
++        intentFilter.addAction(NodeInfo.FAN);
++        intentFilter.addAction(NodeInfo.FAN_D);
++        intentFilter.addAction(NodeInfo.LAMP);
++        intentFilter.addAction(NodeInfo.LAMP_D);
++        intentFilter.addAction(NodeInfo.DRENCHING);
++        intentFilter.addAction(NodeInfo.DRENCHING_D);
++        intentFilter.addAction(NodeInfo.SHADE);
++        intentFilter.addAction(NodeInfo.SHADE_D);
++        intentFilter.addAction(NodeInfo.ALARM);
++        intentFilter.addAction(NodeInfo.ALARM_D);
++    }
++
++    @Nullable
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
++        view = inflater.inflate(R.layout.fragment_ctrl, container, false);
++        initShow();
++
++        receiver = new DueBroadCastReceiver();
++        view.getContext().registerReceiver(receiver, intentFilter);
++
++        return view;
++    }
++
++
++    private void initShow() {
++        warmNode = (CtrlableState) view.findViewById(R.id.node_warm);
++        warmNode.setName(NodeInfo.TYPE_WARM);
++        setNode(warmNode, -2, 100);
++        warmNode.invalidate();
++
++        humifyNode = (CtrlableState) view.findViewById(R.id.node_humify);
++        humifyNode.setName(NodeInfo.TYPE_HUMIFY);
++        setNode(humifyNode, -2, 100);
++        humifyNode.invalidate();
++
++        fanNode = (CtrlableState) view.findViewById(R.id.node_fan);
++        fanNode.setName(NodeInfo.TYPE_FAN);
++        setNode(fanNode, -2, 100);
++        fanNode.invalidate();
++
++        lampNode = (CtrlableState) view.findViewById(R.id.node_lamp);
++        lampNode.setName(NodeInfo.TYPE_LAMP);
++        setNode(lampNode, -2, 100);
++        lampNode.invalidate();
++
++        drenchingNode = (CtrlableState) view.findViewById(R.id.node_drenching);
++        drenchingNode.setName(NodeInfo.TYPE_DRENCHING);
++        setNode(drenchingNode, -2, 100);
++        drenchingNode.invalidate();
++
++        shadeNode = (CtrlableState) view.findViewById(R.id.node_shade);
++        shadeNode.setName(NodeInfo.TYPE_SHADE);
++        setNode(shadeNode, -2, 100);
++        shadeNode.invalidate();
++
++        alarmNode = (CtrlableState) view.findViewById(R.id.node_alarm);
++        alarmNode.setName(NodeInfo.TYPE_ALARM);
++        setNode(alarmNode, -2, 100);
++        alarmNode.invalidate();
++    }
++
++    private void setNode(CtrlableState node, int state, int power) {
++        node.setPower(power, state);
++        node.invalidate();
++    }
++
++
++    private class DueBroadCastReceiver extends BroadcastReceiver {
++        int[] get = new int[2];
++
++        @Override
++        public void onReceive(Context context, Intent intent) {
++            String action = intent.getAction();
++
++            switch (action) {
++                case NodeInfo.WARM://加热器
++                    get = intent.getIntArrayExtra(NodeInfo.WARM);
++                    setNode(warmNode, get[0], get[1]);
++                    break;
++                case NodeInfo.WARM_D:
++                    setNode(warmNode, -1, 100);
++                    break;
++                case NodeInfo.HUMIFY://加湿器
++                    get = intent.getIntArrayExtra(NodeInfo.HUMIFY);
++                    setNode(humifyNode, get[0], get[1]);
++                    break;
++                case NodeInfo.HUMIFY_D:
++                    setNode(humifyNode, -1, 100);
++                    break;
++                case NodeInfo.FAN://风扇
++                    get = intent.getIntArrayExtra(NodeInfo.FAN);
++                    setNode(fanNode, get[0], get[1]);
++                    break;
++                case NodeInfo.FAN_D:
++                    setNode(fanNode, -1, 100);
++                    break;
++                case NodeInfo.DRENCHING://喷淋
++                    get = intent.getIntArrayExtra(NodeInfo.DRENCHING);
++                    setNode(drenchingNode, get[0], get[1]);
++                    break;
++                case NodeInfo.DRENCHING_D:
++                    setNode(drenchingNode, -1, 100);
++                    break;
++                case NodeInfo.LAMP://照明
++                    get = intent.getIntArrayExtra(NodeInfo.LAMP);
++                    setNode(lampNode, get[0], get[1]);
++                    break;
++                case NodeInfo.LAMP_D:
++                    setNode(lampNode, -1, 100);
++                    break;
++                case NodeInfo.SHADE://遮阳棚
++                    get = intent.getIntArrayExtra(NodeInfo.SHADE);
++                    setNode(shadeNode, get[0], get[1]);
++                    break;
++                case NodeInfo.SHADE_D:
++                    setNode(shadeNode, -1, 100);
++                    break;
++                case NodeInfo.ALARM://警报
++                    get = intent.getIntArrayExtra(NodeInfo.ALARM);
++                    setNode(alarmNode, get[0], get[1]);
++                    break;
++                case NodeInfo.ALARM_D:
++                    setNode(alarmNode, -1, 100);
++                    break;
++
++            }
++        }
++    }
++
++
++}
+Index: app/src/androidTest/java/com/farsight/ji/farsightagriclture/ApplicationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/farsight/ji/farsightagriclture/ApplicationTest.java	(revision )
++++ app/src/androidTest/java/com/farsight/ji/farsightagriclture/ApplicationTest.java	(revision )
+@@ -0,0 +1,13 @@
++package com.farsight.ji.farsightagriclture;
++
++import android.app.Application;
++import android.test.ApplicationTestCase;
++
++/**
++ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
++ */
++public class ApplicationTest extends ApplicationTestCase<Application> {
++    public ApplicationTest() {
++        super(Application.class);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#3F51B5</color>
++    <color name="colorPrimaryDark">#303F9F</color>
++    <color name="colorAccent">#FF4081</color>
++</resources>
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- gradle.properties	(revision )
++++ gradle.properties	(revision )
+@@ -0,0 +1,18 @@
++# Project-wide Gradle settings.
++
++# IDE (e.g. Android Studio) users:
++# Gradle settings configured through the IDE *will override*
++# any settings specified in this file.
++
++# For more details on how to configure your build environment visit
++# http://www.gradle.org/docs/current/userguide/build_environment.html
++
++# Specifies the JVM arguments used for the daemon process.
++# The setting is particularly useful for tweaking memory settings.
++# Default value: -Xmx10248m -XX:MaxPermSize=256m
++# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
++
++# When configured, Gradle will run in incubating parallel mode.
++# This option should only be used with decoupled projects. More details, visit
++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
++# org.gradle.parallel=true
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision )
++++ .idea/gradle.xml	(revision )
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="1.8" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.farsight.ji.farsightagriclture">
++
++    <application
++        android:allowBackup="true"
++        android:icon="@drawable/ic_launcher"
++        android:label="@string/app_name"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme">
++        <activity android:name=".UI.MainActivity"
++            android:screenOrientation="landscape">
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++    </application>
++
++</manifest>
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision )
++++ build.gradle	(revision )
+@@ -0,0 +1,23 @@
++// Top-level build file where you can add configuration options common to all sub-projects/modules.
++
++buildscript {
++    repositories {
++        jcenter()
++    }
++    dependencies {
++        classpath 'com.android.tools.build:gradle:1.5.0'
++
++        // NOTE: Do not place your application dependencies here; they belong
++        // in the individual module build.gradle files
++    }
++}
++
++allprojects {
++    repositories {
++        jcenter()
++    }
++}
++
++task clean(type: Delete) {
++    delete rootProject.buildDir
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision )
++++ .idea/misc.xml	(revision )
+@@ -0,0 +1,99 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="EntryPointsManager">
++    <entry_points version="2.0" />
++  </component>
++  <component name="MavenImportPreferences">
++    <option name="generalSettings">
++      <MavenGeneralSettings>
++        <option name="mavenHome" value="Bundled (Maven 3)" />
++      </MavenGeneralSettings>
++    </option>
++  </component>
++  <component name="NullableNotNullManager">
++    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
++    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
++    <option name="myNullables">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
++        </list>
++      </value>
++    </option>
++    <option name="myNotNulls">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
++        </list>
++      </value>
++    </option>
++  </component>
++  <component name="ProjectInspectionProfilesVisibleTreeState">
++    <entry key="Project Default">
++      <profile-state>
++        <expanded-state>
++          <State>
++            <id />
++          </State>
++        </expanded-state>
++        <selected-state>
++          <State>
++            <id>Android</id>
++          </State>
++        </selected-state>
++      </profile-state>
++    </entry>
++  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
++    <OptionsSetting value="true" id="Add" />
++    <OptionsSetting value="true" id="Remove" />
++    <OptionsSetting value="true" id="Checkout" />
++    <OptionsSetting value="true" id="Update" />
++    <OptionsSetting value="true" id="Status" />
++    <OptionsSetting value="true" id="Edit" />
++    <ConfirmationsSetting value="0" id="Add" />
++    <ConfirmationsSetting value="0" id="Remove" />
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/build/classes" />
++  </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
++  <component name="SvnConfiguration">
++    <configuration>C:\Users\franc\AppData\Roaming\Subversion</configuration>
++  </component>
++  <component name="masterDetails">
++    <states>
++      <state key="ProjectJDKs.UI">
++        <settings>
++          <last-edited>1.8</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++      <state key="ScopeChooserConfigurable.UI">
++        <settings>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++    </states>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/UDPTool.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/UDPTool.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/UDPTool.java	(revision )
+@@ -0,0 +1,96 @@
++package com.farsight.ji.farsightagriclture.Tools;
++
++import android.content.Context;
++import android.net.wifi.WifiManager;
++
++import java.io.IOException;
++import java.net.DatagramPacket;
++import java.net.DatagramSocket;
++import java.net.InetAddress;
++import java.net.SocketException;
++import java.net.UnknownHostException;
++
++/**
++ * WIFI使用UDP交互模式
++ * Created by jiyan on 2015/11/28.
++ */
++public class UDPTool {
++    private Context context;
++    private String host;
++    private Integer receivPort, sendPort;
++    public WifiManager wifiManager;
++
++    private InetAddress inetAddress;
++
++
++    /**
++     * 构造函数
++     * @param context   传入的上下文
++     * @param host      主机IP地址
++     * @param port		接收端端口
++     * @param sendPort  发送端端口
++     */
++    public UDPTool(Context context, String host, Integer port, Integer sendPort) {
++        super();
++        this.context = context;
++        this.host = host;
++        this.receivPort = port;
++        this.sendPort = sendPort;
++        try {
++            inetAddress = InetAddress.getByName(this.host);
++        } catch (UnknownHostException e) {
++            e.printStackTrace();
++        }
++        wifiManager = (WifiManager) this.context.getSystemService(Context.WIFI_SERVICE);
++    }
++
++    /**
++     * 发送
++     * @param      num 要接收的数据长度
++     * @return     !=null接收到的数据byte[]数据， ==null出错
++     */
++    public byte[] receivFromWifi(Integer num){
++        byte[] datas = new byte[num];
++        try {
++            DatagramSocket socket = new DatagramSocket(receivPort);
++            socket.setBroadcast(true);
++            socket.setReceiveBufferSize(datas.length);
++
++            DatagramPacket packet = new DatagramPacket(datas, datas.length);
++
++            socket.receive(packet);
++            socket.close();
++            return packet.getData();
++        } catch (SocketException e) {
++            e.printStackTrace();
++            return null;
++        } catch (IOException e) {
++            e.printStackTrace();
++            return null;
++        }
++    }
++    /**
++     * 发送
++     * @param 	datas：要发送的数据
++     * @return		        是否发送成功
++     */
++    public boolean sendToWifi(final byte[] datas){
++        try {
++            DatagramSocket socket = new DatagramSocket(sendPort);
++            socket.setBroadcast(true);
++            socket.setSendBufferSize(datas.length);
++
++            DatagramPacket packet = new DatagramPacket(datas, datas.length, inetAddress, sendPort);
++
++            socket.send(packet);
++            socket.close();
++            return true;
++        } catch (SocketException e) {
++            e.printStackTrace();
++            return false;
++        } catch (IOException e) {
++            e.printStackTrace();
++            return false;
++        }
++    }
++}
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Datas/TotalDatas.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Datas/TotalDatas.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Datas/TotalDatas.java	(revision )
+@@ -0,0 +1,19 @@
++package com.farsight.ji.farsightagriclture.Datas;
++
++import java.util.concurrent.ArrayBlockingQueue;
++
++/**
++ * 所有要操作的数据
++ * Created by jiyan on 2015/11/28.
++ */
++public class TotalDatas {
++
++    public static byte netType = NodeInfo.NET_TYPE_ZIGBEE;//1201
++
++    public static ArrayBlockingQueue<byte[]> qData = new ArrayBlockingQueue<byte[]>(32);
++    public static ArrayBlockingQueue<byte[]> qSend = new ArrayBlockingQueue<byte[]>(32);
++
++    public final static String hostsIp = "192.168.0.15";
++    public final static Integer sendPort = 8080;
++    public final static Integer receivePort = 5000;
++}
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision )
++++ .idea/compiler.xml	(revision )
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <resourceExtensions />
++    <wildcardResourcePatterns>
++      <entry name="!?*.java" />
++      <entry name="!?*.form" />
++      <entry name="!?*.class" />
++      <entry name="!?*.groovy" />
++      <entry name="!?*.scala" />
++      <entry name="!?*.flex" />
++      <entry name="!?*.kt" />
++      <entry name="!?*.clj" />
++      <entry name="!?*.aj" />
++    </wildcardResourcePatterns>
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="false">
++        <processorPath useClasspath="true" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,26 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 23
++    buildToolsVersion "23.0.2"
++
++    defaultConfig {
++        applicationId "com.farsight.ji.farsightagriclture"
++        minSdkVersion 14
++        targetSdkVersion 23
++        versionCode 1
++        versionName "1.0"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    testCompile 'junit:junit:4.12'
++    compile 'com.android.support:appcompat-v7:23.1.1'
++}
+Index: gradlew
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew	(revision )
++++ gradlew	(revision )
+@@ -0,0 +1,160 @@
++#!/usr/bin/env bash
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS=""
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn ( ) {
++    echo "$*"
++}
++
++die ( ) {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++esac
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >/dev/null
++APP_HOME="`pwd -P`"
++cd "$SAVED" >/dev/null
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++    JAVACMD=`cygpath --unix "$JAVACMD"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=$((i+1))
++    done
++    case $i in
++        (0) set -- ;;
++        (1) set -- "$args0" ;;
++        (2) set -- "$args0" "$args1" ;;
++        (3) set -- "$args0" "$args1" "$args2" ;;
++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
++function splitJvmOpts() {
++    JVM_OPTS=("$@")
++}
++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
++
++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/DrawButton.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/DrawButton.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/DrawButton.java	(revision )
+@@ -0,0 +1,107 @@
++package com.farsight.ji.farsightagriclture.Tools;
++
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.Canvas;
++import android.graphics.Color;
++import android.graphics.Paint;
++import android.graphics.Rect;
++import android.util.AttributeSet;
++import android.view.View;
++
++import com.farsight.ji.farsightagriclture.R;
++
++/**
++ * 绘制按钮
++ * Created by jiyan on 2015/11/28.
++ */
++public class DrawButton extends View{
++
++    private Context mContext;
++
++    private Rect orRect, dstRect;
++
++    private Paint mPaint;
++
++    private Bitmap bitmapDefault;
++
++    public void setBitmapDefault(int bitmapDefault){
++        this.bitmapDefault = BitmapFactory.decodeResource(getResources(), bitmapDefault);
++    }
++
++
++    public DrawButton(Context context){
++        this(context, null);
++    }
++
++    public DrawButton(Context context, AttributeSet attrs){
++        this(context, attrs, 0);
++    }
++
++    public DrawButton(Context context, AttributeSet attrs, int defStyleAttr) {
++        super(context, attrs, defStyleAttr);
++
++        mContext = context;
++
++        int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
++        setBitmapDefault(R.drawable.button);
++
++        mPaint = new Paint();
++        mPaint.setTextSize(18);
++        mPaint.setStrokeWidth(Color.BLUE);
++        mPaint.setAntiAlias(true);
++        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
++
++
++        int oX = bitmapDefault.getWidth();
++        int oY = bitmapDefault.getHeight();
++
++        int rX ;
++        if(oX > widthMetrics/4){
++            rX = oX;
++        } else {
++            rX = widthMetrics/4;
++        }
++
++        int rY = rX * oY / oX;
++
++        orRect = new Rect(0, 0, oX, oY);
++        dstRect = new Rect(0, 0, rX, rY);
++
++    }
++
++    @Override
++    protected void onDraw(Canvas canvas) {
++        super.onDraw(canvas);
++
++        canvas.drawBitmap(bitmapDefault,orRect,dstRect,mPaint);
++    }
++
++
++    @Override
++    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
++        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
++        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
++        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
++        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
++        int width;
++        int height;
++        if (widthMode == MeasureSpec.EXACTLY) {
++            width = widthSize;
++        } else {
++                int desired = (int) (getPaddingLeft() + getPaddingRight() + dstRect.width());
++            width = desired;
++        }
++
++        if (heightMode == MeasureSpec.EXACTLY) {
++            height = heightSize;
++        } else {
++            int desired = (int) (getPaddingTop() + dstRect.height() + getPaddingBottom());
++            height = desired;
++        }
++        setMeasuredDimension(width, height);
++    }
++
++
++}
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/runConfigurations.xml	(revision )
++++ .idea/runConfigurations.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/VoirFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/VoirFragment.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/VoirFragment.java	(revision )
+@@ -0,0 +1,248 @@
++package com.farsight.ji.farsightagriclture.UI;
++
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.content.IntentFilter;
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v4.app.Fragment;
++import android.util.Log;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
++import com.farsight.ji.farsightagriclture.R;
++import com.farsight.ji.farsightagriclture.Tools.ShowState;
++
++/**
++ * 监控页面
++ * Created by jiyan on 2015/11/28.
++ */
++public class VoirFragment extends Fragment {
++
++    private View view;
++
++    private ShowState envNodeFirst, envNodeSecond, soilNodeFirst, soilNodeSecond;
++    private ShowState lightNodeFirst, lightNodeSecond;
++    private ShowState infraredNode;
++    private ShowState carbonDioxideNode;
++    private IntentFilter intentFilter;
++    private DueBroadCastReceiver receiver;
++
++
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        registeIntentfilter();
++    }
++
++    @Nullable
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
++        view = inflater.inflate(R.layout.fragment_voir, container, false);
++
++        initShow();
++
++        receiver = new DueBroadCastReceiver();
++        view.getContext().registerReceiver(receiver, intentFilter);
++
++        return view;
++    }
++
++
++
++    private void registeIntentfilter() {
++        intentFilter = new IntentFilter();
++        intentFilter.addAction(NodeInfo.ENVTEMPFIRST);
++        intentFilter.addAction(NodeInfo.ENVTEMPFIRST_D);
++        intentFilter.addAction(NodeInfo.ENVTEMPSECOND);
++        intentFilter.addAction(NodeInfo.ENVTEMPSECOND_D);
++        intentFilter.addAction(NodeInfo.SOILTEMPFIRST);
++        intentFilter.addAction(NodeInfo.SOILTEMPFIRST_D);
++        intentFilter.addAction(NodeInfo.SOILTEMPSECOND);
++        intentFilter.addAction(NodeInfo.SOILTEMPSECOND_D);
++        intentFilter.addAction(NodeInfo.LIGHTFIRST);
++        intentFilter.addAction(NodeInfo.LIGHTFIRST_D);
++        intentFilter.addAction(NodeInfo.LIGHTSECOND);
++        intentFilter.addAction(NodeInfo.LIGHTSECOND_D);
++        intentFilter.addAction(NodeInfo.CARBONDIOXID);
++        intentFilter.addAction(NodeInfo.CARBONDIOXID_D);
++        intentFilter.addAction(NodeInfo.INFRARED);
++        intentFilter.addAction(NodeInfo.INFRARED_D);
++    }
++
++    @Override
++    public void onDestroy() {
++        super.onDestroy();
++        view.getContext().unregisterReceiver(receiver);
++    }
++
++    private void initShow() {
++        envNodeFirst = (ShowState) view.findViewById(R.id.node_env_1);
++        envNodeFirst.setBitmapNode(R.drawable.env);
++        envNodeFirst.setStrValue("未连接", " ");
++        envNodeFirst.setName(NodeInfo.ENVTEMPFIRST);
++        envNodeFirst.invalidate();
++
++        envNodeSecond = (ShowState) view.findViewById(R.id.node_env_2);
++        envNodeSecond.setBitmapNode(R.drawable.env);
++        envNodeSecond.setStrValue("未连接", " ");
++        envNodeSecond.setName(NodeInfo.ENVTEMPSECOND);
++        envNodeSecond.invalidate();
++
++        soilNodeFirst = (ShowState) view.findViewById(R.id.node_soil_1);
++        soilNodeFirst.setBitmapNode(R.drawable.soil);
++        soilNodeFirst.setStrValue("未连接", " ");
++        soilNodeFirst.setName(NodeInfo.SOILTEMPFIRST);
++        soilNodeFirst.invalidate();
++
++        soilNodeSecond = (ShowState) view.findViewById(R.id.node_soil_2);
++        soilNodeSecond.setBitmapNode(R.drawable.soil);
++        soilNodeSecond.setStrValue("未连接", " ");
++        soilNodeSecond.setName(NodeInfo.SOILTEMPSECOND);
++        soilNodeSecond.invalidate();
++
++        lightNodeFirst = (ShowState) view.findViewById(R.id.node_light_1);
++        lightNodeFirst.setBitmapNode(R.drawable.light);
++        lightNodeFirst.setStrValue("未连接", null);
++        lightNodeFirst.setName(NodeInfo.LIGHTFIRST);
++        lightNodeFirst.invalidate();
++
++        lightNodeSecond = (ShowState) view.findViewById(R.id.node_light_2);
++        lightNodeSecond.setBitmapNode(R.drawable.light);
++        lightNodeSecond.setStrValue("未连接", null);
++        lightNodeSecond.setName(NodeInfo.LIGHTSECOND);
++        lightNodeSecond.invalidate();
++
++        carbonDioxideNode = (ShowState) view.findViewById(R.id.node_carbon_dioxide);
++        carbonDioxideNode.setBitmapNode(R.drawable.co2);
++        carbonDioxideNode.setStrValue("未连接", null);
++        carbonDioxideNode.setName(NodeInfo.CARBONDIOXID);
++        carbonDioxideNode.invalidate();
++
++        infraredNode = (ShowState) view.findViewById(R.id.node_infrered);
++        infraredNode.setBitmapNode(R.drawable.infrared);
++        infraredNode.setStrValue("未连接", null);
++        infraredNode.setName(NodeInfo.INFRARED);
++        infraredNode.invalidate();
++
++    }
++
++    private void setTempNode(ShowState node, int[] values, String action) {
++        int [] a = values;
++
++        node.setStrValue("温度：" + a[0] + "℃，", "湿度：" + a[1] + "%，电量：" + a[2] + "%");
++        node.setPower(a[2]);
++        node.invalidate();
++    }
++
++    private void setLightNode(ShowState node, int[] values, String action) {
++        int [] a =values;
++        node.setStrValue("光照强度：" + a[0] + "lux，" + "电量：" + a[1] + "%", null);
++        node.setPower(a[1]);
++        node.invalidate();
++    }
++
++    private void setCarbonDioxidNode(ShowState node, int[] values, String action){
++        int[] a = values;
++        node.setStrValue("二氧化碳浓度：" +a[0] + "ppm" + "电量：" + a[1] + "%", null);
++        node.setPower(a[1]);
++        node.invalidate();
++    }
++
++    private void setInfraredNode(ShowState node, int[] values, String action){
++        int[] a = values;
++        if (a[0] == 0){
++            node.setStrValue("正常，" + action, null);
++        }else{
++            node.setStrValue("有人闯入", null);
++        }
++        node.setPower(a[1]);
++        node.invalidate();
++    }
++
++    public void disConnect(ShowState node, String action){
++        node.setStrValue("断开连接", null);
++        node.setPower(100);
++        node.invalidate();
++    }
++
++    private class DueBroadCastReceiver extends BroadcastReceiver{
++
++        @Override
++        public void onReceive(Context context, Intent intent) {
++            String action = intent.getAction();
++            int[] ints;
++            String strings;
++            switch (action){
++                case NodeInfo.ENVTEMPFIRST://环境温湿度
++                    ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPFIRST);
++                    setTempNode(envNodeFirst, ints, NodeInfo.ENVTEMPFIRST);
++                    break;
++                case NodeInfo.ENVTEMPFIRST_D:
++                    strings = intent.getStringExtra(NodeInfo.ENVTEMPFIRST_D);
++                    disConnect(envNodeFirst, strings);
++                    break;
++                case NodeInfo.ENVTEMPSECOND:
++                    ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPFIRST);
++                    setTempNode(envNodeSecond, ints,NodeInfo.ENVTEMPSECOND);
++                    break;
++                case NodeInfo.ENVTEMPSECOND_D:
++                    strings = intent.getStringExtra(NodeInfo.ENVTEMPSECOND_D);
++                    disConnect(envNodeSecond, strings);
++                    break;
++                case NodeInfo.SOILTEMPFIRST://土壤温湿度
++                    ints = intent.getIntArrayExtra(NodeInfo.SOILTEMPFIRST);
++                    setTempNode(soilNodeFirst, ints, NodeInfo.SOILTEMPFIRST);
++                    break;
++                case NodeInfo.SOILTEMPFIRST_D:
++                    strings = intent.getStringExtra(NodeInfo.SOILTEMPFIRST_D);
++                    disConnect(soilNodeSecond, strings);
++                    break;
++                case NodeInfo.SOILTEMPSECOND:
++                    ints = intent.getIntArrayExtra(NodeInfo.SOILTEMPSECOND);
++                    setTempNode(soilNodeSecond, ints, NodeInfo.SOILTEMPSECOND);
++                    break;
++                case NodeInfo.SOILTEMPSECOND_D:
++                    strings = intent.getStringExtra(NodeInfo.SOILTEMPSECOND_D);
++                    disConnect(soilNodeSecond, strings);
++                    break;
++                case NodeInfo.LIGHTFIRST://光照强度
++                    ints = intent.getIntArrayExtra(NodeInfo.LIGHTFIRST);
++                    setLightNode(lightNodeFirst, ints, NodeInfo.LIGHTFIRST);
++                    break;
++                case NodeInfo.LIGHTFIRST_D:
++                    strings = intent.getStringExtra(NodeInfo.LIGHTFIRST_D);
++                    disConnect(lightNodeFirst, strings);
++                    break;
++                case NodeInfo.LIGHTSECOND:
++                    ints = intent.getIntArrayExtra(NodeInfo.LIGHTSECOND);
++                    setLightNode(lightNodeSecond, ints, NodeInfo.LIGHTSECOND);
++                    break;
++                case NodeInfo.LIGHTSECOND_D:
++                    strings = intent.getStringExtra(NodeInfo.LIGHTSECOND_D);
++                    disConnect(lightNodeSecond, strings);
++                    break;
++                case NodeInfo.CARBONDIOXID://二氧化碳浓度
++                    ints = intent.getIntArrayExtra(NodeInfo.CARBONDIOXID);
++                    setCarbonDioxidNode(carbonDioxideNode, ints, NodeInfo.CARBONDIOXID);
++                    break;
++                case NodeInfo.CARBONDIOXID_D:
++                    strings = intent.getStringExtra(NodeInfo.CARBONDIOXID_D);
++                    disConnect(carbonDioxideNode, strings);
++                    break;
++                case NodeInfo.INFRARED://红外感应器
++                    ints = intent.getIntArrayExtra(NodeInfo.INFRARED);
++                    setInfraredNode(infraredNode, ints, NodeInfo.INFRARED);
++                    break;
++                case NodeInfo.INFRARED_D:
++                    strings = intent.getStringExtra(NodeInfo.INFRARED_D);
++                    disConnect(infraredNode, strings);
++                    break;
++            }
++        }
++    }
++}
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision )
++++ .idea/modules.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/FarsightAgriclture.iml" filepath="$PROJECT_DIR$/FarsightAgriclture.iml" />
++      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision )
++++ settings.gradle	(revision )
+@@ -0,0 +1,1 @@
++include ':app'
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,17 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in D:\sdk/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java	(revision )
+@@ -0,0 +1,166 @@
++package com.farsight.ji.farsightagriclture.UI;
++
++import android.support.v4.app.Fragment;
++import android.support.v4.app.FragmentActivity;
++import android.os.Bundle;
++import android.support.v4.app.FragmentManager;
++import android.support.v4.app.FragmentPagerAdapter;
++import android.support.v4.view.ViewPager;
++import android.view.MotionEvent;
++import android.view.View;
++import android.view.ViewGroup;
++import android.view.Window;
++import android.view.WindowManager;
++import android.view.animation.TranslateAnimation;
++import android.widget.ImageView;
++import android.widget.RelativeLayout;
++
++import com.farsight.ji.farsightagriclture.R;
++import com.farsight.ji.farsightagriclture.Tools.DrawButton;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class MainActivity extends FragmentActivity implements View.OnTouchListener{
++
++    private DrawButton btnVoir, btnCtrl;
++    private ImageView imageTab;
++    private VoirFragment voirFragment;
++    private CtrlFragment ctrlFragment;
++
++
++    private ViewPager mViewPager;
++
++    private List<Fragment> fragmentList;
++
++    private int screenWidth;
++    private int currentTab;
++
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++
++        requestWindowFeature(Window.FEATURE_NO_TITLE);//设置全屏和无标题栏
++        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
++        setContentView(R.layout.fragment_main);
++
++        initShow();
++
++
++        btnVoir.setOnTouchListener(this);
++        btnCtrl.setOnTouchListener(this);
++        //设置ImageView的属性
++        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth/2,btnVoir.getMeasuredHeight()/10);
++        imgParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
++        imageTab.setLayoutParams(imgParams);
++
++        mViewPager.setAdapter(new SwitchFragmentAdapter(getSupportFragmentManager()));
++
++
++    }
++
++    private void initShow() {
++        btnVoir = (DrawButton) findViewById(R.id.btn_voir);
++        btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
++        btnVoir.invalidate();
++
++        btnCtrl = (DrawButton) findViewById(R.id.btn_ctrl);
++        btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
++        btnCtrl.invalidate();
++
++        mViewPager = (ViewPager) findViewById(R.id.view_pager);
++
++        voirFragment = new VoirFragment();
++        ctrlFragment = new CtrlFragment();
++        fragmentList = new ArrayList<Fragment>();
++        fragmentList.add(voirFragment);
++        fragmentList.add(ctrlFragment);
++
++        screenWidth = getResources().getDisplayMetrics().widthPixels;
++
++        btnVoir.measure(0, 0);
++
++        imageTab = (ImageView) findViewById(R.id.img_tab);
++
++    }
++
++    @Override
++    public boolean onTouch(View v, MotionEvent event) {
++        switch (v.getId()){
++            case R.id.btn_voir:
++                if (event.getAction() == MotionEvent.ACTION_DOWN){
++                    btnVoir.setBitmapDefault(R.drawable.part_voir_clicked);
++                    btnVoir.invalidate();
++                }else if (event.getAction() == MotionEvent.ACTION_UP){
++                    btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
++                    changeView(0);
++                    btnVoir.invalidate();
++                }
++                break;
++            case R.id.btn_ctrl:
++                if (event.getAction() == MotionEvent.ACTION_DOWN){
++                    btnCtrl.setBitmapDefault(R.drawable.part_ctrl_clicked);
++                    btnCtrl.invalidate();
++                }else if (event.getAction() == MotionEvent.ACTION_UP){
++                    btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
++                    changeView(1);
++                    btnCtrl.invalidate();
++                }
++                break;
++        }
++        return true;//自定义的绝对是恶心人的---啊啊啊啊
++
++    }
++
++    private class SwitchFragmentAdapter extends FragmentPagerAdapter{
++
++        public SwitchFragmentAdapter(FragmentManager fm) {
++            super(fm);
++        }
++
++        @Override
++        public Fragment getItem(int position) {
++            return fragmentList.get(position);
++        }
++
++        @Override
++        public int getCount() {
++            return fragmentList.size();
++        }
++
++        @Override
++        public void finishUpdate(ViewGroup container) {
++            super.finishUpdate(container);
++            int currentItem = mViewPager.getCurrentItem();
++            if (currentTab == currentItem){
++                return;
++            }
++            imageMove(mViewPager.getCurrentItem());
++            currentTab = mViewPager.getCurrentItem();
++        }
++    }
++
++    private void imageMove(int currentItem) {
++        int startPositon = 0;
++        int moveToPosition = 0;
++
++        startPositon = currentTab * (screenWidth/2);
++        moveToPosition = currentItem * (screenWidth/2);
++
++        TranslateAnimation translateAnimation = new TranslateAnimation(startPositon,moveToPosition, 0,0);
++        translateAnimation.setFillAfter(true);
++        translateAnimation.setDuration(200);
++        imageTab.startAnimation(translateAnimation);
++    }
++
++
++
++    private void changeView(int desTab)
++    {
++        mViewPager.setCurrentItem(desTab, true);
++    }
++
++
++}
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision )
++++ gradle/wrapper/gradle-wrapper.properties	(revision )
+@@ -0,0 +1,6 @@
++#Wed Oct 21 11:34:03 PDT 2015
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(revision )
++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
++         (such as screen margins) for screens with more than 820dp of available width. This
++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
++    <dimen name="activity_horizontal_margin">64dp</dimen>
++</resources>
+Index: app/src/test/java/com/farsight/ji/farsightagriclture/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/farsight/ji/farsightagriclture/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/farsight/ji/farsightagriclture/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,15 @@
++package com.farsight.ji.farsightagriclture;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * To work on unit tests, switch the Test Artifact in the Build Variants view.
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,3 @@
++<resources>
++    <string name="app_name">智能农业</string>
++</resources>
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/encodings.xml	(revision )
++++ .idea/encodings.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="PROJECT" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java	(revision )
+@@ -0,0 +1,96 @@
++package com.farsight.ji.farsightagriclture.Datas;
++
++/**
++ * 节点类型
++ * Created by jiyan on 2015/11/28.
++ */
++public class NodeInfo {
++
++    public static final byte[] OPEN = {0x23, 0x43, 0x00, 0x00, 0x00, 0x00, 0x31};//开
++    public static final byte[] CLOSE = {0x23, 0x43, 0x00, 0x00, 0x00, 0x00, 0x30};//关
++
++
++    public static final byte NET_TYPE_ZIGBEE = 0x5a;
++    public static final byte NET_TYPE_485 = 0x52;
++
++
++    public static final byte TYPE_TEMP  = 0x54;//温湿度
++    public static final String ENVTEMPFIRST = "环境温湿度一";
++    public static final String ENVTEMPFIRST_D = "环境温湿度一断开连接";
++    public static final byte ADDR_FIRST_TEMP = 0x01;
++    public static final String ENVTEMPSECOND = "环境温湿度二";
++    public static final String ENVTEMPSECOND_D = "环境温湿度二断开连接";
++    public static final byte ADDR_SECOND_TEMP = 0x02;
++    public static final String SOILTEMPFIRST = "土壤温湿度一";
++    public static final String SOILTEMPFIRST_D = "土壤温湿度一断开连接";
++    public static final byte ADDR_FIRST_SOIL = 0x03;
++    public static final String SOILTEMPSECOND = "土壤温湿度二";
++    public static final String SOILTEMPSECOND_D = "土壤温湿度二断开连接";
++    public static final byte ADDR_SECOND_SOIL = 0x04;
++    public static final byte TYPE_LIGHT = 0x59;//光感
++    public static final String LIGHTFIRST = "光感传感器一";
++    public static final String LIGHTFIRST_D = "光感传感器一断开连接";
++    public static final byte ADDR_FIRST_LIGHT = 0x05;
++    public static final String LIGHTSECOND = "光感传感器二";
++    public static final String LIGHTSECOND_D = "光感传感器二断开连接";
++    public static final byte ADDR_SECOND_LIGHT = 0x06;
++    public static final byte TYPE_CARBON_DIOXID = 0x63;//二氧化碳检测
++    public static final String CARBONDIOXID = "二氧化碳浓度";
++    public static final String CARBONDIOXID_D = "二氧化碳浓度断开连接";
++    public static final byte ADDR_CARBON_DIOXID = 0x07;
++    public static final byte TYPE_INFRA_RED = 0x69;//红外
++    public static final String INFRARED = "红外感应器";
++    public static final String INFRARED_D = "红外感应器断开连接";
++    public static final byte ADDR_INFRARED = 0x08;
++
++
++    public static final byte TYPE_WARM = 0x57;//加热器
++    public static final String WARM = "加热器";
++    public static final String WARM_D = "加热器断开连接";
++    public static final byte ADDR_WARM = 0x09;
++    public static final byte[] OPEN_WARM = {0x23, 0x43, 0x00, 0x57, 0x09, 0x00, 0x31};//开
++    public static final byte[] CLOSE_WARM = {0x23, 0x43, 0x00, 0x57, 0x09, 0x00, 0x30};//关
++
++    public static final byte TYPE_HUMIFY = 0x48;//加湿器
++    public static final String HUMIFY = "加湿器";
++    public static final String HUMIFY_D = "加湿器断开连接";
++    public static final byte ADDR_HUMIFY = 0x0a;
++    public static final byte[] OPEN_HUMIFY = {0x23, 0x43, 0x00, 0x48, 0x0a, 0x00, 0x31};//开
++    public static final byte[] CLOSE_HUMIFY = {0x23, 0x43, 0x00, 0x48, 0x0a, 0x00, 0x30};//关
++
++    public static final byte TYPE_FAN = 0x46;//风扇
++    public static final String FAN = "风扇";
++    public static final String FAN_D = "风扇断开连接";
++    public static final byte ADDR_FAN = 0x0b;
++    public static final byte[] OPEN_FAN = {0x23, 0x43, 0x00, 0x46, 0x0b, 0x00, 0x31};//开
++    public static final byte[] CLOSE_FAN = {0x23, 0x43, 0x00, 0x46, 0x0b, 0x00, 0x30};//关
++
++    public static final byte TYPE_LAMP = 0x4c;//照明
++    public static final String LAMP = "照明";
++    public static final String LAMP_D = "照明断开连接";
++    public static final byte ADDR_LAMP = 0x0c;
++    public static final byte[] OPEN_LAMP = {0x23, 0x43, 0x00, 0x4c, 0x0c, 0x00, 0x31};//开
++    public static final byte[] CLOSE_LAMP = {0x23, 0x43, 0x00, 0x4c, 0x0c, 0x00, 0x30};//关
++
++    public static final byte TYPE_DRENCHING = 0x44;//喷淋
++    public static final String DRENCHING = "喷淋";
++    public static final String DRENCHING_D = "喷淋断开连接";
++    public static final byte ADDR_DRENCHING = 0x0d;
++    public static final byte[] OPEN_DRENCHING = {0x23, 0x43, 0x00, 0x44, 0x0d, 0x00, 0x31};//开
++    public static final byte[] CLOSE_DRENCHING = {0x23, 0x43, 0x00, 0x44, 0x0d, 0x00, 0x30};//关
++
++    public static final byte TYPE_SHADE = 0x53;//遮阳棚
++    public static final String SHADE = "遮阳棚";
++    public static final String SHADE_D = "遮阳棚断开连接";
++    public static final byte ADDR_SHADE = 0x0e;
++    public static final byte[] OPEN_SHADE = {0x23, 0x43, 0x00, 0x53, 0x0e, 0x00, 0x31};//开
++    public static final byte[] CLOSE_SHADE = {0x23, 0x43, 0x00, 0x53, 0x0e, 0x00, 0x30};//关
++
++    public static final byte TYPE_ALARM = 0x41;//报警器
++    public static final String ALARM = "报警器";
++    public static final String ALARM_D = "报警器断开连接";
++    public static final byte ADDR_ALARM = 0x0f;
++    public static final byte[] OPEN_ALARM = {0x23, 0x43, 0x00, 0x41, 0x0f, 0x00, 0x31};//开
++    public static final byte[] CLOSE_ALARM = {0x23, 0x43, 0x00, 0x41, 0x0f, 0x00, 0x30};//关
++
++}
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision )
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -0,0 +1,5 @@
++<resources>
++    <!-- Default screen margins, per the Android Design guidelines. -->
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++</resources>
+Index: app/src/main/res/animator/exit.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/animator/exit.xml	(revision )
++++ app/src/main/res/animator/exit.xml	(revision )
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
++    android:propertyName="x"
++    android:duration="1000"
++    android:valueFrom="0"
++    android:valueTo="-800"
++    android:valueType="floatType"
++    />
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Service/UDPService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Service/UDPService.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Service/UDPService.java	(revision )
+@@ -0,0 +1,124 @@
++package com.farsight.ji.farsightagriclture.Service;
++
++import android.app.Service;
++import android.content.Intent;
++import android.os.IBinder;
++import android.support.annotation.Nullable;
++
++import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
++import com.farsight.ji.farsightagriclture.Tools.UDPTool;
++
++/**
++ * UDP服务
++ * Created by jiyan on 2015/11/28.
++ */
++public class UDPService extends Service{
++
++    private UDPTool udpTool = null;
++    private boolean threadOn = false;
++    private Send$Thread send$Thread = null;
++    private SendCMDThread sendCMDThread = null;
++    private GetDatasThread getDatasThread = null;
++
++    @Nullable
++    @Override
++    public IBinder onBind(Intent intent) {
++        return null;
++    }
++
++    @Override
++    public void onCreate() {
++        super.onCreate();
++        udpTool = new UDPTool(this, TotalDatas.hostsIp, TotalDatas.receivePort, TotalDatas.sendPort);
++        threadOn = true;
++    }
++
++    @Override
++    public void onDestroy() {
++        super.onDestroy();
++        threadClose();
++    }
++
++    public void threadClose(){
++        threadOn = false;
++
++        if (getDatasThread != null){
++            getDatasThread.interrupt();
++            getDatasThread = null;
++        }
++
++        if (send$Thread != null){
++            send$Thread.interrupt();
++            send$Thread = null;
++        }
++
++        if (sendCMDThread != null){
++            sendCMDThread.interrupt();
++            sendCMDThread = null;
++        }
++
++    }
++
++    @Override
++    public int onStartCommand(Intent intent, int flags, int startId) {
++
++        send$Thread = new Send$Thread();
++        send$Thread.start();
++
++        sendCMDThread = new SendCMDThread();
++        sendCMDThread.start();
++
++        getDatasThread = new GetDatasThread();
++        getDatasThread.start();
++
++        return super.onStartCommand(intent, flags, startId);
++
++    }
++
++    private class Send$Thread extends Thread{
++        @Override
++        public void run() {
++            super.run();
++            while (threadOn && udpTool.wifiManager.isWifiEnabled()){
++                udpTool.sendToWifi("$".getBytes());
++                try {
++                    sleep(50);
++                } catch (InterruptedException e) {
++                    e.printStackTrace();
++                }
++            }
++
++        }
++    }
++
++    private class SendCMDThread extends Thread{
++        @Override
++        public void run() {
++            super.run();
++            while(threadOn && udpTool.wifiManager.isWifiEnabled()){
++                try {
++                    udpTool.sendToWifi(TotalDatas.qSend.take());
++                } catch (InterruptedException e) {
++                    e.printStackTrace();
++                }
++            }
++        }
++    }
++
++    private class GetDatasThread extends Thread{
++        @Override
++        public void run() {
++            super.run();
++            while(threadOn && udpTool.wifiManager.isWifiEnabled()){
++                byte[] datas = udpTool.receivFromWifi(12);
++
++                try {
++                    TotalDatas.qData.put(datas);
++                } catch (InterruptedException e) {
++                    e.printStackTrace();
++                }
++
++            }
++        }
++    }
++}
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeVoir.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeVoir.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeVoir.java	(revision )
+@@ -0,0 +1,27 @@
++package com.farsight.ji.farsightagriclture.Node;
++
++/**
++ * Created by jiyan on 2015/11/28.
++ */
++public class NodeVoir extends NodeCtrl{
++
++    private byte[] value = new byte[3];
++
++    public NodeVoir(byte[] datas){
++        super(datas);
++        for (int i = 0; i <value.length; i++){
++            value[i] = datas[5+i];
++        }
++    }
++
++    public void setAllValue(byte[] datas){
++        super.setAllValue(datas);
++        for (int i = 0; i <value.length; i++){
++            value[i] = datas[5+i];
++        }
++    }
++
++    public byte[] getValue(){
++        return value;
++    }
++}
+Index: app/src/main/res/animator/enter.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/animator/enter.xml	(revision )
++++ app/src/main/res/animator/enter.xml	(revision )
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
++    android:propertyName="x"
++    android:duration="1000"
++    android:valueFrom="0"
++    android:valueTo="800"
++    android:valueType="floatType"
++    />
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java	(revision )
+@@ -0,0 +1,435 @@
++package com.farsight.ji.farsightagriclture.Service;
++
++import android.app.Service;
++import android.content.Intent;
++import android.os.IBinder;
++import android.support.annotation.Nullable;
++
++import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
++import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
++import com.farsight.ji.farsightagriclture.Node.NodeCtrl;
++import com.farsight.ji.farsightagriclture.Node.NodeVoir;
++
++/**
++ * 数据处理并发送广播
++ * Created by jiyan on 2015/11/28.
++ */
++public class DueDatasService extends Service {
++
++    private NodeVoir envTempAndHumiFirst, envTempAndHumiSecond;
++    private NodeVoir soilTempAndHumiFirst, soilTempAndHumiSecond;
++    private NodeVoir lightFirst, lightSecond;
++    private NodeVoir carbonDioxid;
++    private NodeVoir infrared;
++
++    private NodeCtrl warm;
++    private NodeCtrl humify;
++    private NodeCtrl fan;
++    private NodeCtrl lamp;
++    private NodeCtrl drenching;
++    private NodeCtrl shade;
++    private NodeCtrl alarm;
++
++    private boolean threadOn = false;
++
++    private GetDataThread getDataThread = null;
++    private ReduceThread reduceThread = null;
++
++    @Nullable
++    @Override
++    public IBinder onBind(Intent intent) {
++        return null;
++    }
++
++    @Override
++    public void onCreate() {
++        super.onCreate();
++        threadOn = true;
++
++    }
++
++    @Override
++    public void onDestroy() {
++        super.onDestroy();
++        threadClose();
++    }
++
++    private void threadClose() {
++        threadOn = false;
++        if (getDataThread != null) {
++            getDataThread.interrupt();
++            getDataThread = null;
++        }
++
++        if (reduceThread != null) {
++            reduceThread.interrupt();
++            reduceThread = null;
++        }
++    }
++
++    @Override
++    public int onStartCommand(Intent intent, int flags, int startId) {
++
++        getDataThread = new GetDataThread();
++        reduceThread = new ReduceThread();
++        getDataThread.start();
++        reduceThread.start();
++
++        return super.onStartCommand(intent, flags, startId);
++    }
++
++    private void envTempBroadCast(byte[] datas, String action) {
++
++        int temp, power, humify;
++        int[] send = new int[3];
++        Intent intent = new Intent();
++
++        temp = datas[6];
++        humify = datas[7];
++        power = datas[10];
++
++        send[0] = temp;
++        send[1] = humify;
++        send[2] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++        sendBroadcast(intent);
++    }
++
++    private void soilTemBroadCast(byte[] datas, String action) {
++        int temp, power, humify;
++        int[] send = new int[3];
++        Intent intent = new Intent();
++
++        temp = datas[5];
++        humify = (datas[6] << 8 | datas[7]) / 100;
++        power = datas[10];
++
++        send[0] = temp;
++        send[1] = humify;
++        send[2] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++        sendBroadcast(intent);
++    }
++
++    private void lightBroadCast(byte[] datas, String action) {
++        int isValidate, lux, power;
++        int[] send = new int[3];
++        Intent intent = new Intent();
++
++        if (datas[5] == 0) {
++            isValidate = 0;
++            lux = datas[6] << 8 | datas[7];
++            power = datas[10];
++        } else {
++            isValidate = 1;
++            lux = 1;
++            power = datas[10];
++        }
++
++
++        send[0] = isValidate;
++        send[1] = lux;
++        send[2] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++    }
++
++    private void carbondioxidBroadCast(byte[] datas, String action) {
++        int power, ppm;
++        int[] send = new int[2];
++        Intent intent = new Intent();
++
++        ppm = datas[6] << 8 | datas[7];
++        power = datas[10];
++
++        send[0] = ppm;
++        send[1] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++        sendBroadcast(intent);
++    }
++
++    private void infraredBroadCast(byte[] datas, String action) {
++        int state, power;
++        int[] send = new int[2];
++        Intent intent = new Intent();
++
++        state = datas[7];
++        power = datas[10];
++
++        send[0] = state;
++        send[1] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++        sendBroadcast(intent);
++    }
++
++    private void ctrlBroadCast(byte[] datas, String action) {
++        int state, power;
++        int[] send = new int[2];
++        Intent intent = new Intent();
++
++        state = datas[7];
++        power = datas[10];
++
++        send[0] = state;
++        send[1] = power;
++
++        intent.setAction(action);
++        intent.putExtra(action, send);
++        sendBroadcast(intent);
++    }
++
++    private class GetDataThread extends Thread {
++        @Override
++        public void run() {
++            super.run();
++            byte[] datas;
++            try {
++                while (threadOn && (datas = TotalDatas.qData.take()) != null) {
++                    //有线无线判断--1201
++                    if(datas[1] != TotalDatas.netType){
++                        TotalDatas.netType = datas[1];
++                    }
++                    switch (datas[4]) {
++                        case NodeInfo.TYPE_TEMP://温湿度节点数据
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_FIRST_TEMP://环境温湿度1
++                                    if (envTempAndHumiFirst != null) {
++                                        envTempAndHumiFirst.setAllValue(datas);
++                                    } else {
++                                        envTempAndHumiFirst = new NodeVoir(datas);
++                                    }
++                                    envTempBroadCast(datas, NodeInfo.ENVTEMPFIRST);
++                                    break;
++                                case NodeInfo.ADDR_SECOND_TEMP://环境温湿度2
++                                    if (envTempAndHumiSecond != null) {
++                                        envTempAndHumiSecond.setAllValue(datas);
++                                    } else {
++                                        envTempAndHumiSecond = new NodeVoir(datas);
++                                    }
++                                    envTempBroadCast(datas, NodeInfo.ENVTEMPSECOND);
++                                    break;
++                                case NodeInfo.ADDR_FIRST_SOIL://土壤温湿度1
++                                    if (soilTempAndHumiFirst != null) {
++                                        soilTempAndHumiFirst.setAllValue(datas);
++                                    } else {
++                                        soilTempAndHumiFirst = new NodeVoir(datas);
++                                    }
++                                    soilTemBroadCast(datas, NodeInfo.SOILTEMPFIRST);
++                                    break;
++                                case NodeInfo.ADDR_SECOND_SOIL://土壤温湿度2
++                                    if (soilTempAndHumiSecond != null) {
++                                        soilTempAndHumiSecond.setAllValue(datas);
++                                    } else {
++                                        soilTempAndHumiSecond = new NodeVoir(datas);
++                                    }
++                                    soilTemBroadCast(datas, NodeInfo.SOILTEMPSECOND);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_LIGHT:
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_FIRST_LIGHT:
++                                    if (lightFirst != null) {
++                                        lightFirst.setAllValue(datas);
++                                    } else {
++                                        lightFirst = new NodeVoir(datas);
++                                    }
++
++                                    lightBroadCast(datas, NodeInfo.LIGHTFIRST);
++                                    break;
++                                case NodeInfo.ADDR_SECOND_LIGHT:
++                                    if (lightSecond != null) {
++                                        lightSecond.setAllValue(datas);
++                                    } else {
++                                        lightSecond = new NodeVoir(datas);
++                                    }
++
++                                    lightBroadCast(datas, NodeInfo.LIGHTSECOND);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_CARBON_DIOXID://二氧化碳检测--只有一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_CARBON_DIOXID:
++                                    if (carbonDioxid != null) {
++                                        carbonDioxid.setAllValue(datas);
++                                    } else {
++                                        carbonDioxid = new NodeVoir(datas);
++                                    }
++                                    carbondioxidBroadCast(datas, NodeInfo.CARBONDIOXID);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_INFRA_RED://红外--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_INFRARED:
++                                    if (infrared != null) {
++                                        infrared.setAllValue(datas);
++                                    } else {
++                                        infrared = new NodeVoir(datas);
++                                    }
++                                    infraredBroadCast(datas, NodeInfo.INFRARED);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_WARM://加热器--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_WARM:
++                                    if (warm != null) {
++                                        warm.setAllValue(datas);
++                                    } else {
++                                        warm = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.WARM);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_HUMIFY://加湿器--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_HUMIFY:
++                                    if (humify != null) {
++                                        humify.setAllValue(datas);
++                                    } else {
++                                        humify = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.HUMIFY);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_FAN://排风扇--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_FAN:
++                                    if (fan != null) {
++                                        fan.setAllValue(datas);
++                                    } else {
++                                        fan = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.FAN);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_LAMP://照明灯--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_LAMP:
++                                    if (lamp != null) {
++                                        lamp.setAllValue(datas);
++                                    } else {
++                                        lamp = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.LAMP);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_DRENCHING://喷淋设备--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_DRENCHING:
++                                    if (drenching != null) {
++                                        drenching.setAllValue(datas);
++                                    } else {
++                                        drenching = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.DRENCHING);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_SHADE://遮阳棚--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_SHADE:
++                                    if (shade != null) {
++                                        shade.setAllValue(datas);
++                                    } else {
++                                        shade = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.SHADE);
++                                    break;
++                            }
++                            break;
++                        case NodeInfo.TYPE_ALARM://警报器--一个
++                            switch (datas[2]) {
++                                case NodeInfo.ADDR_ALARM:
++                                    if (alarm != null) {
++                                        alarm.setAllValue(datas);
++                                    } else {
++                                        alarm = new NodeCtrl(datas);
++                                    }
++                                    ctrlBroadCast(datas, NodeInfo.ALARM);
++                                    break;
++                            }
++                            break;
++                    }
++                }
++            } catch (InterruptedException e) {
++                e.printStackTrace();
++            }
++        }
++    }
++
++    private class ReduceThread extends Thread {
++        @Override
++        public void run() {
++            super.run();
++            while (threadOn) {
++                reduceTimeoutVoir(envTempAndHumiFirst, NodeInfo.ENVTEMPFIRST_D);
++                reduceTimeoutVoir(envTempAndHumiSecond, NodeInfo.ENVTEMPSECOND_D);
++                reduceTimeoutVoir(soilTempAndHumiFirst, NodeInfo.SOILTEMPFIRST_D);
++                reduceTimeoutVoir(soilTempAndHumiSecond, NodeInfo.SOILTEMPSECOND_D);
++                reduceTimeoutVoir(lightFirst, NodeInfo.LIGHTFIRST_D);
++                reduceTimeoutVoir(lightSecond, NodeInfo.LIGHTSECOND_D);
++                reduceTimeoutVoir(carbonDioxid, NodeInfo.CARBONDIOXID_D);
++                reduceTimeoutVoir(infrared, NodeInfo.INFRARED_D);
++                reduceTimeoutCtrl(warm, NodeInfo.WARM_D);
++                reduceTimeoutCtrl(humify, NodeInfo.HUMIFY_D);
++                reduceTimeoutCtrl(fan, NodeInfo.FAN_D);
++                reduceTimeoutCtrl(lamp, NodeInfo.LAMP_D);
++                reduceTimeoutCtrl(drenching, NodeInfo.DRENCHING_D);
++                reduceTimeoutCtrl(shade, NodeInfo.SHADE_D);
++                reduceTimeoutCtrl(alarm, NodeInfo.ALARM_D);
++
++                try {
++                    sleep(1000);
++                } catch (InterruptedException e) {
++                    e.printStackTrace();
++                }
++            }
++        }
++    }
++
++    private void reduceTimeoutVoir(NodeVoir nodeVoir, String action) {
++        if (nodeVoir != null) {
++            if (nodeVoir.timeOut != 0) {
++                nodeVoir.timeOut--;
++            } else {
++                nodeVoir = null;
++                sendDisconnectBroadCast(action);
++            }
++        }
++    }
++
++    private void reduceTimeoutCtrl(NodeCtrl nodeCtrl, String action) {
++        if (nodeCtrl != null) {
++            if (nodeCtrl.timeOut != 0) {
++                nodeCtrl.timeOut--;
++            } else {
++                nodeCtrl = null;
++                sendDisconnectBroadCast(action);
++            }
++        }
++    }
++
++    private void sendDisconnectBroadCast(String aciton) {
++        Intent intent = new Intent();
++        intent.setAction(aciton);
++        intent.putExtra(aciton, aciton);
++        sendBroadcast(intent);
++    }
++
++}
+Index: app/src/main/res/layout/fragment_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_main.xml	(revision )
++++ app/src/main/res/layout/fragment_main.xml	(revision )
+@@ -0,0 +1,56 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools"
++    tools:context=".MainActivity"
++    android:background="@drawable/bg">
++
++   <LinearLayout
++       android:id="@+id/line_select"
++       android:layout_width="match_parent"
++       android:layout_height="wrap_content"
++       android:layout_alignParentBottom="true"
++       android:gravity="center_horizontal"
++       android:paddingTop="10dp"
++       android:paddingBottom="15dp"
++       android:orientation="horizontal">
++       <com.farsight.ji.farsightagriclture.Tools.DrawButton
++           android:id="@+id/btn_voir"
++           android:layout_width="wrap_content"
++           android:layout_height="wrap_content" />
++       <View
++           android:layout_width="50dp"
++           android:layout_height="match_parent"/>
++       <com.farsight.ji.farsightagriclture.Tools.DrawButton
++           android:id="@+id/btn_ctrl"
++           android:layout_width="wrap_content"
++           android:layout_height="wrap_content" />
++
++   </LinearLayout>
++
++    <View
++        android:layout_width="match_parent"
++        android:layout_height="2dp"
++        android:background="#a4a4a4"
++        android:paddingBottom="10dp"
++        android:layout_above="@id/line_select"/>
++
++    <android.support.v4.view.ViewPager
++        android:id="@+id/view_pager"
++        android:layout_above="@id/line_select"
++        android:layout_marginBottom="2dp"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"/>
++
++    <ImageView
++        android:contentDescription="@string/app_name"
++        android:id="@+id/img_tab"
++        android:layout_width="60dp"
++        android:layout_height="20dp"
++        android:background="@drawable/a"
++        android:layout_alignParentBottom="true"/>
++
++
++
++</RelativeLayout>
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision )
++++ .gitignore	(revision )
+@@ -0,0 +1,8 @@
++*.iml
++.gradle
++/local.properties
++/.idea/workspace.xml
++/.idea/libraries
++.DS_Store
++/build
++/captures
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/StringTool.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/StringTool.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/StringTool.java	(revision )
+@@ -0,0 +1,75 @@
++package com.farsight.ji.farsightagriclture.Tools;
++
++import android.util.Log;
++
++/**
++ * 字符串与16进制工具
++ * Created by jiyan on 2015/11/28.
++ */
++public class StringTool {
++    /**
++     * 打印16进制数组
++     * @param b 16进制数组
++     * @return 字符串
++     */
++    public static String printHex(byte[] b) {
++        String hex = null;
++        String result = "";
++        for (int i = 0; i < b.length; i++) {
++            hex = Integer.toHexString(b[i] & 0xFF);
++            if (hex.length() == 1) {
++                hex = '0' + hex;
++            }
++            if (i != b.length -1) {
++                result += (hex + " ");
++            } else{
++                result += hex;
++            }
++        }
++        return result;
++    }
++
++    /**
++     * 将16进制数组转换为字符串
++     * @param b 16进制数组
++     * @return 字符串
++     */
++    public static String hexToString(byte[] b){
++        String str = null;
++        StringBuilder strBuilder = new StringBuilder();
++        for (int i = 0; i < b.length; i++) {
++            String st = Integer.toHexString(b[i] & 0xff);
++            if (st.length() == 1) {
++                strBuilder.append("0");
++                strBuilder.append(st);
++            }else{
++                strBuilder.append(st);
++            }
++        }
++        str = strBuilder.toString();
++        return str;
++    }
++
++    /**
++     * 将16进制字符串转换为数组
++     * @param str 字符串
++     * @return 16进制数组
++     */
++    public static byte[] getHex(String str) {
++        byte[] strH = str.getBytes();
++        byte[] result = new byte[(strH.length + 1) / 3];
++        Log.d("SSS", result.length + "");
++        for (int i = 0; i < strH.length; i++) {
++            if (strH[i] > 64) {
++                strH[i] -= 55;
++            } else {
++                strH[i] -= 48;
++            }
++        }
++
++        for (int i = 0; i < result.length; i++) {
++            result[i] = (byte) (strH[i*3]*16 + strH[i*3+1]);
++        }
++        return result;
++    }
++}
+Index: gradlew.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew.bat	(revision )
++++ gradlew.bat	(revision )
+@@ -0,0 +1,90 @@
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS=
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto init
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto init
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:init
++@rem Get command-line arguments, handling Windowz variants
++
++if not "%OS%" == "Windows_NT" goto win9xME_args
++if "%@eval[2+2]" == "4" goto 4NT_args
++
++:win9xME_args
++@rem Slurp the command line arguments.
++set CMD_LINE_ARGS=
++set _SKIP=2
++
++:win9xME_args_slurp
++if "x%~1" == "x" goto execute
++
++set CMD_LINE_ARGS=%*
++goto execute
++
++:4NT_args
++@rem Get arguments from the 4NT Shell from JP Software
++set CMD_LINE_ARGS=%$
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.name	(revision )
++++ .idea/.name	(revision )
+@@ -0,0 +1,1 @@
++FarsightAgriclture
+\ No newline at end of file
+Index: .idea/dictionaries/Jaque_Ji.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dictionaries/Jaque_Ji.xml	(revision )
++++ .idea/dictionaries/Jaque_Ji.xml	(revision )
+@@ -0,0 +1,3 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="Jaque_Ji" />
++</component>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/copyright/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/copyright/profiles_settings.xml	(revision )
++++ .idea/copyright/profiles_settings.xml	(revision )
+@@ -0,0 +1,3 @@
++<component name="CopyrightManager">
++  <settings default="" />
++</component>
+\ No newline at end of file
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/ShowState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/ShowState.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/ShowState.java	(revision )
+@@ -0,0 +1,158 @@
++package com.farsight.ji.farsightagriclture.Tools;
++
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.Canvas;
++import android.graphics.Color;
++import android.graphics.Paint;
++import android.graphics.Rect;
++import android.util.AttributeSet;
++import android.view.View;
++
++import com.farsight.ji.farsightagriclture.R;
++
++/**
++ * 监控节点
++ * Created by jiyan on 2015/11/29.
++ */
++public class ShowState extends View{
++
++    private Paint mPaint;
++    private Context mContext;
++
++    private Bitmap bitmapNode;
++    private Bitmap bitmapBaseLine;
++    private String name;
++    private String valueNode1;
++    private String valueNode2;
++    private Bitmap bitmapPower;
++    private int power = 0;
++
++    private Rect rectOri;
++    private Rect rectDst;
++
++
++    private Rect rectPowerOri;
++    private Rect rectPowerDst;
++
++    public void setBitmapNode(int id){
++        bitmapNode = BitmapFactory.decodeResource(getResources(), id);
++    }
++
++    public void setPower(int power){
++        this.power = power;
++    }
++
++    public void setName(String name){
++        this.name = name;
++    }
++
++    public ShowState(Context context){
++        this(context, null);
++    }
++
++    public ShowState(Context context, AttributeSet attrs){
++        this(context, attrs, 0);
++    }
++
++    public ShowState(Context context, AttributeSet attrs, int defStyleAttr) {
++        super(context, attrs, defStyleAttr);
++        mContext = context;
++
++        int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
++
++        mPaint = new Paint();
++        mPaint.setTextSize(18);
++        mPaint.setStrokeWidth(Color.WHITE);
++        mPaint.setAntiAlias(true);
++        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
++
++        bitmapNode = BitmapFactory.decodeResource(getResources(), R.drawable.node);
++        bitmapBaseLine = BitmapFactory.decodeResource(getResources(), R.drawable.base_line);
++        bitmapPower = BitmapFactory.decodeResource(getResources(),R.drawable.power);
++
++        valueNode1 = "节点未连接";
++
++        int oX = bitmapNode.getWidth();
++        int oY = bitmapNode.getHeight();
++        int rX;
++        if (oX < widthMetrics/20){
++            rX = widthMetrics/20;
++        } else {
++            rX = oX;
++        }
++        int rY = rX * oY / oX;
++        rectOri = new Rect(0, 0, oX, oY);
++        rectDst = new Rect(0, 0, rX, rY);
++
++        int oPX = bitmapPower.getWidth();
++        int oPY = bitmapPower.getHeight();
++
++        if (oPY > rectDst.height()-4){
++            oPY = rectDst.height()-4;
++        }
++
++        rectPowerOri = new Rect(rectDst.right-4, rectDst.top+2, rectDst.right-4 + oPX, rectDst.top+2+oPY);
++        rectPowerDst = new Rect(rectPowerOri.left, rectPowerOri.top+(rectPowerOri.height()*(100-power)/100), rectPowerOri.right, rectPowerOri.bottom);
++
++    }
++
++    public void setStrValue(String valueNode1, String valueNode2){
++        this.valueNode1 = valueNode1;
++        this.valueNode2 = valueNode2;
++    }
++
++    @Override
++    protected void onDraw(Canvas canvas) {
++        super.onDraw(canvas);
++        canvas.drawBitmap(bitmapNode, rectOri, rectDst, mPaint);
++//        canvas.drawBitmap(bitmapBaseLine, rectDst.right, rectDst.bottom - 2, mPaint);
++        canvas.drawText(valueNode1, rectDst.right + 1, rectDst.bottom-3, mPaint);
++        if (valueNode2 != null){
++            canvas.drawBitmap(bitmapBaseLine, rectDst.right, rectDst.bottom +rectDst.height()/2 -2, mPaint);
++            canvas.drawText(valueNode2, rectDst.right + 1, rectDst.bottom + rectDst.height() / 2 - 3, mPaint);
++        } else {
++            canvas.drawBitmap(bitmapBaseLine, rectDst.right, rectDst.bottom - 2, mPaint);
++        }
++        if (power >=0  && power <= 100){
++            rectPowerDst.top = rectPowerOri.top+(rectPowerOri.height()*(100-power)/100);
++            canvas.drawBitmap(bitmapPower, rectPowerOri, rectPowerDst, mPaint);
++        }
++
++        if (name != null){
++            canvas.drawText(name, rectDst.right, rectDst.top + rectDst.height()/2,mPaint);
++        }
++
++    }
++
++    @Override
++    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
++        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
++        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
++        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
++        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
++        int width;
++        int height;
++        if (widthMode == MeasureSpec.EXACTLY) {
++            width = widthSize;
++        } else {
++            int desired = (int) (getPaddingLeft() + getPaddingRight() + rectDst.width()+bitmapBaseLine.getWidth());
++            width = desired;
++        }
++
++        if (heightMode == MeasureSpec.EXACTLY) {
++            height = heightSize;
++        } else {
++            int desired;
++            if (valueNode2 != null){
++                desired = (int) (getPaddingTop() + getPaddingBottom() + rectDst.height()*3/2);
++                height = desired;
++            } else {
++                desired = (int) (getPaddingTop() + getPaddingBottom() + rectDst.height());
++                height = desired;
++            }
++        }
++        setMeasuredDimension(width, height);
++    }
++}
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java	(revision )
+@@ -0,0 +1,228 @@
++package com.farsight.ji.farsightagriclture.Tools;
++
++import android.content.Context;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.graphics.Canvas;
++import android.graphics.Color;
++import android.graphics.Paint;
++import android.graphics.Rect;
++import android.util.AttributeSet;
++import android.util.Log;
++import android.view.MotionEvent;
++import android.view.View;
++
++import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
++import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
++import com.farsight.ji.farsightagriclture.R;
++
++/**
++ * Created by jiyan on 2015/12/1.
++ */
++public class CtrlableState extends View {
++
++    private Context mContext;
++
++    private Paint mPaint;
++    private Rect rectOri, rectDst, rectOpenOri, rectOpenDst, rectCloseOri, rectCloseDst;
++
++    private Bitmap bitmapdefault;
++    private Bitmap openDefault, closeDefault, openButton, closeButton, openButtonClicked,
++            closeButtonClicked;
++    private String name;
++    private int state = 0;
++    private String stringState;
++
++    private byte[] openCmd = new byte[7];
++    private byte[] closeCmd = new byte[7];
++
++    public void setName(byte type) {
++
++        switch (type) {
++            case NodeInfo.TYPE_WARM:
++                name = NodeInfo.WARM;
++                openCmd = NodeInfo.OPEN_WARM;
++                closeCmd =NodeInfo.CLOSE_WARM;
++                break;
++            case NodeInfo.TYPE_HUMIFY:
++                name = NodeInfo.HUMIFY;
++                openCmd = NodeInfo.OPEN_HUMIFY;
++                closeCmd =NodeInfo.CLOSE_HUMIFY;
++                break;
++            case NodeInfo.TYPE_FAN:
++                name = NodeInfo.FAN;
++                openCmd = NodeInfo.OPEN_FAN;
++                closeCmd =NodeInfo.CLOSE_FAN;
++                break;
++            case NodeInfo.TYPE_LAMP:
++                name = NodeInfo.LAMP;
++                openCmd = NodeInfo.OPEN_LAMP;
++                closeCmd =NodeInfo.CLOSE_LAMP;
++                break;
++            case NodeInfo.TYPE_DRENCHING:
++                name = NodeInfo.DRENCHING;
++                openCmd = NodeInfo.OPEN_DRENCHING;
++                closeCmd =NodeInfo.CLOSE_DRENCHING;
++                break;
++            case NodeInfo.TYPE_SHADE:
++                name = NodeInfo.SHADE;
++                openCmd = NodeInfo.OPEN_SHADE;
++                closeCmd =NodeInfo.CLOSE_SHADE;
++                break;
++            case NodeInfo.TYPE_ALARM:
++                name = NodeInfo.ALARM;
++                openCmd = NodeInfo.OPEN_ALARM;
++                closeCmd =NodeInfo.CLOSE_ALARM;
++                break;
++        }
++    }
++
++    public void setPower(int power, int state) {
++        this.state = state;
++        if (state == 1) {
++            setStringState("\"开\"" + "，电量：" + power + "%");
++        } else if (state == 0) {
++            setStringState("\"关\"" + "，电量：" + power + "%");
++        } else if(state == -1){
++            setStringState("断开连接");
++        } else {
++            setStringState("未连接");
++        }
++    }
++
++    public void setStringState(String state) {
++        stringState = state;
++    }
++
++    public CtrlableState(Context context) {
++        this(context, null);
++    }
++
++    public CtrlableState(Context context, AttributeSet attrs) {
++        this(context, attrs, 0);
++    }
++
++    public CtrlableState(Context context, AttributeSet attrs, int defStyleAttr) {
++        super(context, attrs, defStyleAttr);
++
++        mContext = context;
++
++        name = " ";
++
++        int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
++
++        mPaint = new Paint();
++        mPaint.setTextSize(18);
++        mPaint.setStrokeWidth(Color.WHITE);
++        mPaint.setAntiAlias(true);
++        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
++
++        bitmapdefault = BitmapFactory.decodeResource(getResources(), R.drawable.cnode);
++
++        int oX, oY, dX, dY;
++        oX = bitmapdefault.getWidth();
++        oY = bitmapdefault.getHeight();
++        rectOri = new Rect(0, 0, oX, oY);
++        dX = widthMetrics / 6;
++        dY = oY * dX / oX;
++        rectDst = new Rect(0, 0, dX, dY);
++
++        openButton = BitmapFactory.decodeResource(getResources(), R.drawable.open);
++        openButtonClicked = BitmapFactory.decodeResource(getResources(), R.drawable.open_clicked);
++        openDefault = openButton;
++        rectOpenOri = new Rect(0, 0, openDefault.getWidth(), openDefault.getHeight());
++        rectOpenDst = new Rect(1, rectDst.height() / 2, rectDst.width() / 2 - 1, rectDst.height() - 1);
++
++        closeButton = BitmapFactory.decodeResource(getResources(), R.drawable.close);
++        closeButtonClicked = BitmapFactory.decodeResource(getResources(), R.drawable.close_clicked);
++        closeDefault = closeButton;
++        rectCloseOri = new Rect(0, 0, closeDefault.getWidth(), closeDefault.getHeight());
++        rectCloseDst = new Rect(rectDst.width() / 2 + 1, rectDst.height() / 2, rectDst.width() - 1, rectDst.height()
++                - 1);
++
++        openCmd = NodeInfo.OPEN;
++        closeCmd = NodeInfo.CLOSE;
++    }
++
++    @Override
++    protected void onDraw(Canvas canvas) {
++        super.onDraw(canvas);
++        canvas.drawBitmap(bitmapdefault, rectOri, rectDst, mPaint);
++        canvas.drawBitmap(openDefault, rectOpenOri, rectOpenDst, mPaint);
++        canvas.drawBitmap(closeDefault, rectCloseOri, rectCloseDst, mPaint);
++        if (name != null) {
++            canvas.drawText(name, rectDst.left + 1, rectDst.height() / 4, mPaint);
++        }
++        if (stringState != null) {
++            canvas.drawText(stringState, rectDst.left + 1, rectDst.height() / 2, mPaint);
++        }
++
++    }
++
++    @Override
++    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
++        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
++        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
++        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
++        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
++        int width;
++        int height;
++        if (widthMode == MeasureSpec.EXACTLY) {
++            width = widthSize;
++        } else {
++            int desired = (int) (getPaddingLeft() + getPaddingRight() + rectDst.width());
++            width = desired;
++        }
++
++        if (heightMode == MeasureSpec.EXACTLY) {
++            height = heightSize;
++        } else {
++            int desired = (int) (getPaddingTop() + getPaddingBottom() + rectDst.height());
++            height = desired;
++        }
++        setMeasuredDimension(width, height);
++    }
++
++    @Override
++    public boolean onTouchEvent(MotionEvent event) {
++        float x = event.getX();
++        float y = event.getY();
++        switch (event.getAction()) {
++            case MotionEvent.ACTION_DOWN:
++                if (x > rectOpenDst.left && x < rectOpenDst.right && y > rectOpenDst.top && y < rectOpenDst.bottom) {
++                    openDefault = openButtonClicked;
++                } else if (x > rectCloseDst.left && x < rectCloseDst.right && y > rectCloseDst.top && y < rectCloseDst
++                        .bottom) {
++                    closeDefault = closeButtonClicked;
++                }
++                break;
++            case MotionEvent.ACTION_UP:
++                if (x > rectOpenDst.left && x < rectOpenDst.right && y > rectOpenDst.top && y < rectOpenDst.bottom) {
++                    openDefault = openButton;
++                    if (state == 0) {
++                        try {
++                            TotalDatas.qSend.put(openCmd);
++                            Log.d("put", StringTool.hexToString(openCmd) + name);
++                        } catch (InterruptedException e) {
++                            e.printStackTrace();
++                        }
++                    }
++                } else if (x > rectCloseDst.left && x < rectCloseDst.right && y > rectCloseDst.top && y < rectCloseDst
++                        .bottom) {
++                    closeDefault = closeButton;
++                    if (state == 1) {
++                        try {
++                            TotalDatas.qSend.put(closeCmd);
++                            Log.d("put", StringTool.hexToString(closeCmd) + name);
++                        } catch (InterruptedException e) {
++                            e.printStackTrace();
++                        }
++                    }
++                }
++                break;
++        }
++        invalidate();
++        return true;
++    }
++
++}
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeCtrl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeCtrl.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Node/NodeCtrl.java	(revision )
+@@ -0,0 +1,55 @@
++package com.farsight.ji.farsightagriclture.Node;
++
++/**
++ * Created by jiyan on 2015/11/28.
++ */
++public class NodeCtrl {
++    private byte[] datas;
++    private byte type;
++    private byte addrH;
++    private byte addrL;
++    private byte state;
++    private byte power;
++    public int timeOut = -1;
++
++    public NodeCtrl(byte[] datas){
++        this.datas = datas;
++        type = datas[4];
++        addrH = datas[3];
++        addrL = datas[2];
++        state = datas[7];
++        power = datas[10];
++        timeOut = 10;
++    }
++
++    public void setAllValue(byte[] datas){
++        this.datas = datas;
++        state = datas[7];
++        power = datas[10];
++        timeOut = 10;
++    }
++
++    public byte[] getDatas(){
++        return datas;
++    }
++
++    public byte getState(){
++        return state;
++    }
++
++    public byte getType(){
++        return type;
++    }
++
++    public byte getAddrH(){
++        return addrH;
++    }
++
++    public byte getAddrL(){
++        return addrL;
++    }
++
++    public byte getPower(){
++        return power;
++    }
++}

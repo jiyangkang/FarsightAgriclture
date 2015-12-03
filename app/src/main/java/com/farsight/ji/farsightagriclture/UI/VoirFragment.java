@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,6 @@ public class VoirFragment extends Fragment {
     private DueBroadCastReceiver receiver;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +49,6 @@ public class VoirFragment extends Fragment {
 
         return view;
     }
-
 
 
     private void registeIntentfilter() {
@@ -131,116 +128,123 @@ public class VoirFragment extends Fragment {
 
     }
 
-    private void setTempNode(ShowState node, int[] values, String action) {
-        int [] a = values;
+    private void setNode(ShowState node, int[] values, String action) {
 
-        node.setStrValue("温度：" + a[0] + "℃，", "湿度：" + a[1] + "%，电量：" + a[2] + "%");
-        node.setPower(a[2]);
-        node.invalidate();
-    }
-
-    private void setLightNode(ShowState node, int[] values, String action) {
-        int [] a =values;
-        node.setStrValue("光照强度：" + a[0] + "lux，" + "电量：" + a[1] + "%", null);
-        node.setPower(a[1]);
-        node.invalidate();
-    }
-
-    private void setCarbonDioxidNode(ShowState node, int[] values, String action){
-        int[] a = values;
-        node.setStrValue("二氧化碳浓度：" +a[0] + "ppm" + "电量：" + a[1] + "%", null);
-        node.setPower(a[1]);
-        node.invalidate();
-    }
-
-    private void setInfraredNode(ShowState node, int[] values, String action){
-        int[] a = values;
-        if (a[0] == 0){
-            node.setStrValue("正常，" + action, null);
-        }else{
-            node.setStrValue("有人闯入", null);
+        switch (action) {
+            case NodeInfo.ENVTEMPFIRST:
+            case NodeInfo.ENVTEMPSECOND:
+                node.setStrValue("环境温度：" + values[0] + "℃", "环境湿度：" + values[1] + "%");
+                break;
+            case NodeInfo.SOILTEMPFIRST:
+            case NodeInfo.SOILTEMPSECOND:
+                node.setStrValue("土壤温度：" + values[0] + "摄氏度", "土壤溶剂含水率：" + values[1] + "%");
+                break;
+            case NodeInfo.LIGHTFIRST:
+            case NodeInfo.LIGHTSECOND:
+                if (values[1] == 1) {
+                    node.setStrValue("光照强度：无效", null);
+                } else {
+                    node.setStrValue("光照强度：" + values[0] + "lux", null);
+                }
+                break;
+            case NodeInfo.INFRARED:
+                if (values[0] == 0) {
+                    node.setStrValue("正常", null);
+                } else if (values[0] == 1) {
+                    node.setStrValue("有人闯入", null);
+                }
+                break;
+            case NodeInfo.CARBONDIOXID:
+                node.setStrValue("二氧化碳浓度"+values[0]+"ppm", null);
+                break;
+            case NodeInfo.ENVTEMPFIRST_D:
+            case NodeInfo.ENVTEMPSECOND_D:
+            case NodeInfo.LIGHTFIRST_D:
+            case NodeInfo.LIGHTSECOND_D:
+            case NodeInfo.SOILTEMPFIRST_D:
+            case NodeInfo.SOILTEMPSECOND_D:
+            case NodeInfo.INFRARED_D:
+            case NodeInfo.CARBONDIOXID_D:
+                node.setStrValue("断开连接", null);
+                break;
+            default:
+                break;
         }
-        node.setPower(a[1]);
         node.invalidate();
     }
 
-    public void disConnect(ShowState node, String action){
-        node.setStrValue("断开连接", null);
-        node.setPower(100);
-        node.invalidate();
-    }
 
-    private class DueBroadCastReceiver extends BroadcastReceiver{
+    private class DueBroadCastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             int[] ints;
             String strings;
-            switch (action){
+            switch (action) {
                 case NodeInfo.ENVTEMPFIRST://环境温湿度
                     ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPFIRST);
-                    setTempNode(envNodeFirst, ints, NodeInfo.ENVTEMPFIRST);
+                    setNode(envNodeFirst, ints, NodeInfo.ENVTEMPFIRST);
                     break;
                 case NodeInfo.ENVTEMPFIRST_D:
                     strings = intent.getStringExtra(NodeInfo.ENVTEMPFIRST_D);
-                    disConnect(envNodeFirst, strings);
+                    setNode(envNodeFirst, null,strings);
                     break;
                 case NodeInfo.ENVTEMPSECOND:
                     ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPFIRST);
-                    setTempNode(envNodeSecond, ints,NodeInfo.ENVTEMPSECOND);
+                    setNode(envNodeSecond, ints, NodeInfo.ENVTEMPSECOND);
                     break;
                 case NodeInfo.ENVTEMPSECOND_D:
                     strings = intent.getStringExtra(NodeInfo.ENVTEMPSECOND_D);
-                    disConnect(envNodeSecond, strings);
+                    setNode(envNodeSecond, null, strings);
                     break;
                 case NodeInfo.SOILTEMPFIRST://土壤温湿度
                     ints = intent.getIntArrayExtra(NodeInfo.SOILTEMPFIRST);
-                    setTempNode(soilNodeFirst, ints, NodeInfo.SOILTEMPFIRST);
+                    setNode(soilNodeFirst, ints, NodeInfo.SOILTEMPFIRST);
                     break;
                 case NodeInfo.SOILTEMPFIRST_D:
                     strings = intent.getStringExtra(NodeInfo.SOILTEMPFIRST_D);
-                    disConnect(soilNodeSecond, strings);
+                    setNode(soilNodeSecond, null, strings);
                     break;
                 case NodeInfo.SOILTEMPSECOND:
                     ints = intent.getIntArrayExtra(NodeInfo.SOILTEMPSECOND);
-                    setTempNode(soilNodeSecond, ints, NodeInfo.SOILTEMPSECOND);
+                    setNode(soilNodeSecond, ints, NodeInfo.SOILTEMPSECOND);
                     break;
                 case NodeInfo.SOILTEMPSECOND_D:
                     strings = intent.getStringExtra(NodeInfo.SOILTEMPSECOND_D);
-                    disConnect(soilNodeSecond, strings);
+                    setNode(soilNodeSecond, null, strings);
                     break;
                 case NodeInfo.LIGHTFIRST://光照强度
                     ints = intent.getIntArrayExtra(NodeInfo.LIGHTFIRST);
-                    setLightNode(lightNodeFirst, ints, NodeInfo.LIGHTFIRST);
+                    setNode(lightNodeFirst, ints, NodeInfo.LIGHTFIRST);
                     break;
                 case NodeInfo.LIGHTFIRST_D:
                     strings = intent.getStringExtra(NodeInfo.LIGHTFIRST_D);
-                    disConnect(lightNodeFirst, strings);
+                    setNode(lightNodeFirst, null, strings);
                     break;
                 case NodeInfo.LIGHTSECOND:
                     ints = intent.getIntArrayExtra(NodeInfo.LIGHTSECOND);
-                    setLightNode(lightNodeSecond, ints, NodeInfo.LIGHTSECOND);
+                    setNode(lightNodeSecond, ints, NodeInfo.LIGHTSECOND);
                     break;
                 case NodeInfo.LIGHTSECOND_D:
                     strings = intent.getStringExtra(NodeInfo.LIGHTSECOND_D);
-                    disConnect(lightNodeSecond, strings);
+                    setNode(lightNodeSecond, null, strings);
                     break;
                 case NodeInfo.CARBONDIOXID://二氧化碳浓度
                     ints = intent.getIntArrayExtra(NodeInfo.CARBONDIOXID);
-                    setCarbonDioxidNode(carbonDioxideNode, ints, NodeInfo.CARBONDIOXID);
+                    setNode(carbonDioxideNode, ints, NodeInfo.CARBONDIOXID);
                     break;
                 case NodeInfo.CARBONDIOXID_D:
                     strings = intent.getStringExtra(NodeInfo.CARBONDIOXID_D);
-                    disConnect(carbonDioxideNode, strings);
+                    setNode(carbonDioxideNode, null, strings);
                     break;
                 case NodeInfo.INFRARED://红外感应器
                     ints = intent.getIntArrayExtra(NodeInfo.INFRARED);
-                    setInfraredNode(infraredNode, ints, NodeInfo.INFRARED);
+                    setNode(infraredNode, ints, NodeInfo.INFRARED);
                     break;
                 case NodeInfo.INFRARED_D:
                     strings = intent.getStringExtra(NodeInfo.INFRARED_D);
-                    disConnect(infraredNode, strings);
+                    setNode(infraredNode, null, strings);
                     break;
             }
         }
