@@ -4,8 +4,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
+import com.farsight.ji.farsightagriclture.Tools.StringTool;
 import com.farsight.ji.farsightagriclture.Tools.UDPTool;
 
 /**
@@ -113,6 +115,7 @@ public class UDPService extends Service{
                 byte[] datas = udpTool.receivFromWifi(12);
 
                 try {
+                    Log.d("RECEIVE", StringTool.hexToString(datas));
                     TotalDatas.qData.put(datas);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

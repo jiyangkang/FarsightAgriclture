@@ -1,5 +1,6 @@
 package com.farsight.ji.farsightagriclture.UI;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.farsight.ji.farsightagriclture.R;
+import com.farsight.ji.farsightagriclture.Service.DueDatasService;
+import com.farsight.ji.farsightagriclture.Service.UDPService;
 import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
 import java.util.ArrayList;
@@ -58,6 +61,10 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
         mViewPager.setAdapter(new SwitchFragmentAdapter(getSupportFragmentManager()));
 
+        Intent intent = new Intent(MainActivity.this, UDPService.class);
+        startService(intent);
+        Intent intent1 = new Intent(MainActivity.this, DueDatasService.class);
+        startService(intent1);
 
     }
 
