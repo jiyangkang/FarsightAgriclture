@@ -17,14 +17,14 @@ public class NodeCtrl {
         type = datas[4];
         addrH = datas[3];
         addrL = datas[2];
-        state = datas[7];
+        state = datas[6];
         power = datas[10];
         timeOut = 10;
     }
 
     public void setAllValue(byte[] datas){
         this.datas = datas;
-        state = datas[7];
+        state = datas[6];
         power = datas[10];
         timeOut = 10;
     }

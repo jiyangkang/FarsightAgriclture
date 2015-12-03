@@ -160,7 +160,7 @@ public class DueDatasService extends Service {
         int[] send = new int[2];
         Intent intent = new Intent();
 
-        state = datas[7];
+        state = datas[6];
         power = datas[10];
 
         send[0] = state;
@@ -176,7 +176,7 @@ public class DueDatasService extends Service {
         int[] send = new int[2];
         Intent intent = new Intent();
 
-        state = datas[7];
+        state = datas[6];
         power = datas[10];
 
         send[0] = state;

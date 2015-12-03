@@ -32,6 +32,12 @@ public class CtrlFragment extends Fragment {
         registerIntentFilter();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        view.getContext().unregisterReceiver(receiver);
+    }
+
     private void registerIntentFilter() {
         intentFilter = new IntentFilter();
         intentFilter.addAction(NodeInfo.WARM);

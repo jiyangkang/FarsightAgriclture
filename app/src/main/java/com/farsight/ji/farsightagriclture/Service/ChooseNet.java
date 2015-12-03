@@ -41,17 +41,25 @@ public class ChooseNet extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (udpCheck != null) {
+            udpCheck = null;
+        }
+    }
+
     private class UDPCheck extends Thread {
         @Override
         public void run() {
             while (!TotalDatas.isUDP) {
-                Log.d("thread" ,"On");
+                Log.d("thread", "On");
                 receivFromWifi(12);
             }
         }
     }
 
-    public byte[] receivFromWifi(Integer num){
+    public byte[] receivFromWifi(Integer num) {
         byte[] datas = new byte[num];
         try {
             DatagramSocket socket = new DatagramSocket(TotalDatas.receivePort);
@@ -60,10 +68,15 @@ public class ChooseNet extends Service {
 
             DatagramPacket packet = new DatagramPacket(datas, datas.length);
             socket.receive(packet);
-            hostName = packet.getAddress().getHostName();
-            if (hostName != null){
-                TotalDatas.hostsIp = hostName;
-                TotalDatas.isUDP = true;
+            if (datas[0] == 0x21) {
+                hostName = packet.getAddress().getHostName();
+                if (hostName != null) {
+                    TotalDatas.hostsIp = hostName;
+                    TotalDatas.isUDP = true;
+                    Intent intent = new Intent();
+                    intent.setAction(TotalDatas.ISUDP);
+                    sendBroadcast(intent);
+                }
             }
             socket.close();
 

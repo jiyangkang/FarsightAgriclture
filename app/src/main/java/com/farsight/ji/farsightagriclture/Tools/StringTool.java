@@ -51,7 +51,7 @@ public class StringTool {
     }
 
     /**
-     * 将16进制字符串转换为数组
+     * 将16进制字符串带空格转换为数组
      * @param str 字符串
      * @return 16进制数组
      */
@@ -71,5 +71,32 @@ public class StringTool {
             result[i] = (byte) (strH[i*3]*16 + strH[i*3+1]);
         }
         return result;
+    }
+
+    public static byte[][] getHexSer(String str){
+        byte[][] datas;
+        byte[] strH = str.getBytes();
+        int l = strH.length;
+        int n;
+        if(l%24 == 0){
+            n = l/24;
+            for (int i = 0; i < strH.length; i++) {
+                if (strH[i] > 64) {
+                    strH[i] -= 55;
+                } else {
+                    strH[i] -= 48;
+                }
+            }
+        }else{
+            return null;
+        }
+        datas = new byte[n][12];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < 12 ; j++){
+                datas[i][j] = (byte) (strH[i*24 + j*2]*16 + strH[i*24 + j*2 +1]);
+            }
+        }
+
+        return datas;
     }
 }
