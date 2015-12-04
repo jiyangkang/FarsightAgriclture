@@ -79,13 +79,13 @@ public class VoirFragment extends Fragment {
 
     private void initShow() {
         envNodeFirst = (ShowState) view.findViewById(R.id.node_env_1);
-        envNodeFirst.setBitmapNode(R.drawable.env);
+        envNodeFirst.setBitmapNode(R.drawable.env1);
         envNodeFirst.setStrValue("未连接", " ");
         envNodeFirst.setName(NodeInfo.ENVTEMPFIRST);
         envNodeFirst.invalidate();
 
         envNodeSecond = (ShowState) view.findViewById(R.id.node_env_2);
-        envNodeSecond.setBitmapNode(R.drawable.env);
+        envNodeSecond.setBitmapNode(R.drawable.env2);
         envNodeSecond.setStrValue("未连接", " ");
         envNodeSecond.setName(NodeInfo.ENVTEMPSECOND);
         envNodeSecond.invalidate();
