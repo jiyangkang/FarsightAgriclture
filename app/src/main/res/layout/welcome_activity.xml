@@ -2,16 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/bg"
-              android:gravity="center"
+              android:background="@drawable/welcome"
+              android:gravity="center_horizontal|bottom"
               android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txv_camera"
+
+    <com.farsight.ji.farsightagriclture.Tools.DrawButton
+        android:id="@+id/btn_scan_udp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcom"
-        android:textSize="20sp"/>
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

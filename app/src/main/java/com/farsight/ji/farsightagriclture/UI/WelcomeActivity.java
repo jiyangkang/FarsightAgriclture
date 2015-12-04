@@ -4,42 +4,38 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
 import com.farsight.ji.farsightagriclture.R;
-import com.farsight.ji.farsightagriclture.Tools.SoapTool;
+import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 
 /**
  * 欢迎页面，选择内外网
  * Created by jiyan on 2015/12/2.
  */
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements View.OnTouchListener {
 
     private CountThread countThread;
-    private ProgressDialog progressDialog;
-    private SoapTool soapTool;
     private CheckUdp checkUdp;
-
+    private DrawButton btn;
+    private ProgressDialog dialog;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -48,10 +44,33 @@ public class WelcomeActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
+                    dialog.dismiss();
+                    if (checkUdp != null) {
+                        checkUdp.interrupt();
+                        checkUdp = null;
+                    }
+                    if (countThread != null) {
+                        countThread.interrupt();
+                        countThread = null;
+                    }
+                    btn.setBitmapDefault(R.drawable.scanudp);
+                    btn.invalidate();
                     Toast.makeText(WelcomeActivity.this, "没有接收到内网UDP包", Toast.LENGTH_SHORT).show();
-                    loginAlterDialog();
+                    onCheckDialog();
                     break;
                 case 2:
+                    dialog.dismiss();
+                    if (checkUdp != null) {
+                        checkUdp.interrupt();
+                        checkUdp = null;
+                    }
+                    if (countThread != null) {
+                        countThread.interrupt();
+                        countThread = null;
+                    }
+                    btn.setBitmapDefault(R.drawable.scanudp);
+                    btn.invalidate();
+                    Toast.makeText(WelcomeActivity.this, "收到UDP广播包", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                     startActivity(intent);
                     break;
@@ -72,19 +91,78 @@ public class WelcomeActivity extends Activity {
 
         checkUdp = new CheckUdp();
         checkUdp.start();
-
-
-
+        dialog = ProgressDialog.show(this, null, "正在扫描UPD...");
+        btn.setOnTouchListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (checkUdp != null) {
+            checkUdp.interrupt();
+            checkUdp = null;
+        }
+        if (countThread != null) {
+            countThread.interrupt();
+            countThread = null;
+        }
     }
 
     private void initShow() {
-        soapTool = new SoapTool();
+        btn = (DrawButton) findViewById(R.id.btn_scan_udp);
+        btn.setBitmapDefault(R.drawable.scanudpuseless);
+        btn.invalidate();
+    }
 
+    private void onCheckDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeActivity.this);
+        builder.setTitle("未接受到内网UDP包");
+        builder.setMessage("是否使用外网模式？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(WelcomeActivity.this, Login.class);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        builder.create().show();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch (v.getId()) {
+            case R.id.btn_scan_udp:
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Log.d("TTTTTouch","DDDDD");
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if (btn.getBit() != R.drawable.scanudpuseless) {
+                            Log.d("TTTTTouch","UUUUUP");
+                            checkUdp = new CheckUdp();
+                            checkUdp.start();
+                            countThread = new CountThread();
+                            countThread.start();
+                            btn.setBitmapDefault(R.drawable.scanudpuseless);
+                            btn.invalidate();
+                            dialog = ProgressDialog.show(WelcomeActivity.this, null, "正在扫描UDP...");
+                            break;
+                        }
+                }
+                break;
+        }
+
+        return true;
     }
 
     private class CheckUdp extends Thread {
@@ -95,7 +173,10 @@ public class WelcomeActivity extends Activity {
                 byte[] datas = new byte[12];
 
                 try {
-                    DatagramSocket socket = new DatagramSocket(TotalDatas.receivePort);
+//                    DatagramSocket socket = new DatagramSocket(TotalDatas.receivePort);
+                    DatagramSocket socket = new DatagramSocket(null);
+                    socket.setReuseAddress(true);
+                    socket.bind(new InetSocketAddress(TotalDatas.receivePort));
                     socket.setBroadcast(true);
                     socket.setReceiveBufferSize(datas.length);
                     DatagramPacket packet = new DatagramPacket(datas, datas.length);
@@ -117,7 +198,7 @@ public class WelcomeActivity extends Activity {
     }
 
     private class CountThread extends Thread {
-        int i = 200;
+        int i = 150;
 
         @Override
         public void run() {
@@ -133,13 +214,13 @@ public class WelcomeActivity extends Activity {
                 }
             }
 
-            if (i == 0) {
+            if (i == 0) {//15秒内未接受到相应的UDP广播
                 TotalDatas.isUDP = false;
                 checkUdp.interrupt();
                 checkUdp = null;
                 handler.sendEmptyMessage(1);
 
-            } else {
+            } else {//扫描到UDP广播
                 TotalDatas.isUDP = true;
                 checkUdp.interrupt();
                 checkUdp = null;
@@ -149,98 +230,5 @@ public class WelcomeActivity extends Activity {
         }
     }
 
-    private void loginAlterDialog() {
-        if (countThread != null) {
-            countThread.interrupt();
-            countThread = null;
-        }
-        if (checkUdp != null) {
-            checkUdp.interrupt();
-            checkUdp = null;
-        }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeActivity.this);
-        final View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.login_dialog, null);
-        builder.setView(view);
-        final EditText edtName = (EditText) view.findViewById(R.id.edt_name);
-        final EditText edtPswd = (EditText) view.findViewById(R.id.edt_pswd);
-
-        builder.setPositiveButton(R.string.login_btn, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(final DialogInterface dialog, int which) {
-                        final String name = edtName.getText().toString();
-                        final String pswd = edtPswd.getText().toString();
-                        try {
-                            Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-                            field.setAccessible(true);
-                            field.set(dialog, false);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (name.length() < 4) {
-                            Toast.makeText(WelcomeActivity.this, "用户名不得少于4位", Toast.LENGTH_SHORT).show();
-                        } else if (pswd.length() < 4) {
-                            Toast.makeText(WelcomeActivity.this, "密码不得少于4位", Toast.LENGTH_SHORT).show();
-                        } else {
-                            progressDialog = ProgressDialog.show(view.getContext(), null, "正在连接", true);
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    String re;
-                                    Log.d("NAME", name + "  " + pswd);
-                                    if ((re = soapTool.UserCheck(name, pswd)) != null) {
-                                        if (re.equalsIgnoreCase("error1")) {
-                                            progressDialog.dismiss();
-                                            Toast.makeText(WelcomeActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
-                                        } else if (re.equalsIgnoreCase("error2")) {
-                                            progressDialog.dismiss();
-                                            Toast.makeText(WelcomeActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            TotalDatas.userId = re;
-                                            if (re != null) {
-                                                Log.d("REUSERID", re);
-                                            }
-                                            dialog.dismiss();
-                                            progressDialog.dismiss();
-
-                                            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    } else {
-                                        progressDialog.dismiss();
-                                    }
-                                }
-                            }).start();
-
-                        }
-
-                    }
-                }
-
-        );
-
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        final AlertDialog alertDialog = builder.create();
-
-
-        alertDialog.setTitle(R.string.login_title);
-
-        alertDialog.show();
-
-//        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//            @Override
-//            public void onDismiss(DialogInterface dialog) {
-//
-//                countThread = new CountThread();
-//                countThread.start();
-//
-//            }
-//        });
-
-    }
 
 }

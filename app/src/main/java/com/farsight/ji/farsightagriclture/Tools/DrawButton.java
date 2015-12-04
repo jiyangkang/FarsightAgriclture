@@ -26,8 +26,15 @@ public class DrawButton extends View{
 
     private Bitmap bitmapDefault;
 
+    private int bit;
+
+    public int getBit(){
+        return bit;
+    }
+
     public void setBitmapDefault(int bitmapDefault){
         this.bitmapDefault = BitmapFactory.decodeResource(getResources(), bitmapDefault);
+        this.bit = bitmapDefault;
     }
 
 

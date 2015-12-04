@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".UI.WelcomeActivity"
+            android:clearTaskOnLaunch="true"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -24,6 +25,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".UI.Login"
+            android:screenOrientation="landscape"
+            />
         <activity android:name=".UI.MainActivity"
                   android:screenOrientation="landscape"/>
 

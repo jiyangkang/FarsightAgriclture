@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
 import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
@@ -278,6 +279,7 @@ public class DueDatasService extends Service {
                         case NodeInfo.TYPE_LAMP://照明灯--一个
                             switch (datas[2]) {
                                 case NodeInfo.ADDR_LAMP:
+                                    Log.d("照明","照明");
                                     if (lamp != null) {
                                         lamp.setAllValue(datas);
                                     } else {

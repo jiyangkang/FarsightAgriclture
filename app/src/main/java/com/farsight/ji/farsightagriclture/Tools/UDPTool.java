@@ -3,10 +3,13 @@ package com.farsight.ji.farsightagriclture.Tools;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 
+import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -53,7 +56,10 @@ public class UDPTool {
     public byte[] receivFromWifi(Integer num) {
         byte[] datas = new byte[num];
         try {
-            DatagramSocket socket = new DatagramSocket(receivPort);
+//            DatagramSocket socket = new DatagramSocket(receivPort);
+            DatagramSocket socket = new DatagramSocket(null);
+            socket.setReuseAddress(true);
+            socket.bind(new InetSocketAddress(TotalDatas.receivePort));
             socket.setBroadcast(true);
             socket.setReceiveBufferSize(datas.length);
             DatagramPacket packet = new DatagramPacket(datas, datas.length);
