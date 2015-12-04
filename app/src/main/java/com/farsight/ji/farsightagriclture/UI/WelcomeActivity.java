@@ -198,7 +198,7 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
     }
 
     private class CountThread extends Thread {
-        int i = 150;
+        int i = 50;
 
         @Override
         public void run() {
