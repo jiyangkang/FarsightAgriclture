@@ -19,9 +19,12 @@
            android:id="@+id/btn_voir"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content" />
-       <View
-           android:layout_width="50dp"
-           android:layout_height="match_parent"/>
+       <Button
+           android:id="@+id/btn_camera"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/camera"
+           android:textSize="20sp"/>
        <com.farsight.ji.farsightagriclture.Tools.DrawButton
            android:id="@+id/btn_ctrl"
            android:layout_width="wrap_content"

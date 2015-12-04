@@ -1,5 +1,6 @@
 package com.farsight.ji.farsightagriclture.UI;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -41,6 +43,9 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
     private int screenWidth;
     private int currentTab;
 
+    private Button button;
+
+    private ComponentName componentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +76,23 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         Intent intent1 = new Intent(MainActivity.this, DueDatasService.class);
         startService(intent1);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                componentName = new ComponentName("com.mobile.myeye", "com.mobile.myeye.activity.WelcomeActivity");
+                Intent intent = new Intent();
+                intent.setComponent(componentName);
+                intent.setAction("android.intent.action.MAIN");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initShow() {
+        button = (Button) findViewById(R.id.btn_camera);
+
         btnVoir = (DrawButton) findViewById(R.id.btn_voir);
         btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
         btnVoir.invalidate();

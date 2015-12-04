@@ -37,12 +37,12 @@ public class StringTool {
     public static String hexToString(byte[] b){
         String str = null;
         StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < b.length; i++) {
-            String st = Integer.toHexString(b[i] & 0xff);
+        for (byte aB : b) {
+            String st = Integer.toHexString(aB & 0xff);
             if (st.length() == 1) {
                 strBuilder.append("0");
                 strBuilder.append(st);
-            }else{
+            } else {
                 strBuilder.append(st);
             }
         }
@@ -81,7 +81,9 @@ public class StringTool {
         if(l%24 == 0){
             n = l/24;
             for (int i = 0; i < strH.length; i++) {
-                if (strH[i] > 64) {
+                if (strH[i] > 96){
+                    strH[i] -= 97;
+                }else if (strH[i] > 64) {
                     strH[i] -= 55;
                 } else {
                     strH[i] -= 48;
