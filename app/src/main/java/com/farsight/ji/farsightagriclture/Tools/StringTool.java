@@ -60,7 +60,9 @@ public class StringTool {
         byte[] result = new byte[(strH.length + 1) / 3];
         Log.d("SSS", result.length + "");
         for (int i = 0; i < strH.length; i++) {
-            if (strH[i] > 64) {
+            if (strH[i] > 96){
+                strH[i] -= 87;
+            }else if (strH[i] > 64) {
                 strH[i] -= 55;
             } else {
                 strH[i] -= 48;
@@ -82,7 +84,7 @@ public class StringTool {
             n = l/24;
             for (int i = 0; i < strH.length; i++) {
                 if (strH[i] > 96){
-                    strH[i] -= 97;
+                    strH[i] -= 87;
                 }else if (strH[i] > 64) {
                     strH[i] -= 55;
                 } else {

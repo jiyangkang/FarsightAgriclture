@@ -42,16 +42,22 @@ public class CtrlFragment extends Fragment {
         intentFilter = new IntentFilter();
         intentFilter.addAction(NodeInfo.WARM);
         intentFilter.addAction(NodeInfo.WARM_D);
+
         intentFilter.addAction(NodeInfo.HUMIFY);
         intentFilter.addAction(NodeInfo.HUMIFY_D);
+
         intentFilter.addAction(NodeInfo.FAN);
         intentFilter.addAction(NodeInfo.FAN_D);
+
         intentFilter.addAction(NodeInfo.LAMP);
         intentFilter.addAction(NodeInfo.LAMP_D);
+
         intentFilter.addAction(NodeInfo.DRENCHING);
         intentFilter.addAction(NodeInfo.DRENCHING_D);
+
         intentFilter.addAction(NodeInfo.SHADE);
         intentFilter.addAction(NodeInfo.SHADE_D);
+
         intentFilter.addAction(NodeInfo.ALARM);
         intentFilter.addAction(NodeInfo.ALARM_D);
     }
