@@ -160,7 +160,7 @@ public class WelcomeActivity extends Activity {
 
         builder.setPositiveButton(R.string.login_btn, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(final DialogInterface dialog, int which) {
                         final String name = edtName.getText().toString();
                         final String pswd = edtPswd.getText().toString();
                         try {
@@ -193,6 +193,7 @@ public class WelcomeActivity extends Activity {
                                             if (re != null) {
                                                 Log.d("REUSERID", re);
                                             }
+                                            dialog.dismiss();
                                             progressDialog.dismiss();
 
                                             Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);

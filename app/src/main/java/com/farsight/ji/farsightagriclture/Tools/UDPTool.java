@@ -25,10 +25,11 @@ public class UDPTool {
 
     /**
      * 构造函数
-     * @param context   传入的上下文
-     * @param host      主机IP地址
-     * @param port		接收端端口
-     * @param sendPort  发送端端口
+     *
+     * @param context  传入的上下文
+     * @param host     主机IP地址
+     * @param port     接收端端口
+     * @param sendPort 发送端端口
      */
     public UDPTool(Context context, String host, Integer port, Integer sendPort) {
         super();
@@ -45,17 +46,16 @@ public class UDPTool {
     }
 
     /**
-     * 发送
-     * @param      num 要接收的数据长度
-     * @return     !=null接收到的数据byte[]数据， ==null出错
+     * 接收
+     * @param num 要接收的数据长度
+     * @return !=null接收到的数据byte[]数据， ==null出错
      */
-    public byte[] receivFromWifi(Integer num){
+    public byte[] receivFromWifi(Integer num) {
         byte[] datas = new byte[num];
         try {
             DatagramSocket socket = new DatagramSocket(receivPort);
             socket.setBroadcast(true);
             socket.setReceiveBufferSize(datas.length);
-
             DatagramPacket packet = new DatagramPacket(datas, datas.length);
 
             socket.receive(packet);
@@ -69,17 +69,17 @@ public class UDPTool {
             return null;
         }
     }
+
     /**
      * 发送
-     * @param 	datas：要发送的数据
-     * @return		   是否发送成功
+     * @param datas：要发送的数据
+     * @return 是否发送成功
      */
-    public boolean sendToWifi(final byte[] datas){
+    public boolean sendToWifi(final byte[] datas) {
         try {
             DatagramSocket socket = new DatagramSocket(sendPort);
             socket.setBroadcast(true);
             socket.setSendBufferSize(datas.length);
-
             DatagramPacket packet = new DatagramPacket(datas, datas.length, inetAddress, sendPort);
 
             socket.send(packet);
