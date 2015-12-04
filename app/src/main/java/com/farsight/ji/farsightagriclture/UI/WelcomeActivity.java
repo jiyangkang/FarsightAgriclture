@@ -94,7 +94,7 @@ public class WelcomeActivity extends Activity {
                     socket.setReceiveBufferSize(datas.length);
                     DatagramPacket packet = new DatagramPacket(datas, datas.length);
                     socket.receive(packet);
-                    if(datas[0] == 0x21){
+                    if (datas[0] == 0x21) {
                         TotalDatas.hostsIp = packet.getAddress().getHostName();
                         TotalDatas.isUDP = true;
                     }
@@ -144,7 +144,14 @@ public class WelcomeActivity extends Activity {
     }
 
     private void loginAlterDialog() {
-        countThread = null;
+        if (countThread != null) {
+            countThread.interrupt();
+            countThread = null;
+        }
+        if (checkUdp != null) {
+            checkUdp.interrupt();
+            checkUdp = null;
+        }
         final AlertDialog.Builder builder = new AlertDialog.Builder(WelcomeActivity.this);
         final View view = LayoutInflater.from(WelcomeActivity.this).inflate(R.layout.login_dialog, null);
         builder.setView(view);
@@ -172,28 +179,28 @@ public class WelcomeActivity extends Activity {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String re ;
-                                    Log.d("NAME", name +"  "+ pswd);
-                                            if ((re =soapTool.UserCheck(name, pswd)) != null) {
-                                                if (re.equalsIgnoreCase("error1")) {
-                                                    progressDialog.dismiss();
-                                                    Toast.makeText(WelcomeActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
-                                                } else if (re.equalsIgnoreCase("error2")) {
-                                                    progressDialog.dismiss();
-                                                    Toast.makeText(WelcomeActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    TotalDatas.userId = re;
-                                                    if (re!=null){
-                                                        Log.d("REUSERID", re);
-                                                    }
-                                                    progressDialog.dismiss();
-
-                                                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                                                    startActivity(intent);
-                                                }
-                                            } else {
-                                                progressDialog.dismiss();
+                                    String re;
+                                    Log.d("NAME", name + "  " + pswd);
+                                    if ((re = soapTool.UserCheck(name, pswd)) != null) {
+                                        if (re.equalsIgnoreCase("error1")) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(WelcomeActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();
+                                        } else if (re.equalsIgnoreCase("error2")) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(WelcomeActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            TotalDatas.userId = re;
+                                            if (re != null) {
+                                                Log.d("REUSERID", re);
                                             }
+                                            progressDialog.dismiss();
+
+                                            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    } else {
+                                        progressDialog.dismiss();
+                                    }
                                 }
                             }).start();
 

@@ -191,7 +191,7 @@ public class VoirFragment extends Fragment {
                     setNode(envNodeFirst, null,strings);
                     break;
                 case NodeInfo.ENVTEMPSECOND:
-                    ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPFIRST);
+                    ints = intent.getIntArrayExtra(NodeInfo.ENVTEMPSECOND);
                     setNode(envNodeSecond, ints, NodeInfo.ENVTEMPSECOND);
                     break;
                 case NodeInfo.ENVTEMPSECOND_D:

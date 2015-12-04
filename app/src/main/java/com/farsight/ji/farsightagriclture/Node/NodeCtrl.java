@@ -18,13 +18,13 @@ public class NodeCtrl {
         addrH = datas[3];
         addrL = datas[2];
         state = datas[6];
-        timeOut = 10;
+        timeOut = 20;
     }
 
     public void setAllValue(byte[] datas){
         this.datas = datas;
         state = datas[6];
-        timeOut = 10;
+        timeOut = 20;
     }
 
     public byte[] getDatas(){
@@ -47,7 +47,4 @@ public class NodeCtrl {
         return addrL;
     }
 
-//    public byte getPower(){
-//        return power;
-//    }
 }

@@ -86,16 +86,25 @@ public class DueDatasService extends Service {
 
         switch (action) {
             case NodeInfo.ENVTEMPFIRST:
+                value1 = nodeVoir.getValue()[1];
+                value2 = nodeVoir.getValue()[2];
+                break;
             case NodeInfo.ENVTEMPSECOND:
                 value1 = nodeVoir.getValue()[1];
                 value2 = nodeVoir.getValue()[2];
                 break;
             case NodeInfo.SOILTEMPFIRST:
+                value1 = nodeVoir.getValue()[0];
+                value2 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
+                break;
             case NodeInfo.SOILTEMPSECOND:
                 value1 = nodeVoir.getValue()[0];
                 value2 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
                 break;
             case NodeInfo.LIGHTFIRST:
+                value1 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
+                value2 = nodeVoir.getValue()[0];
+                break;
             case NodeInfo.LIGHTSECOND:
                 value1 = nodeVoir.getValue()[1] * 256 + nodeVoir.getValue()[2];
                 value2 = nodeVoir.getValue()[0];

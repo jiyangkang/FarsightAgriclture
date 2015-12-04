@@ -14,7 +14,7 @@ public class NodeInfo {
     public static final byte NET_TYPE_485 = 0x52;
 
 
-    public static final byte TYPE_TEMP  = 0x54;//温湿度
+    public static final byte TYPE_TEMP  = 0x74;//温湿度
     public static final String ENVTEMPFIRST = "环境温湿度一";
     public static final String ENVTEMPFIRST_D = "环境温湿度一断开连接";
     public static final byte ADDR_FIRST_TEMP = 0x01;
