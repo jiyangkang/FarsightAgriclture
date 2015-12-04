@@ -101,9 +101,9 @@ public class SoapService extends Service{
                     stringBuilder.append(TotalDatas.DEVICE);
 
                     String sendTo = stringBuilder.toString();
-
+                    Log.d("SendTo" , sendTo);
                     String request = send.CliPut(sendTo);
-                    if (request.equalsIgnoreCase("ok")){
+                    if (request != null && request.equalsIgnoreCase("ok")){
                         Toast.makeText(SoapService.this, "命令发送成功", Toast.LENGTH_SHORT).show();
                     }else {
                         Log.d("SOAP","Cant't send");

@@ -183,6 +183,9 @@ public class WelcomeActivity extends Activity {
                                                     Toast.makeText(WelcomeActivity.this, "密码不正确", Toast.LENGTH_SHORT).show();
                                                 } else {
                                                     TotalDatas.userId = re;
+                                                    if (re!=null){
+                                                        Log.d("REUSERID", re);
+                                                    }
                                                     progressDialog.dismiss();
 
                                                     Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);

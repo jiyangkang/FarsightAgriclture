@@ -129,7 +129,7 @@ public class SoapTool {
 
             soapObject = new SoapObject(TotalDatas.NAMESPACE, "UserCheck");
             soapObject.addProperty("name", name);
-            soapObject.addProperty("pswd", pswd);
+            soapObject.addProperty("pwd", pswd);
 
             envelope = new SoapSerializationEnvelope(SoapEnvelope.VER12);
             envelope.bodyOut = soapObject;

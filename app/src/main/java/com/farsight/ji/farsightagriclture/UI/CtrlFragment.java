@@ -73,7 +73,7 @@ public class CtrlFragment extends Fragment {
     private void initShow() {
         warmNode = (CtrlableState) view.findViewById(R.id.node_warm);
         warmNode.setName(NodeInfo.TYPE_WARM);
-        setNode(warmNode, -2);
+        setNode(warmNode, 1);
 
         humifyNode = (CtrlableState) view.findViewById(R.id.node_humify);
         humifyNode.setName(NodeInfo.TYPE_HUMIFY);
