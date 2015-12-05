@@ -79,30 +79,37 @@ public class CtrlFragment extends Fragment {
     private void initShow() {
         warmNode = (CtrlableState) view.findViewById(R.id.node_warm);
         warmNode.setName(NodeInfo.TYPE_WARM);
+        warmNode.setBitmapdefault(R.drawable.warm);
         setNode(warmNode, 1);
 
         humifyNode = (CtrlableState) view.findViewById(R.id.node_humify);
         humifyNode.setName(NodeInfo.TYPE_HUMIFY);
-        setNode(humifyNode, -2);
+        humifyNode.setBitmapdefault(R.drawable.humify);
+        setNode(humifyNode, 0);
 
         fanNode = (CtrlableState) view.findViewById(R.id.node_fan);
         fanNode.setName(NodeInfo.TYPE_FAN);
+        fanNode.setBitmapdefault(R.drawable.fan);
         setNode(fanNode, -2);
 
         lampNode = (CtrlableState) view.findViewById(R.id.node_lamp);
         lampNode.setName(NodeInfo.TYPE_LAMP);
+        lampNode.setBitmapdefault(R.drawable.lamp);
         setNode(lampNode, -2);
 
         drenchingNode = (CtrlableState) view.findViewById(R.id.node_drenching);
         drenchingNode.setName(NodeInfo.TYPE_DRENCHING);
+        drenchingNode.setBitmapdefault(R.drawable.drenching);
         setNode(drenchingNode, -2);
 
         shadeNode = (CtrlableState) view.findViewById(R.id.node_shade);
         shadeNode.setName(NodeInfo.TYPE_SHADE);
+        shadeNode.setBitmapdefault(R.drawable.shade);
         setNode(shadeNode, -2);
 
         alarmNode = (CtrlableState) view.findViewById(R.id.node_alarm);
         alarmNode.setName(NodeInfo.TYPE_ALARM);
+        alarmNode.setBitmapdefault(R.drawable.alarm);
         setNode(alarmNode, -2);
     }
 

@@ -86,14 +86,14 @@ public class ShowState extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bitmapNode, rectOri, rectDst, mPaint);
-        canvas.drawText(valueNode1, rectDst.width() / 6, rectDst.bottom - 3, mPaint);
+        canvas.drawText(valueNode1, rectDst.width() / 5, rectDst.bottom - 3, mPaint);
         if (valueNode2 != null) {
-            canvas.drawText(valueNode2, rectDst.width() / 2 + rectDst.width() / 12, rectDst.bottom - 3, mPaint);
+            canvas.drawText(valueNode2, rectDst.width() / 2 + rectDst.width() / 10, rectDst.bottom - 3, mPaint);
         } else {
         }
 
         if (name != null) {
-            canvas.drawText(name, rectDst.width() / 6, rectDst.top + rectDst.height() / 2, mPaint);
+            canvas.drawText(name, rectDst.width() / 5, rectDst.top + rectDst.height() / 2, mPaint);
         }
 
     }

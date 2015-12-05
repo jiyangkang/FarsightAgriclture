@@ -91,25 +91,25 @@ public class VoirFragment extends Fragment {
         envNodeSecond.invalidate();
 
         soilNodeFirst = (ShowState) view.findViewById(R.id.node_soil_1);
-        soilNodeFirst.setBitmapNode(R.drawable.soil);
+        soilNodeFirst.setBitmapNode(R.drawable.soil1);
         soilNodeFirst.setStrValue("未连接", " ");
         soilNodeFirst.setName(NodeInfo.SOILTEMPFIRST);
         soilNodeFirst.invalidate();
 
         soilNodeSecond = (ShowState) view.findViewById(R.id.node_soil_2);
-        soilNodeSecond.setBitmapNode(R.drawable.soil);
+        soilNodeSecond.setBitmapNode(R.drawable.soil2);
         soilNodeSecond.setStrValue("未连接", " ");
         soilNodeSecond.setName(NodeInfo.SOILTEMPSECOND);
         soilNodeSecond.invalidate();
 
         lightNodeFirst = (ShowState) view.findViewById(R.id.node_light_1);
-        lightNodeFirst.setBitmapNode(R.drawable.light);
+        lightNodeFirst.setBitmapNode(R.drawable.light1);
         lightNodeFirst.setStrValue("未连接", null);
         lightNodeFirst.setName(NodeInfo.LIGHTFIRST);
         lightNodeFirst.invalidate();
 
         lightNodeSecond = (ShowState) view.findViewById(R.id.node_light_2);
-        lightNodeSecond.setBitmapNode(R.drawable.light);
+        lightNodeSecond.setBitmapNode(R.drawable.light2);
         lightNodeSecond.setStrValue("未连接", null);
         lightNodeSecond.setName(NodeInfo.LIGHTSECOND);
         lightNodeSecond.invalidate();
