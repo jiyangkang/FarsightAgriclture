@@ -53,8 +53,10 @@ public class ShowState extends View {
 
         int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
 
+        int heightMetrics = context.getResources().getDisplayMetrics().heightPixels;
+
         mPaint = new Paint();
-        mPaint.setTextSize(16);
+        mPaint.setTextSize(12);
         mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
         mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -65,13 +67,9 @@ public class ShowState extends View {
 
         int oX = bitmapNode.getWidth();
         int oY = bitmapNode.getHeight();
-        int rX;
-        if (oX < widthMetrics / 3) {
-            rX = widthMetrics / 3;
-        } else {
-            rX = oX;
-        }
-        int rY = rX * oY / oX;
+        int rX, rY;
+        rY = heightMetrics * 18 / 212;
+        rX = rY*oX / oY;
         rectOri = new Rect(0, 0, oX, oY);
         rectDst = new Rect(0, 0, rX, rY);
 

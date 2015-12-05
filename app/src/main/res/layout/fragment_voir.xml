@@ -9,38 +9,40 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:layout_weight="2"/>
+        android:layout_weight="4"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_vertical|end">
+            android:paddingEnd="30dp"
+            android:paddingStart="5dp"
+            android:gravity="end">
             <com.farsight.ji.farsightagriclture.Tools.ShowState
-                android:padding="10dp"
+                android:padding="5dp"
                 android:id="@+id/node_env_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_soil_1"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_light_1"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_infrered"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -50,26 +52,28 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center_vertical|start">
+            android:paddingStart="30dp"
+            android:paddingEnd="5dp"
+            android:gravity="start">
 
             <com.farsight.ji.farsightagriclture.Tools.ShowState
-                android:padding="10dp"
+                android:padding="5dp"
                 android:id="@+id/node_env_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_soil_2"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_light_2"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <com.farsight.ji.farsightagriclture.Tools.ShowState
                 android:id="@+id/node_carbon_dioxide"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

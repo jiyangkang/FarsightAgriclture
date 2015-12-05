@@ -133,11 +133,11 @@ public class VoirFragment extends Fragment {
         switch (action) {
             case NodeInfo.ENVTEMPFIRST:
             case NodeInfo.ENVTEMPSECOND:
-                node.setStrValue("环境温度：" + values[0] + "℃", "环境湿度：" + values[1] + "%");
+                node.setStrValue("温度：" + values[0] + "℃", "湿度：" + values[1] + "%");
                 break;
             case NodeInfo.SOILTEMPFIRST:
             case NodeInfo.SOILTEMPSECOND:
-                node.setStrValue("土壤温度：" + values[0] + "摄氏度", "土壤溶剂含水率：" + values[1] + "%");
+                node.setStrValue("温度：" + values[0] + "℃", "含水率：" + values[1] + "%");
                 break;
             case NodeInfo.LIGHTFIRST:
             case NodeInfo.LIGHTSECOND:
@@ -155,7 +155,7 @@ public class VoirFragment extends Fragment {
                 }
                 break;
             case NodeInfo.CARBONDIOXID:
-                node.setStrValue("二氧化碳浓度"+values[0]+"ppm", null);
+                node.setStrValue("二氧化碳浓度："+values[0]+"ppm", null);
                 break;
             case NodeInfo.ENVTEMPFIRST_D:
             case NodeInfo.ENVTEMPSECOND_D:
@@ -204,7 +204,7 @@ public class VoirFragment extends Fragment {
                     break;
                 case NodeInfo.SOILTEMPFIRST_D:
                     strings = intent.getStringExtra(NodeInfo.SOILTEMPFIRST_D);
-                    setNode(soilNodeSecond, null, strings);
+                    setNode(soilNodeFirst, null, strings);
                     break;
                 case NodeInfo.SOILTEMPSECOND:
                     ints = intent.getIntArrayExtra(NodeInfo.SOILTEMPSECOND);
