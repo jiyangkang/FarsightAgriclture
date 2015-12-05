@@ -52,6 +52,7 @@ public class DrawButton extends View{
         mContext = context;
 
         int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
+        int heightMetrics = context.getResources().getDisplayMetrics().heightPixels;
         setBitmapDefault(R.drawable.button);
 
         mPaint = new Paint();
@@ -64,14 +65,11 @@ public class DrawButton extends View{
         int oX = bitmapDefault.getWidth();
         int oY = bitmapDefault.getHeight();
 
-        int rX ;
-        if(oX > widthMetrics/4){
-            rX = oX;
-        } else {
-            rX = widthMetrics/4;
-        }
+        int rX, rY;
 
-        int rY = rX * oY / oX;
+        rY = heightMetrics*5/77;
+
+        rX = rY * oX / oY;
 
         orRect = new Rect(0, 0, oX, oY);
         dstRect = new Rect(0, 0, rX, rY);
