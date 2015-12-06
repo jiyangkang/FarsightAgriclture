@@ -24,7 +24,7 @@ public class CtrlableState extends View {
     private Context mContext;
 
     private Paint mPaint;
-    private Rect rectOri, rectDst, rectScrollOri, rectScrollDst;
+    private Rect rectOri, rectDst, rectScrollOri, rectScrollDst, rectScrollDstReight, rectScrollDSTLeft;
 
     private Bitmap bitmapdefault;
     private Bitmap bitmapScroll;
@@ -78,18 +78,16 @@ public class CtrlableState extends View {
     public void setState(int state) {
         this.state = state;
         if (state == 1) {
-//            openDefault = openButtonClicked;
-//            closeDefault = closeButton;
+            rectScrollDst = rectScrollDstReight;
             setStringState("\"开\"");
         } else if (state == 0) {
-//            openDefault = openButton;
-//            closeDefault = closeButtonClicked;
+            rectScrollDst = rectScrollDSTLeft;
             setStringState("\"关\"");
         } else if (state == -1) {
-//            openDefault = openButton;
-//            closeDefault = closeButtonClicked;
+            rectScrollDst = rectScrollDSTLeft;
             setStringState("断开连接");
         } else {
+            rectScrollDst = rectScrollDSTLeft;
             setStringState("未连接");
         }
     }
@@ -141,8 +139,12 @@ public class CtrlableState extends View {
 
         sDX = sOX * dX / oX;
         sDY = sOY * dY / oY;
-        rectScrollDst = new Rect(rectDst.left + 2, rectDst.bottom - sDY - 2, rectDst.left + sDX, rectDst.bottom -2);
-
+        rectScrollDSTLeft = new Rect(rectDst.left + 2, rectDst.bottom - sDY - 2, rectDst.left + sDX, rectDst.bottom -
+                2);
+        rectScrollDstReight = new Rect(rectDst.right - sDX - 2, rectDst.bottom - sDY - 2, rectDst.right - 2,
+                rectDst.bottom - 2);
+        rectScrollDst = new Rect();
+        rectScrollDst = rectScrollDSTLeft;
         openCmd = NodeInfo.OPEN;
         closeCmd = NodeInfo.CLOSE;
     }
@@ -157,9 +159,15 @@ public class CtrlableState extends View {
 //        if (name != null) {
 //            canvas.drawText(name, rectOpenDst.left, rectDst.height() / 3, mPaint);
 //        }
-        if (state > -1) {
-            canvas.drawBitmap(bitmapScroll, rectScrollOri, rectScrollDst, mPaint);
-            canvas.drawText(stringState, rectDst.width() *8 / 10, rectDst.height()*22 / 30, mPaint);
+//        if (state > -1) {
+//            canvas.drawBitmap(bitmapScroll, rectScrollOri, rectScrollDst, mPaint);
+//
+//        } else if(state == 0){
+//
+//        }
+        canvas.drawBitmap(bitmapScroll, rectScrollOri, rectScrollDst, mPaint);
+        if (stringState != null) {
+            canvas.drawText(stringState, rectDst.width() * 8 / 10, rectDst.height() * 22 / 30, mPaint);
         }
 
     }
