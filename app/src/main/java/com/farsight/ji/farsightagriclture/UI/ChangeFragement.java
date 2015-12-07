@@ -18,8 +18,6 @@ import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
 import com.farsight.ji.farsightagriclture.R;
 import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
-import org.w3c.dom.Node;
-
 /**
  * Created by jiyan on 2015/12/7.
  */
