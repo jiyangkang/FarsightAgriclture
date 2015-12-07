@@ -22,7 +22,7 @@ import com.farsight.ji.farsightagriclture.Tools.CtrlableState;
 public class CtrlFragment extends Fragment {
 
     private View view;
-    private CtrlableState warmNode, humifyNode, fanNode, lampNode, drenchingNode, shadeNode, alarmNode;
+    private CtrlableState warmNode, humifyNode, fanNode, lampNode, drenchingNode, shadeNode, alarmNode, cameraNode;
     private IntentFilter intentFilter;
     private DueBroadCastReceiver receiver;
 
@@ -111,6 +111,11 @@ public class CtrlFragment extends Fragment {
         alarmNode.setName(NodeInfo.TYPE_ALARM);
         alarmNode.setBitmapdefault(R.drawable.alarm);
         setNode(alarmNode, -2);
+
+        cameraNode = (CtrlableState) view.findViewById(R.id.node_camera);
+        cameraNode.setName(NodeInfo.TYPE_ALARM);
+        cameraNode.setBitmapdefault(R.drawable.camera);
+        setNode(cameraNode, 2);
     }
 
     private void setNode(CtrlableState node, int state) {

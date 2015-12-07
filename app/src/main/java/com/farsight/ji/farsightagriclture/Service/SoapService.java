@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
 import com.farsight.ji.farsightagriclture.Tools.SoapTool;
 import com.farsight.ji.farsightagriclture.Tools.StringTool;
+import com.farsight.ji.farsightagriclture.UI.MainActivity;
 
 /**
  *
@@ -104,7 +105,8 @@ public class SoapService extends Service{
                     Log.d("SendTo" , sendTo);
                     String request = send.CliPut(sendTo);
                     if (request != null && request.equalsIgnoreCase("ok")){
-                        Toast.makeText(SoapService.this, "命令发送成功", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "命令发送成功", Toast.LENGTH_SHORT).show();?
+                        Log.d("SOAP", "OK");
                     }else {
                         Log.d("SOAP","Cant't send");
                     }

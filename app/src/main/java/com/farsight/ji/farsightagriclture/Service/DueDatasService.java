@@ -154,6 +154,10 @@ public class DueDatasService extends Service {
                     //有线无线判断--1201
                     if (datas[1] != TotalDatas.netType) {
                         TotalDatas.netType = datas[1];
+                        Intent intent = new Intent();
+                        intent.setAction(NodeInfo.NET_TYPE);
+                        intent.putExtra(NodeInfo.NET_TYPE, datas[1]);
+                        sendBroadcast(intent);
                     }
                     switch (datas[4]) {
                         case NodeInfo.TYPE_TEMP://温湿度节点数据

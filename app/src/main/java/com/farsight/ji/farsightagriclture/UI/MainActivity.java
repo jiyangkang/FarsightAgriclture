@@ -30,10 +30,11 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity implements View.OnTouchListener {
 
-    private DrawButton btnVoir, btnCtrl;
+    private DrawButton btnVoir, btnCtrl, btnChangeNet;
     private ImageView imageTab;
     private VoirFragment voirFragment;
     private CtrlFragment ctrlFragment;
+    private ChangeFragement changeFragement;
 
 
     private ViewPager mViewPager;
@@ -43,9 +44,6 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
     private int screenWidth;
     private int currentTab;
 
-    private Button button;
-
-    private ComponentName componentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +58,10 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
         btnVoir.setOnTouchListener(this);
         btnCtrl.setOnTouchListener(this);
+        btnChangeNet.setOnTouchListener(this);
         //设置ImageView的属性
-        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 2, btnVoir.getMeasuredHeight() / 10);
+        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 3,
+                btnVoir.getMeasuredHeight() / 10);
         imgParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         imageTab.setLayoutParams(imgParams);
 
@@ -76,22 +76,9 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         Intent intent1 = new Intent(MainActivity.this, DueDatasService.class);
         startService(intent1);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                componentName = new ComponentName("com.mobile.myeye", "com.mobile.myeye.activity.WelcomeActivity");
-                Intent intent = new Intent();
-                intent.setComponent(componentName);
-                intent.setAction("android.intent.action.MAIN");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
     }
 
     private void initShow() {
-        button = (Button) findViewById(R.id.btn_camera);
 
         btnVoir = (DrawButton) findViewById(R.id.btn_voir);
         btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
@@ -101,13 +88,20 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
         btnCtrl.invalidate();
 
+        btnChangeNet = (DrawButton) findViewById(R.id.btn_change);
+        btnChangeNet.setBitmapDefault(R.drawable.part_net_noclicked);
+        btnChangeNet.invalidate();
+
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
 
         voirFragment = new VoirFragment();
         ctrlFragment = new CtrlFragment();
+        changeFragement = new ChangeFragement();
+
         fragmentList = new ArrayList<Fragment>();
         fragmentList.add(voirFragment);
         fragmentList.add(ctrlFragment);
+        fragmentList.add(changeFragement);
 
         screenWidth = getResources().getDisplayMetrics().widthPixels;
 
@@ -138,6 +132,17 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
                     btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
                     changeView(1);
                     btnCtrl.invalidate();
+                }
+                break;
+
+            case R.id.btn_change:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    btnChangeNet.setBitmapDefault(R.drawable.part_net_clicked);
+                    btnChangeNet.invalidate();
+                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                    btnChangeNet.setBitmapDefault(R.drawable.part_net_noclicked);
+                    changeView(2);
+                    btnChangeNet.invalidate();
                 }
                 break;
         }
@@ -177,8 +182,8 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         int startPositon = 0;
         int moveToPosition = 0;
 
-        startPositon = currentTab * (screenWidth / 2);
-        moveToPosition = currentItem * (screenWidth / 2);
+        startPositon = currentTab * (screenWidth / 3);
+        moveToPosition = currentItem * (screenWidth / 3);
 
         TranslateAnimation translateAnimation = new TranslateAnimation(startPositon, moveToPosition, 0, 0);
         translateAnimation.setFillAfter(true);
