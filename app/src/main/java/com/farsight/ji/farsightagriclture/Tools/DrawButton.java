@@ -67,7 +67,7 @@ public class DrawButton extends View{
 
         int rX, rY;
 
-        rY = heightMetrics*5/77;
+        rY = heightMetrics*4/77;
 
         rX = rY * oX / oY;
 

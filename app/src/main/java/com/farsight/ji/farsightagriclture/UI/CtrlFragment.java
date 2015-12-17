@@ -80,12 +80,12 @@ public class CtrlFragment extends Fragment {
         warmNode = (CtrlableState) view.findViewById(R.id.node_warm);
         warmNode.setName(NodeInfo.TYPE_WARM);
         warmNode.setBitmapdefault(R.drawable.warm);
-        setNode(warmNode, 1);
+        setNode(warmNode, -2);
 
         humifyNode = (CtrlableState) view.findViewById(R.id.node_humify);
         humifyNode.setName(NodeInfo.TYPE_HUMIFY);
         humifyNode.setBitmapdefault(R.drawable.humify);
-        setNode(humifyNode, 0);
+        setNode(humifyNode, -2);
 
         fanNode = (CtrlableState) view.findViewById(R.id.node_fan);
         fanNode.setName(NodeInfo.TYPE_FAN);

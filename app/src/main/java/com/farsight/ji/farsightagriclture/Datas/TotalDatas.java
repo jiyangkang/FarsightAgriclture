@@ -13,6 +13,7 @@ public class TotalDatas {
     public static boolean isUDP = false;
     public static final String ISUDP = "UDPMODE";
     public static String userId = "admin";
+    public static final int ERROR = -9999;
 
 
     public static ArrayBlockingQueue<byte[]> qData = new ArrayBlockingQueue<byte[]>(32);

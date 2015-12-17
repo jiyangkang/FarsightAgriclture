@@ -81,16 +81,16 @@ public class CtrlableState extends View {
         this.state = state;
         if (state == 0){
             setStringState("\"关\"");
-            if (!moving){
+//            if (!moving){
                 rectScrollDst = rectScrollDSTLeft;
-                moving = true;
-            }
+//                moving = true;
+//            }
         }else if (state == 1){
             setStringState("\"开\"");
-            if (!moving){
+//            if (!moving){
                 rectScrollDst = rectScrollDstReight;
-                moving = true;
-            }
+//                moving = true;
+//            }
         }else if (state == -1){
             setStringState("\"断开连接\"");
             rectScrollDst = rectScrollNo;
@@ -234,8 +234,7 @@ public class CtrlableState extends View {
                             e.printStackTrace();
                         }
                     } else if (state == 2){
-                        ComponentName componentName = new ComponentName("com.mobile.myeye", "com.mobile.myeye" +
-                                ".activity.WelcomeActivity");
+                        ComponentName componentName = new ComponentName("com.nvsip.temp", "com.jovision.activities.JVWelcomeActivity");
                         Intent intent = new Intent();
                         intent.setComponent(componentName);
                         intent.setAction("android.intent.action.MAIN");

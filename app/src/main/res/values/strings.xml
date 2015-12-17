@@ -8,4 +8,21 @@
     <string name="cancel">取消</string>
     <string name="camera">调用摄像头</string>
     <string name="careful">请注意，此按钮将改变底层网络状态！</string>
+    <string name="setting">阈值设定</string>
+    <string name="auto">智能控制</string>
+    <string name="menu">手动控制</string>
+    <string name="temp">温度(0–120)：</string>
+    <string name="hum">湿度(0–100)：</string>
+    <string name="light">光照(0–10000)：</string>
+    <string name="co2">二氧化碳(0–100)：</string>
+    <string name="high_level">上限</string>
+    <string name="low_level">下限</string>
+    <string name="submit">提交</string>
+    <string name="degree">℃</string>
+    <string name="percent">%</string>
+    <string name="lux">lux</string>
+    <string name="ppm">ppm</string>
+    <string name="get_code">获取二维码</string>
+    <string name="alarm_tel">报警短信号码：</string>
+    <string name="tel_hint">00000000000</string>
 </resources>

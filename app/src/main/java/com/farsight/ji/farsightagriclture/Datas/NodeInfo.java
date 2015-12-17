@@ -12,9 +12,39 @@ public class NodeInfo {
     public static final byte[] CHANGE_ZIGBEE = {0x23, 0x63, 0x5a, 0x00, 0x00, 0x00, 0x00};//网络切换
     public static final byte[] CHANGE_485 = {0x23, 0x63, 0x52, 0x00, 0x00, 0x00, 0x00};//网络切换
 
+    public static final byte[] CHANGE_CONTRL_MODE_AUTO = {0x23, 0x62, 0x31, 0x00, 0x00, 0x00, 0x00};//智能模式
+    public static final byte[] CHANGE_CONTRL_MODE_MENU = {0x23, 0x62, 0x30, 0x00, 0x00, 0x00, 0x00};//手动模式
+
+
+    public static final int CMD_T_MAX = 3;
+    public static final int CMD_T_MIN = 4;
+    public static final int CMD_H_MAX = 5;
+    public static final int CMD_H_MIN = 6;
+    public static final int CMD_L_MAX_H = 7;
+    public static final int CMD_L_MAX_L = 8;
+    public static final int CMD_L_MIN_H = 9;
+    public static final int CMD_L_MIN_L = 10;
+    public static final int CMD_C_MAX_H = 11;
+    public static final int CMD_C_MAX_L = 12;
+    public static final int CMD_C_MIN_H = 13;
+    public static final int CMD_C_MIN_L = 14;
+
+    public static final int T_MAX = 120;
+    public static final int T_MIN = -40;
+    public static final int L_MAX = 10000;
+    public static final int L_MIN = 0;
+    public static final int C_MAX = 5000;
+    public static final int C_MIN = 0;
+    public static final int H_MAX = 100;
+    public static final int H_MIN = 0;
+
 
     public static final byte NET_TYPE_ZIGBEE = 0x5a;
     public static final byte NET_TYPE_485 = 0x52;
+    public static final byte CMD_HEAD = 0x23;
+    public static final byte CMD_SEND_SETTING = 0x53;
+    public static final byte CMD_TEL_NUM = 0x65;
+
 
 
     public static final byte TYPE_TEMP  = 0x74;//温湿度

@@ -1,6 +1,5 @@
 package com.farsight.ji.farsightagriclture.UI;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -30,11 +28,13 @@ import java.util.List;
 
 public class MainActivity extends FragmentActivity implements View.OnTouchListener {
 
-    private DrawButton btnVoir, btnCtrl, btnChangeNet;
+    private DrawButton btnVoir, btnCtrl, btnChangeNet, btnThresholdSetting, btnCodeAndTel;
     private ImageView imageTab;
     private VoirFragment voirFragment;
     private CtrlFragment ctrlFragment;
-    private ChangeFragement changeFragement;
+    private ChangeFragment changeFragment;
+    private ThresholdSettingFragment thresholdSettingFragment;
+    private CodeAndTel codeAndTel;
 
 
     private ViewPager mViewPager;
@@ -59,6 +59,9 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         btnVoir.setOnTouchListener(this);
         btnCtrl.setOnTouchListener(this);
         btnChangeNet.setOnTouchListener(this);
+        btnThresholdSetting.setOnTouchListener(this);
+        btnCodeAndTel.setOnTouchListener(this);
+
         //设置ImageView的属性
         RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 3,
                 btnVoir.getMeasuredHeight() / 10);
@@ -92,16 +95,28 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         btnChangeNet.setBitmapDefault(R.drawable.part_net_noclicked);
         btnChangeNet.invalidate();
 
+        btnThresholdSetting = (DrawButton) findViewById(R.id.btn_as_setting);
+        btnThresholdSetting.setBitmapDefault(R.drawable.part_net_noclicked);
+        btnThresholdSetting.invalidate();
+
+        btnCodeAndTel = (DrawButton) findViewById(R.id.btn_code_tel);
+        btnCodeAndTel.setBitmapDefault(R.drawable.part_net_noclicked);
+        btnCodeAndTel.invalidate();
+
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
 
         voirFragment = new VoirFragment();
         ctrlFragment = new CtrlFragment();
-        changeFragement = new ChangeFragement();
+        changeFragment = new ChangeFragment();
+        thresholdSettingFragment = new ThresholdSettingFragment();
+        codeAndTel = new CodeAndTel();
 
         fragmentList = new ArrayList<Fragment>();
         fragmentList.add(voirFragment);
         fragmentList.add(ctrlFragment);
-        fragmentList.add(changeFragement);
+        fragmentList.add(changeFragment);
+        fragmentList.add(thresholdSettingFragment);
+        fragmentList.add(codeAndTel);
 
         screenWidth = getResources().getDisplayMetrics().widthPixels;
 
@@ -145,6 +160,27 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
                     btnChangeNet.invalidate();
                 }
                 break;
+
+            case R.id.btn_as_setting:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    btnThresholdSetting.setBitmapDefault(R.drawable.part_net_clicked);
+                    btnThresholdSetting.invalidate();
+                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                    btnThresholdSetting.setBitmapDefault(R.drawable.part_net_noclicked);
+                    changeView(3);
+                    btnThresholdSetting.invalidate();
+                }
+                break;
+            case R.id.btn_code_tel:
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    btnCodeAndTel.setBitmapDefault(R.drawable.part_net_clicked);
+                    btnCodeAndTel.invalidate();
+                }else if (event.getAction() == MotionEvent.ACTION_UP){
+                    btnCodeAndTel.setBitmapDefault(R.drawable.part_net_noclicked);
+                    changeView(4);
+                    btnCodeAndTel.invalidate();
+                }
+                break;
         }
         return true;//自定义的绝对是恶心人的---啊啊啊啊
 
@@ -182,8 +218,8 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         int startPositon = 0;
         int moveToPosition = 0;
 
-        startPositon = currentTab * (screenWidth / 3);
-        moveToPosition = currentItem * (screenWidth / 3);
+        startPositon = currentTab * (screenWidth / 5);
+        moveToPosition = currentItem * (screenWidth / 5);
 
         TranslateAnimation translateAnimation = new TranslateAnimation(startPositon, moveToPosition, 0, 0);
         translateAnimation.setFillAfter(true);

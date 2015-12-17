@@ -5,23 +5,23 @@ package com.farsight.ji.farsightagriclture.Node;
  */
 public class NodeVoir extends NodeCtrl{
 
-    private byte[] value = new byte[3];
+    private short[] value = new short[3];
 
     public NodeVoir(byte[] datas){
         super(datas);
-        for (int i = 0; i <value.length; i++){
-            value[i] = datas[5+i];
+        for (int i = 0; i < value.length; i++){
+            value[i] = (short)(datas[5+i] & 0x00ff) ;
         }
     }
 
     public void setAllValue(byte[] datas){
         super.setAllValue(datas);
         for (int i = 0; i <value.length; i++){
-            value[i] = datas[5+i];
+            value[i] = (short)(datas[5+i] & 0x00ff);
         }
     }
 
-    public byte[] getValue(){
+    public short[] getValue(){
         return value;
     }
 }

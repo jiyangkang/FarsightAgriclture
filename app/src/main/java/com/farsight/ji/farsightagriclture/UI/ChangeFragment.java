@@ -21,7 +21,7 @@ import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 /**
  * Created by jiyan on 2015/12/7.
  */
-public class ChangeFragement extends Fragment implements View.OnTouchListener {
+public class ChangeFragment extends Fragment implements View.OnTouchListener {
 
     private View view;
     private DrawButton btnChange485, btnChangeZigbee;
