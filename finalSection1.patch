@@ -1,0 +1,829 @@
+Index: app/src/main/res/layout/fragment_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_main.xml	(date 1449394539000)
++++ app/src/main/res/layout/fragment_main.xml	(revision )
+@@ -1,59 +1,82 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++                xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    tools:context=".MainActivity"
+-    android:background="@drawable/bg">
++                android:background="@drawable/bg"
++                tools:context=".MainActivity">
+ 
+-   <LinearLayout
+-       android:id="@+id/line_select"
+-       android:layout_width="match_parent"
+-       android:layout_height="wrap_content"
+-       android:layout_alignParentBottom="true"
+-       android:gravity="center_horizontal"
++    <LinearLayout
++        android:id="@+id/line_select"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_alignParentBottom="true"
++        android:gravity="center_horizontal"
+-       android:paddingTop="10dp"
+-       android:paddingBottom="15dp"
+-       android:orientation="horizontal">
++        android:orientation="horizontal"
++        android:paddingBottom="3dp"
++        android:paddingTop="10dp">
++
++        <LinearLayout
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:gravity="center_horizontal">
++
+-       <com.farsight.ji.farsightagriclture.Tools.DrawButton
+-           android:id="@+id/btn_voir"
+-           android:layout_width="wrap_content"
++            <com.farsight.ji.farsightagriclture.Tools.DrawButton
++                android:id="@+id/btn_voir"
++                android:layout_width="wrap_content"
+-           android:layout_height="wrap_content" />
++                android:layout_height="wrap_content"/>
+-       <Button
+-           android:id="@+id/btn_camera"
+-           android:layout_width="wrap_content"
++
++        </LinearLayout>
++
++        <LinearLayout
++            android:layout_width="0dp"
+-           android:layout_height="wrap_content"
++            android:layout_height="wrap_content"
+-           android:text="@string/camera"
+-           android:textSize="20sp"/>
++            android:layout_weight="1"
++            android:gravity="center_horizontal">
++
+-       <com.farsight.ji.farsightagriclture.Tools.DrawButton
+-           android:id="@+id/btn_ctrl"
+-           android:layout_width="wrap_content"
++            <com.farsight.ji.farsightagriclture.Tools.DrawButton
++                android:id="@+id/btn_ctrl"
++                android:layout_width="wrap_content"
+-           android:layout_height="wrap_content" />
++                android:layout_height="wrap_content"/>
++        </LinearLayout>
+ 
++        <LinearLayout
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:layout_weight="1"
++            android:gravity="center_horizontal">
++
++            <com.farsight.ji.farsightagriclture.Tools.DrawButton
++                android:id="@+id/btn_change"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"/>
+-   </LinearLayout>
++        </LinearLayout>
+ 
+-    <View
+-        android:layout_width="match_parent"
+-        android:layout_height="2dp"
+-        android:background="#a4a4a4"
+-        android:paddingBottom="10dp"
+-        android:layout_above="@id/line_select"/>
+ 
++    </LinearLayout>
++
++    <!--<View-->
++    <!--android:layout_width="match_parent"-->
++    <!--android:layout_height="2dp"-->
++    <!--android:background="#a4a4a4"-->
++    <!--android:paddingBottom="10dp"-->
++    <!--android:layout_above="@id/line_select"/>-->
++
+     <android.support.v4.view.ViewPager
+         android:id="@+id/view_pager"
+-        android:layout_above="@id/line_select"
+-        android:layout_marginBottom="2dp"
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent"/>
++        android:layout_height="match_parent"
++        android:layout_above="@id/line_select"
++        android:layout_marginBottom="2dp"/>
+ 
+     <ImageView
+-        android:contentDescription="@string/app_name"
+         android:id="@+id/img_tab"
+         android:layout_width="60dp"
+         android:layout_height="20dp"
++        android:layout_alignParentBottom="true"
+         android:background="@drawable/a"
+-        android:layout_alignParentBottom="true"/>
+-
++        android:contentDescription="@string/app_name"/>
+ 
+ 
+ </RelativeLayout>
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Service/DueDatasService.java	(revision )
+@@ -154,6 +154,10 @@
+                     //有线无线判断--1201
+                     if (datas[1] != TotalDatas.netType) {
+                         TotalDatas.netType = datas[1];
++                        Intent intent = new Intent();
++                        intent.setAction(NodeInfo.NET_TYPE);
++                        intent.putExtra(NodeInfo.NET_TYPE, datas[1]);
++                        sendBroadcast(intent);
+                     }
+                     switch (datas[4]) {
+                         case NodeInfo.TYPE_TEMP://温湿度节点数据
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/CtrlFragment.java	(revision )
+@@ -22,7 +22,7 @@
+ public class CtrlFragment extends Fragment {
+ 
+     private View view;
+-    private CtrlableState warmNode, humifyNode, fanNode, lampNode, drenchingNode, shadeNode, alarmNode;
++    private CtrlableState warmNode, humifyNode, fanNode, lampNode, drenchingNode, shadeNode, alarmNode, cameraNode;
+     private IntentFilter intentFilter;
+     private DueBroadCastReceiver receiver;
+ 
+@@ -111,6 +111,11 @@
+         alarmNode.setName(NodeInfo.TYPE_ALARM);
+         alarmNode.setBitmapdefault(R.drawable.alarm);
+         setNode(alarmNode, -2);
++
++        cameraNode = (CtrlableState) view.findViewById(R.id.node_camera);
++        cameraNode.setName(NodeInfo.TYPE_ALARM);
++        cameraNode.setBitmapdefault(R.drawable.camera);
++        setNode(cameraNode, 2);
+     }
+ 
+     private void setNode(CtrlableState node, int state) {
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/MainActivity.java	(revision )
+@@ -30,10 +30,11 @@
+ 
+ public class MainActivity extends FragmentActivity implements View.OnTouchListener {
+ 
+-    private DrawButton btnVoir, btnCtrl;
++    private DrawButton btnVoir, btnCtrl, btnChangeNet;
+     private ImageView imageTab;
+     private VoirFragment voirFragment;
+     private CtrlFragment ctrlFragment;
++    private ChangeFragement changeFragement;
+ 
+ 
+     private ViewPager mViewPager;
+@@ -43,10 +44,7 @@
+     private int screenWidth;
+     private int currentTab;
+ 
+-    private Button button;
+ 
+-    private ComponentName componentName;
+-
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -60,8 +58,10 @@
+ 
+         btnVoir.setOnTouchListener(this);
+         btnCtrl.setOnTouchListener(this);
++        btnChangeNet.setOnTouchListener(this);
+         //设置ImageView的属性
+-        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 2, btnVoir.getMeasuredHeight() / 10);
++        RelativeLayout.LayoutParams imgParams = new RelativeLayout.LayoutParams(screenWidth / 3,
++                btnVoir.getMeasuredHeight() / 10);
+         imgParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+         imageTab.setLayoutParams(imgParams);
+ 
+@@ -76,22 +76,9 @@
+         Intent intent1 = new Intent(MainActivity.this, DueDatasService.class);
+         startService(intent1);
+ 
+-        button.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View v) {
+-                componentName = new ComponentName("com.mobile.myeye", "com.mobile.myeye.activity.WelcomeActivity");
+-                Intent intent = new Intent();
+-                intent.setComponent(componentName);
+-                intent.setAction("android.intent.action.MAIN");
+-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+-                startActivity(intent);
+-            }
++    }
+-        });
+ 
+-    }
+-
+     private void initShow() {
+-        button = (Button) findViewById(R.id.btn_camera);
+ 
+         btnVoir = (DrawButton) findViewById(R.id.btn_voir);
+         btnVoir.setBitmapDefault(R.drawable.part_voir_noclicked);
+@@ -101,13 +88,20 @@
+         btnCtrl.setBitmapDefault(R.drawable.part_ctrl_noclicked);
+         btnCtrl.invalidate();
+ 
++        btnChangeNet = (DrawButton) findViewById(R.id.btn_change);
++        btnChangeNet.setBitmapDefault(R.drawable.part_net_noclicked);
++        btnChangeNet.invalidate();
++
+         mViewPager = (ViewPager) findViewById(R.id.view_pager);
+ 
+         voirFragment = new VoirFragment();
+         ctrlFragment = new CtrlFragment();
++        changeFragement = new ChangeFragement();
++
+         fragmentList = new ArrayList<Fragment>();
+         fragmentList.add(voirFragment);
+         fragmentList.add(ctrlFragment);
++        fragmentList.add(changeFragement);
+ 
+         screenWidth = getResources().getDisplayMetrics().widthPixels;
+ 
+@@ -140,7 +134,18 @@
+                     btnCtrl.invalidate();
+                 }
+                 break;
++
++            case R.id.btn_change:
++                if (event.getAction() == MotionEvent.ACTION_DOWN){
++                    btnChangeNet.setBitmapDefault(R.drawable.part_net_clicked);
++                    btnChangeNet.invalidate();
++                }else if (event.getAction() == MotionEvent.ACTION_UP){
++                    btnChangeNet.setBitmapDefault(R.drawable.part_net_noclicked);
++                    changeView(2);
++                    btnChangeNet.invalidate();
+-        }
++                }
++                break;
++        }
+         return true;//自定义的绝对是恶心人的---啊啊啊啊
+ 
+     }
+@@ -177,8 +182,8 @@
+         int startPositon = 0;
+         int moveToPosition = 0;
+ 
+-        startPositon = currentTab * (screenWidth / 2);
+-        moveToPosition = currentItem * (screenWidth / 2);
++        startPositon = currentTab * (screenWidth / 3);
++        moveToPosition = currentItem * (screenWidth / 3);
+ 
+         TranslateAnimation translateAnimation = new TranslateAnimation(startPositon, moveToPosition, 0, 0);
+         translateAnimation.setFillAfter(true);
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/UI/ChangeFragement.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/UI/ChangeFragement.java	(revision )
++++ app/src/main/java/com/farsight/ji/farsightagriclture/UI/ChangeFragement.java	(revision )
+@@ -0,0 +1,174 @@
++package com.farsight.ji.farsightagriclture.UI;
++
++import android.content.BroadcastReceiver;
++import android.content.Context;
++import android.content.Intent;
++import android.content.IntentFilter;
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.MotionEvent;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.TextView;
++
++import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
++import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
++import com.farsight.ji.farsightagriclture.R;
++import com.farsight.ji.farsightagriclture.Tools.DrawButton;
++
++import org.w3c.dom.Node;
++
++/**
++ * Created by jiyan on 2015/12/7.
++ */
++public class ChangeFragement extends Fragment implements View.OnTouchListener {
++
++    private View view;
++    private DrawButton btnChange485, btnChangeZigbee;
++    private TextView textNet;
++    private String netType;
++    private NetTypeBroadCastReceiver receiver;
++    private IntentFilter intentFilter;
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++    }
++
++    @Nullable
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
++        view = inflater.inflate(R.layout.fragment_change, container, false);
++
++        initShow();
++        btnChange485.setOnTouchListener(this);
++        btnChangeZigbee.setOnTouchListener(this);
++        receiver = new NetTypeBroadCastReceiver();
++        view.getContext().registerReceiver(receiver, intentFilter);
++        setNet(TotalDatas.netType);
++        return view;
++    }
++
++    private void initShow() {
++        btnChange485 = (DrawButton) view.findViewById(R.id.btn_change_net_485);
++        if (TotalDatas.netType != NodeInfo.NET_TYPE_485) {
++            btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
++        }else {
++            btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
++        }
++        btnChange485.invalidate();
++
++        btnChangeZigbee = (DrawButton) view.findViewById(R.id.btn_change_net_zigbee);
++        if (TotalDatas.netType != NodeInfo.NET_TYPE_ZIGBEE){
++            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
++
++        }else{
++            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
++        }
++        btnChangeZigbee.invalidate();
++
++        textNet = (TextView) view.findViewById(R.id.text_net);
++
++        intentFilter = new IntentFilter();
++        intentFilter.addAction(NodeInfo.NET_TYPE);
++    }
++
++    private void setNet(byte type) {
++        switch (type) {
++            case NodeInfo.NET_TYPE_ZIGBEE:
++                textNet.setText("ZIGBEE网络");
++                break;
++            case NodeInfo.NET_TYPE_485:
++                textNet.setText("485网络");
++                break;
++        }
++    }
++
++    private class NetTypeBroadCastReceiver extends BroadcastReceiver{
++
++        @Override
++        public void onReceive(Context context, Intent intent) {
++            byte type = intent.getByteExtra(NodeInfo.NET_TYPE, (byte)0x00);
++            switch (intent.getAction()){
++                case NodeInfo.NET_TYPE:
++                    switch (type){
++                        case NodeInfo.NET_TYPE_485:
++                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
++                            btnChangeZigbee.setClickable(true);
++                            btnChangeZigbee.invalidate();
++                            btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
++                            btnChange485.setClickable(false);
++                            btnChange485.invalidate();
++                            setNet(type);
++                            break;
++                        case NodeInfo.NET_TYPE_ZIGBEE:
++                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
++                            btnChangeZigbee.setClickable(false);
++                            btnChangeZigbee.invalidate();
++                            btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
++                            btnChange485.setClickable(true);
++                            btnChange485.invalidate();
++                            setNet(type);
++                            break;
++                    }
++                    break;
++            }
++        }
++    }
++
++
++    @Override
++    public void onDestroy() {
++        super.onDestroy();
++        view.getContext().unregisterReceiver(receiver);
++    }
++
++    @Override
++    public boolean onTouch(View v, MotionEvent event) {
++
++        switch (v.getId()) {
++            case R.id.btn_change_net_485:
++                if (TotalDatas.netType != NodeInfo.NET_TYPE_485) {
++                    switch (event.getAction()) {
++                        case MotionEvent.ACTION_DOWN:
++                            btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
++                            btnChange485.invalidate();
++                            break;
++                        case MotionEvent.ACTION_UP:
++                            btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
++                            try {
++                                TotalDatas.qSend.put(NodeInfo.CHANGE_485);
++                            } catch (InterruptedException e) {
++                                e.printStackTrace();
++                            }
++                            btnChange485.invalidate();
++                            break;
++                    }
++                }
++                break;
++            case R.id.btn_change_net_zigbee:
++                if (TotalDatas.netType != NodeInfo.NET_TYPE_ZIGBEE) {
++                    switch (event.getAction()) {
++                        case MotionEvent.ACTION_DOWN:
++                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
++                            btnChangeZigbee.invalidate();
++                            break;
++                        case MotionEvent.ACTION_UP:
++                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
++                            try {
++                                TotalDatas.qSend.put(NodeInfo.CHANGE_ZIGBEE);
++                            } catch (InterruptedException e) {
++                                e.printStackTrace();
++                            }
++                            btnChangeZigbee.invalidate();
++                            break;
++                    }
++                }
++                break;
++        }
++
++        return true;
++    }
++}
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1449394539000)
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -7,4 +7,5 @@
+     <string name="login_btn">登录</string>
+     <string name="cancel">取消</string>
+     <string name="camera">调用摄像头</string>
++    <string name="careful">请注意，此按钮将改变底层网络状态！</string>
+ </resources>
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Datas/NodeInfo.java	(revision )
+@@ -8,6 +8,9 @@
+ 
+     public static final byte[] OPEN = {0x23, 0x43, 0x00, 0x00, 0x00, 0x00, 0x31};//开
+     public static final byte[] CLOSE = {0x23, 0x43, 0x00, 0x00, 0x00, 0x00, 0x30};//关
++    public static final String NET_TYPE = "网络状态";
++    public static final byte[] CHANGE_ZIGBEE = {0x23, 0x63, 0x5a, 0x00, 0x00, 0x00, 0x00};//网络切换
++    public static final byte[] CHANGE_485 = {0x23, 0x63, 0x52, 0x00, 0x00, 0x00, 0x00};//网络切换
+ 
+ 
+     public static final byte NET_TYPE_ZIGBEE = 0x5a;
+@@ -92,5 +95,7 @@
+     public static final byte ADDR_ALARM = 0x0f;
+     public static final byte[] OPEN_ALARM = {0x23, 0x43, 0x00, 0x41, 0x0f, 0x00, 0x31};//开
+     public static final byte[] CLOSE_ALARM = {0x23, 0x43, 0x00, 0x41, 0x0f, 0x00, 0x30};//关
++
++    public static final byte TYPE_CAMERA = 0x02;
+ 
+ }
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Service/SoapService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Service/SoapService.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Service/SoapService.java	(revision )
+@@ -10,6 +10,7 @@
+ import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
+ import com.farsight.ji.farsightagriclture.Tools.SoapTool;
+ import com.farsight.ji.farsightagriclture.Tools.StringTool;
++import com.farsight.ji.farsightagriclture.UI.MainActivity;
+ 
+ /**
+  *
+@@ -104,7 +105,8 @@
+                     Log.d("SendTo" , sendTo);
+                     String request = send.CliPut(sendTo);
+                     if (request != null && request.equalsIgnoreCase("ok")){
+-                        Toast.makeText(SoapService.this, "命令发送成功", Toast.LENGTH_SHORT).show();
++//                        Toast.makeText(MainActivity.this, "命令发送成功", Toast.LENGTH_SHORT).show();?
++                        Log.d("SOAP", "OK");
+                     }else {
+                         Log.d("SOAP","Cant't send");
+                     }
+Index: app/src/main/res/layout/fragment_change.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_change.xml	(revision )
++++ app/src/main/res/layout/fragment_change.xml	(revision )
+@@ -0,0 +1,29 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++              android:layout_width="match_parent"
++              android:layout_height="match_parent"
++              android:gravity="center"
++              android:orientation="vertical">
++
++    <TextView
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:text="@string/careful"
++        android:textSize="22sp"
++        android:textColor="#f0f"/>
++    <com.farsight.ji.farsightagriclture.Tools.DrawButton
++        android:id="@+id/btn_change_net_zigbee"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"/>
++
++    <com.farsight.ji.farsightagriclture.Tools.DrawButton
++        android:id="@+id/btn_change_net_485"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"/>
++
++    <TextView
++        android:id="@+id/text_net"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"/>
++
++</LinearLayout>
+Index: app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java	(date 1449394539000)
++++ app/src/main/java/com/farsight/ji/farsightagriclture/Tools/CtrlableState.java	(revision )
+@@ -1,6 +1,8 @@
+ package com.farsight.ji.farsightagriclture.Tools;
+ 
++import android.content.ComponentName;
+ import android.content.Context;
++import android.content.Intent;
+ import android.graphics.Bitmap;
+ import android.graphics.BitmapFactory;
+ import android.graphics.Canvas;
+@@ -24,13 +26,17 @@
+     private Context mContext;
+ 
+     private Paint mPaint;
+-    private Rect rectOri, rectDst, rectScrollOri, rectScrollDst, rectScrollDstReight, rectScrollDSTLeft;
++    private Rect rectOri, rectDst, rectScrollOri, rectScrollDst, rectScrollDstReight, rectScrollDSTLeft,
++            rectScrollNo;
+ 
+     private Bitmap bitmapdefault;
+-    private Bitmap bitmapScroll;
++    private Bitmap bitmapScroll, bitmapScrollNoclicked, bitmapScrollClicked;
+     private int state = -9999;
+     private String stringState;
++    private boolean moving = false;
++    private boolean isClicked = false;
+ 
++
+     private byte[] openCmd = new byte[7];
+     private byte[] closeCmd = new byte[7];
+ 
+@@ -38,59 +44,66 @@
+ 
+         switch (type) {
+             case NodeInfo.TYPE_WARM:
+-//                name = NodeInfo.WARM;
+                 openCmd = NodeInfo.OPEN_WARM;
+                 closeCmd = NodeInfo.CLOSE_WARM;
+                 break;
+             case NodeInfo.TYPE_HUMIFY:
+-//                name = NodeInfo.HUMIFY;
+                 openCmd = NodeInfo.OPEN_HUMIFY;
+                 closeCmd = NodeInfo.CLOSE_HUMIFY;
+                 break;
+             case NodeInfo.TYPE_FAN:
+-//                name = NodeInfo.FAN;
+                 openCmd = NodeInfo.OPEN_FAN;
+                 closeCmd = NodeInfo.CLOSE_FAN;
+                 break;
+             case NodeInfo.TYPE_LAMP:
+-//                name = NodeInfo.LAMP;
+                 openCmd = NodeInfo.OPEN_LAMP;
+                 closeCmd = NodeInfo.CLOSE_LAMP;
+                 break;
+             case NodeInfo.TYPE_DRENCHING:
+-//                name = NodeInfo.DRENCHING;
+                 openCmd = NodeInfo.OPEN_DRENCHING;
+                 closeCmd = NodeInfo.CLOSE_DRENCHING;
+                 break;
+             case NodeInfo.TYPE_SHADE:
+-//                name = NodeInfo.SHADE;
+                 openCmd = NodeInfo.OPEN_SHADE;
+                 closeCmd = NodeInfo.CLOSE_SHADE;
+                 break;
+             case NodeInfo.TYPE_ALARM:
+-//                name = NodeInfo.ALARM;
+                 openCmd = NodeInfo.OPEN_ALARM;
+                 closeCmd = NodeInfo.CLOSE_ALARM;
+                 break;
++            case NodeInfo.TYPE_CAMERA:
++
++                break;
+         }
+     }
+ 
+     public void setState(int state) {
+         this.state = state;
+-        if (state == 1) {
+-            rectScrollDst = rectScrollDstReight;
+-            setStringState("\"开\"");
+-        } else if (state == 0) {
+-            rectScrollDst = rectScrollDSTLeft;
++        if (state == 0){
+             setStringState("\"关\"");
+-        } else if (state == -1) {
++            if (!moving){
+-            rectScrollDst = rectScrollDSTLeft;
++                rectScrollDst = rectScrollDSTLeft;
+-            setStringState("断开连接");
+-        } else {
+-            rectScrollDst = rectScrollDSTLeft;
+-            setStringState("未连接");
++                moving = true;
+-        }
++            }
++        }else if (state == 1){
++            setStringState("\"开\"");
++            if (!moving){
++                rectScrollDst = rectScrollDstReight;
++                moving = true;
+-    }
++            }
++        }else if (state == -1){
++            setStringState("\"断开连接\"");
++            rectScrollDst = rectScrollNo;
++            moving = false;
++        }else if(state == 2){
++            setStringState("视频监控");
++            rectScrollDst = rectScrollNo;
++        }else if (state < -1){
++            setStringState("\"未连接\"");
++            rectScrollDst = rectScrollNo;
++            moving = false;
++        }
++    }
+ 
+     public void setBitmapdefault(int bitmapdefault) {
+         this.bitmapdefault = BitmapFactory.decodeResource(mContext.getResources(), bitmapdefault);
+@@ -113,7 +126,6 @@
+ 
+         mContext = context;
+ 
+-//        name = " ";
+         int widthMetrics = context.getResources().getDisplayMetrics().widthPixels;
+ 
+         mPaint = new Paint();
+@@ -127,11 +139,13 @@
+         oX = bitmapdefault.getWidth();
+         oY = bitmapdefault.getHeight();
+         rectOri = new Rect(0, 0, oX, oY);
+-        dX = widthMetrics / 7;
++        dX = widthMetrics / 9;
+         dY = oY * dX / oX;
+         rectDst = new Rect(0, 0, dX, dY);
+ 
+-        bitmapScroll = BitmapFactory.decodeResource(getResources(), R.drawable.scroll);
++        bitmapScrollNoclicked = BitmapFactory.decodeResource(getResources(), R.drawable.scroll);
++        bitmapScrollClicked = BitmapFactory.decodeResource(getResources(), R.drawable.scrollclicked);
++        bitmapScroll = bitmapScrollNoclicked;
+         int sOX, sOY, sDY, sDX;
+         sOX = bitmapScroll.getWidth();
+         sOY = bitmapScroll.getHeight();
+@@ -143,6 +157,7 @@
+                 2);
+         rectScrollDstReight = new Rect(rectDst.right - sDX - 2, rectDst.bottom - sDY - 2, rectDst.right - 2,
+                 rectDst.bottom - 2);
++        rectScrollNo = new Rect(rectDst.left + 2, rectDst.bottom - sDY - 2, rectDst.right - 2, rectDst.bottom - 2);
+         rectScrollDst = new Rect();
+         rectScrollDst = rectScrollDSTLeft;
+         openCmd = NodeInfo.OPEN;
+@@ -153,22 +168,14 @@
+     protected void onDraw(Canvas canvas) {
+         super.onDraw(canvas);
+         canvas.drawBitmap(bitmapdefault, rectOri, rectDst, mPaint);
+-//        canvas.drawBitmap(openDefault, rectOpenOri, rectOpenDst, mPaint);
+-//        canvas.drawBitmap(closeDefault, rectCloseOri, rectCloseDst, mPaint);
+-
+-//        if (name != null) {
+-//            canvas.drawText(name, rectOpenDst.left, rectDst.height() / 3, mPaint);
+-//        }
+-//        if (state > -1) {
+-//            canvas.drawBitmap(bitmapScroll, rectScrollOri, rectScrollDst, mPaint);
+-//
+-//        } else if(state == 0){
+-//
+-//        }
+         canvas.drawBitmap(bitmapScroll, rectScrollOri, rectScrollDst, mPaint);
+         if (stringState != null) {
+-            canvas.drawText(stringState, rectDst.width() * 8 / 10, rectDst.height() * 22 / 30, mPaint);
++            if (state == 0 || state == 1) {
++                canvas.drawText(stringState, rectDst.width() * 15 / 20, rectDst.height() * 22 / 30, mPaint);
++            } else {
++                canvas.drawText(stringState, rectDst.width() / 4, rectDst.height() * 19 / 20, mPaint);
+-        }
++            }
++        }
+ 
+     }
+ 
+@@ -183,14 +190,14 @@
+         if (widthMode == MeasureSpec.EXACTLY) {
+             width = widthSize;
+         } else {
+-            int desired = (int) (getPaddingLeft() + getPaddingRight() + rectDst.width());
++            int desired = getPaddingLeft() + getPaddingRight() + rectDst.width();
+             width = desired;
+         }
+ 
+         if (heightMode == MeasureSpec.EXACTLY) {
+             height = heightSize;
+         } else {
+-            int desired = (int) (getPaddingTop() + getPaddingBottom() + rectDst.height());
++            int desired = getPaddingTop() + getPaddingBottom() + rectDst.height();
+             height = desired;
+         }
+         setMeasuredDimension(width, height);
+@@ -204,21 +211,37 @@
+             case MotionEvent.ACTION_DOWN:
+                 if (x > rectScrollDst.left && x < rectScrollDst.right && y > rectScrollDst.top &&
+                         y < rectScrollDst.bottom) {
+-                    if (state == 0) {
+-//                        openDefault = openButtonClicked;
++                    bitmapScroll = bitmapScrollClicked;
++                    isClicked = true;
+-                    }
++                }
+-                } else if (x > rectScrollDst.left && x < rectScrollDst.right && y > rectScrollDst.top && y <
+-                        rectScrollDst.bottom) {
+-                    if (state == 1) {
+-//                        closeDefault = closeButtonClicked;
+-                    }
+-                }
+                 break;
+-            case MotionEvent.ACTION_MOVE:
+-
+-                break;
+             case MotionEvent.ACTION_UP:
+ 
++                    isClicked = false;
++                    bitmapScroll = bitmapScrollNoclicked;
++                    if (state == 0) {
++                        rectScrollDst = rectScrollDstReight;
++                        try {
++                            TotalDatas.qSend.put(openCmd);
++                        } catch (InterruptedException e) {
++                            e.printStackTrace();
++                        }
++                    } else if (state == 1) {
++                        rectScrollDst = rectScrollDSTLeft;
++                        try {
++                            TotalDatas.qSend.put(closeCmd);
++                        } catch (InterruptedException e) {
++                            e.printStackTrace();
++                        }
++                    } else if (state == 2){
++                        ComponentName componentName = new ComponentName("com.mobile.myeye", "com.mobile.myeye" +
++                                ".activity.WelcomeActivity");
++                        Intent intent = new Intent();
++                        intent.setComponent(componentName);
++                        intent.setAction("android.intent.action.MAIN");
++                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                        mContext.startActivity(intent);
++                    }
+                 break;
+         }
+         invalidate();
