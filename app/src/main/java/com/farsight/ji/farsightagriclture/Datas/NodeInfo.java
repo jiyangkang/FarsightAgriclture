@@ -43,7 +43,7 @@ public class NodeInfo {
     public static final byte NET_TYPE_485 = 0x52;
     public static final byte CMD_HEAD = 0x23;
     public static final byte CMD_SEND_SETTING = 0x53;
-    public static final byte CMD_TEL_NUM = 0x65;
+    public static final byte CMD_TEL_NUM = 0x65;//设置电话号码
 
 
 
