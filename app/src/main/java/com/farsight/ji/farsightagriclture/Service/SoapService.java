@@ -13,7 +13,7 @@ import com.farsight.ji.farsightagriclture.Tools.StringTool;
 import com.farsight.ji.farsightagriclture.UI.MainActivity;
 
 /**
- *
+ *  与外网交互服务
  *
  * Created by jiyan on 2015/12/3.
  */
@@ -105,7 +105,7 @@ public class SoapService extends Service{
                     Log.d("SendTo" , sendTo);
                     String request = send.CliPut(sendTo);
                     if (request != null && request.equalsIgnoreCase("ok")){
-//                        Toast.makeText(MainActivity.this, "命令发送成功", Toast.LENGTH_SHORT).show();?
+//                        Toast.makeText(getContext.this, "命令发送成功", Toast.LENGTH_SHORT).show();
                         Log.d("SOAP", "OK");
                     }else {
                         Log.d("SOAP","Cant't send");

@@ -5,10 +5,9 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <Button
+    <com.farsight.ji.farsightagriclture.Tools.DrawButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/get_code"
         android:id="@+id/code_get"/>
 
     <LinearLayout
@@ -30,10 +29,9 @@
             android:id="@+id/edt_tet_num"/>
 
     </LinearLayout>
-    <Button
+    <com.farsight.ji.farsightagriclture.Tools.DrawButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
         android:id="@+id/code_submit"/>
 
 

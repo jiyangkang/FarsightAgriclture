@@ -8,12 +8,15 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class TotalDatas {
 
-    public static byte netType = NodeInfo.NET_TYPE_ZIGBEE;//1201
+    public static byte netType = 0x55;//1201
 
     public static boolean isUDP = false;
     public static final String ISUDP = "UDPMODE";
     public static String userId = "admin";
     public static final int ERROR = -9999;
+
+    public static final int RELAY = 100;//只能扫描自减延迟
+    public static final int RELAY_FOIS = 50;//次数
 
 
     public static ArrayBlockingQueue<byte[]> qData = new ArrayBlockingQueue<byte[]>(32);

@@ -22,16 +22,16 @@
         android:orientation="horizontal"
         android:gravity="center_horizontal">
 
-        <Button
+        <com.farsight.ji.farsightagriclture.Tools.DrawButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setting_auto"
-            android:text="@string/auto"/>
-        <Button
+            />
+        <com.farsight.ji.farsightagriclture.Tools.DrawButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setting_menu"
-            android:text="@string/menu"/>
+            />
 
     </LinearLayout>
 
@@ -271,7 +271,7 @@
 
     </LinearLayout>
 
-    <Button
+    <com.farsight.ji.farsightagriclture.Tools.DrawButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/setting_submit"

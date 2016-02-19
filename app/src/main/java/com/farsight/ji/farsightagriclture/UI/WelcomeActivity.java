@@ -36,6 +36,7 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
     private CheckUdp checkUdp;
     private DrawButton btn;
     private ProgressDialog dialog;
+    private boolean threadOn = false;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -86,12 +87,26 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
         setContentView(R.layout.welcome_activity);
 
         initShow();
+
+        if (!threadOn) {
+
+            threadOn = false;
+            if (null != countThread ) {
+                countThread.interrupt();
+                checkUdp.interrupt();
+                countThread = null;
+                countThread = null;
+            }
+        }
+
+        threadOn = true;
         countThread = new CountThread();
         countThread.start();
 
         checkUdp = new CheckUdp();
         checkUdp.start();
         dialog = ProgressDialog.show(this, null, "正在扫描UPD...");
+
         btn.setOnTouchListener(this);
     }
 
@@ -141,14 +156,14 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
 
         switch (v.getId()) {
             case R.id.btn_scan_udp:
-
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Log.d("TTTTTouch","DDDDD");
+//                        Log.d("TTTTTouch","DDDDD");
                         break;
                     case MotionEvent.ACTION_UP:
                         if (btn.getBit() != R.drawable.scanudpuseless) {
                             Log.d("TTTTTouch","UUUUUP");
+                            threadOn = true;
                             checkUdp = new CheckUdp();
                             checkUdp.start();
                             countThread = new CountThread();
@@ -161,15 +176,15 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
                 }
                 break;
         }
-
         return true;
     }
 
     private class CheckUdp extends Thread {
+
         @Override
         public void run() {
             super.run();
-            while (!TotalDatas.isUDP) {
+            while (!TotalDatas.isUDP && threadOn) {
                 byte[] datas = new byte[12];
 
                 try {
@@ -186,8 +201,6 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
                         TotalDatas.isUDP = true;
                     }
                     socket.close();
-                } catch (SocketException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -198,21 +211,23 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
     }
 
     private class CountThread extends Thread {
-        int i = 100;
+        int i = TotalDatas.RELAY_FOIS;
 
         @Override
         public void run() {
             super.run();
-            while (!TotalDatas.isUDP) {
+            while (!TotalDatas.isUDP && threadOn) {
                 i--;
                 if (i == 0)
                     break;
                 try {
-                    sleep(100);
+                    sleep(TotalDatas.RELAY);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+
+            threadOn = false;
 
             if (i == 0) {//15秒内未接受到相应的UDP广播
                 TotalDatas.isUDP = false;

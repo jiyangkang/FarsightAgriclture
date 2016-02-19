@@ -96,11 +96,11 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
         btnChangeNet.invalidate();
 
         btnThresholdSetting = (DrawButton) findViewById(R.id.btn_as_setting);
-        btnThresholdSetting.setBitmapDefault(R.drawable.part_net_noclicked);
+        btnThresholdSetting.setBitmapDefault(R.drawable.part_as_setting_noclicked);
         btnThresholdSetting.invalidate();
 
         btnCodeAndTel = (DrawButton) findViewById(R.id.btn_code_tel);
-        btnCodeAndTel.setBitmapDefault(R.drawable.part_net_noclicked);
+        btnCodeAndTel.setBitmapDefault(R.drawable.part_code_tel_noclicked);
         btnCodeAndTel.invalidate();
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -163,20 +163,20 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
             case R.id.btn_as_setting:
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
-                    btnThresholdSetting.setBitmapDefault(R.drawable.part_net_clicked);
+                    btnThresholdSetting.setBitmapDefault(R.drawable.part_as_setting_clicked);
                     btnThresholdSetting.invalidate();
                 }else if (event.getAction() == MotionEvent.ACTION_UP){
-                    btnThresholdSetting.setBitmapDefault(R.drawable.part_net_noclicked);
+                    btnThresholdSetting.setBitmapDefault(R.drawable.part_as_setting_noclicked);
                     changeView(3);
                     btnThresholdSetting.invalidate();
                 }
                 break;
             case R.id.btn_code_tel:
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
-                    btnCodeAndTel.setBitmapDefault(R.drawable.part_net_clicked);
+                    btnCodeAndTel.setBitmapDefault(R.drawable.part_code_tel_clicked);
                     btnCodeAndTel.invalidate();
                 }else if (event.getAction() == MotionEvent.ACTION_UP){
-                    btnCodeAndTel.setBitmapDefault(R.drawable.part_net_noclicked);
+                    btnCodeAndTel.setBitmapDefault(R.drawable.part_code_tel_noclicked);
                     changeView(4);
                     btnCodeAndTel.invalidate();
                 }
@@ -223,7 +223,7 @@ public class MainActivity extends FragmentActivity implements View.OnTouchListen
 
         TranslateAnimation translateAnimation = new TranslateAnimation(startPositon, moveToPosition, 0, 0);
         translateAnimation.setFillAfter(true);
-        translateAnimation.setDuration(200);
+        translateAnimation.setDuration(100);
         imageTab.startAnimation(translateAnimation);
     }
 

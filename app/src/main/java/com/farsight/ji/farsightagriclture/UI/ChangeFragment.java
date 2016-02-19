@@ -1,10 +1,13 @@
 package com.farsight.ji.farsightagriclture.UI;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import com.farsight.ji.farsightagriclture.R;
 import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
 /**
+ * 网络切换
  * Created by jiyan on 2015/12/7.
  */
 public class ChangeFragment extends Fragment implements View.OnTouchListener {
@@ -29,6 +33,25 @@ public class ChangeFragment extends Fragment implements View.OnTouchListener {
     private String netType;
     private NetTypeBroadCastReceiver receiver;
     private IntentFilter intentFilter;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    setNet(NodeInfo.NET_TYPE_485);
+                    break;
+                case 2:
+                    setNet(NodeInfo.NET_TYPE_ZIGBEE);
+                    break;
+                default:
+                    setNet(TotalDatas.netType);
+                    break;
+            }
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,33 +64,33 @@ public class ChangeFragment extends Fragment implements View.OnTouchListener {
         view = inflater.inflate(R.layout.fragment_change, container, false);
 
         initShow();
-        btnChange485.setOnTouchListener(this);
-        btnChangeZigbee.setOnTouchListener(this);
+
         receiver = new NetTypeBroadCastReceiver();
         view.getContext().registerReceiver(receiver, intentFilter);
+
         setNet(TotalDatas.netType);
+
+
+
+        btnChange485.setOnTouchListener(this);
+        btnChangeZigbee.setOnTouchListener(this);
+
         return view;
     }
 
     private void initShow() {
         btnChange485 = (DrawButton) view.findViewById(R.id.btn_change_net_485);
-        if (TotalDatas.netType != NodeInfo.NET_TYPE_485) {
-            btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
-        }else {
-            btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
-        }
-        btnChange485.invalidate();
+
 
         btnChangeZigbee = (DrawButton) view.findViewById(R.id.btn_change_net_zigbee);
-        if (TotalDatas.netType != NodeInfo.NET_TYPE_ZIGBEE){
-            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
-
-        }else{
-            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
-        }
-        btnChangeZigbee.invalidate();
 
         textNet = (TextView) view.findViewById(R.id.text_net);
+
+        setNet(TotalDatas.netType);
+
+        btnChange485.invalidate();
+        btnChangeZigbee.invalidate();
+
 
         intentFilter = new IntentFilter();
         intentFilter.addAction(NodeInfo.NET_TYPE);
@@ -76,39 +99,46 @@ public class ChangeFragment extends Fragment implements View.OnTouchListener {
     private void setNet(byte type) {
         switch (type) {
             case NodeInfo.NET_TYPE_ZIGBEE:
-                textNet.setText("ZIGBEE网络");
+                btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
+                btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
+                textNet.setText(NodeInfo.NET_TYPE_NAME_ZIGBEE);
+                btnChange485.setClickable(true);
+                btnChangeZigbee.setClickable(false);
                 break;
             case NodeInfo.NET_TYPE_485:
-                textNet.setText("485网络");
+                btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
+                btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
+                textNet.setText(NodeInfo.NET_TYPE_NAME_485);
+                btnChange485.setClickable(false);
+                btnChangeZigbee.setClickable(true);
+                break;
+            default:
+                btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
+                btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
+                btnChange485.setClickable(false);
+                btnChangeZigbee.setClickable(false);
+                textNet.setText("未知网络");
                 break;
         }
+        btnChange485.invalidate();
+        btnChangeZigbee.invalidate();
     }
 
-    private class NetTypeBroadCastReceiver extends BroadcastReceiver{
+    private class NetTypeBroadCastReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            byte type = intent.getByteExtra(NodeInfo.NET_TYPE, (byte)0x00);
-            switch (intent.getAction()){
+            byte type = intent.getByteExtra(NodeInfo.NET_TYPE, (byte) 0x00);
+            switch (intent.getAction()) {
                 case NodeInfo.NET_TYPE:
-                    switch (type){
+                    switch (type) {
                         case NodeInfo.NET_TYPE_485:
-                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_noclicked);
-                            btnChangeZigbee.setClickable(true);
-                            btnChangeZigbee.invalidate();
-                            btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
-                            btnChange485.setClickable(false);
-                            btnChange485.invalidate();
-                            setNet(type);
+
+                            handler.sendEmptyMessage(1);
                             break;
                         case NodeInfo.NET_TYPE_ZIGBEE:
-                            btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);
-                            btnChangeZigbee.setClickable(false);
-                            btnChangeZigbee.invalidate();
-                            btnChange485.setBitmapDefault(R.drawable.part_net_485_noclicked);
-                            btnChange485.setClickable(true);
-                            btnChange485.invalidate();
-                            setNet(type);
+
+                            handler.sendEmptyMessage(2);
                             break;
                     }
                     break;
@@ -128,7 +158,7 @@ public class ChangeFragment extends Fragment implements View.OnTouchListener {
 
         switch (v.getId()) {
             case R.id.btn_change_net_485:
-                if (TotalDatas.netType != NodeInfo.NET_TYPE_485) {
+                if (TotalDatas.netType != NodeInfo.NET_TYPE_485 && btnChange485.isClickable()) {
                     switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:
                             btnChange485.setBitmapDefault(R.drawable.part_net_485_clicked);
@@ -147,7 +177,7 @@ public class ChangeFragment extends Fragment implements View.OnTouchListener {
                 }
                 break;
             case R.id.btn_change_net_zigbee:
-                if (TotalDatas.netType != NodeInfo.NET_TYPE_ZIGBEE) {
+                if (TotalDatas.netType != NodeInfo.NET_TYPE_ZIGBEE && btnChangeZigbee.isClickable()) {
                     switch (event.getAction()) {
                         case MotionEvent.ACTION_DOWN:
                             btnChangeZigbee.setBitmapDefault(R.drawable.part_net_zigbee_clicked);

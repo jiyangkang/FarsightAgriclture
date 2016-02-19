@@ -41,6 +41,9 @@ public class NodeInfo {
 
     public static final byte NET_TYPE_ZIGBEE = 0x5a;
     public static final byte NET_TYPE_485 = 0x52;
+    public static final String NET_TYPE_NAME_ZIGBEE = "ZIGBEE网络";
+    public static final String NET_TYPE_NAME_485 = "485网络";
+
     public static final byte CMD_HEAD = 0x23;
     public static final byte CMD_SEND_SETTING = 0x53;
     public static final byte CMD_TEL_NUM = 0x65;//设置电话号码

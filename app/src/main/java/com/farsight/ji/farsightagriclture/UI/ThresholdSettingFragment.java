@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -18,18 +19,21 @@ import android.widget.Toast;
 import com.farsight.ji.farsightagriclture.Datas.NodeInfo;
 import com.farsight.ji.farsightagriclture.Datas.TotalDatas;
 import com.farsight.ji.farsightagriclture.R;
+import com.farsight.ji.farsightagriclture.Tools.DrawButton;
 
 import org.w3c.dom.Node;
 
 
 /**
+ * 阈值设定
  * Created by jiyangkang on 2016/1/26 0026.
  */
-public class ThresholdSettingFragment extends Fragment implements OnClickListener {
+public class ThresholdSettingFragment extends Fragment implements View.OnTouchListener {
 
 
     private View view;
     private EditText edtTempH, edtTempL, edtHumH, edtHumL, edtLightH, edtLightL, edtCo2H, edtCo2L;
+    private DrawButton btnAuto, btnMenu, btnSubmit;
     private String str;
     private IntentFilter intentFilter;
 
@@ -63,9 +67,9 @@ public class ThresholdSettingFragment extends Fragment implements OnClickListene
 
         initShow();
 
-        view.findViewById(R.id.setting_auto).setOnClickListener(this);
-        view.findViewById(R.id.setting_menu).setOnClickListener(this);
-        view.findViewById(R.id.setting_submit).setOnClickListener(this);
+        btnAuto.setOnTouchListener(this);
+        btnMenu.setOnTouchListener(this);
+        btnSubmit.setOnTouchListener(this);
 
         return view;
     }
@@ -79,25 +83,18 @@ public class ThresholdSettingFragment extends Fragment implements OnClickListene
         edtLightL = (EditText) view.findViewById(R.id.et_light_l);
         edtCo2H = (EditText) view.findViewById(R.id.et_co_h);
         edtCo2L = (EditText) view.findViewById(R.id.et_co_l);
+        btnAuto = (DrawButton) view.findViewById(R.id.setting_auto);
+        btnAuto.setBitmapDefault(R.drawable.setting_auto_noclicked);
+        btnAuto.invalidate();
+        btnMenu = (DrawButton) view.findViewById(R.id.setting_menu);
+        btnMenu.setBitmapDefault(R.drawable.setting_menu_noclicked);
+        btnMenu.invalidate();
+        btnSubmit = (DrawButton) view.findViewById(R.id.setting_submit);
+        btnSubmit.setBitmapDefault(R.drawable.setting_submit_noclicked);
+        btnSubmit.invalidate();
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.setting_auto:
-                sendCmd(1);
-                break;
-            case R.id.setting_menu:
-                sendCmd(2);
-                break;
-            case R.id.setting_submit:
-                sendCmd(3);
-                break;
-            default:
-                break;
-        }
-    }
 
     private void sendHandlerMessage(String name, int errorType) {
         Message msg = new Message();
@@ -290,5 +287,57 @@ public class ThresholdSettingFragment extends Fragment implements OnClickListene
                 CMD = null;
                 break;
         }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch (v.getId()) {
+            case R.id.setting_auto:
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        btnAuto.setBitmapDefault(R.drawable.setting_auto_clicked);
+                        btnAuto.invalidate();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        btnAuto.setBitmapDefault(R.drawable.setting_auto_noclicked);
+                        btnAuto.invalidate();
+                        sendCmd(1);
+                        break;
+                }
+                break;
+
+            case R.id.setting_menu:
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        btnMenu.setBitmapDefault(R.drawable.setting_menu_clicked);
+                        btnMenu.invalidate();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        btnMenu.setBitmapDefault(R.drawable.setting_menu_noclicked);
+                        sendCmd(2);
+                        btnMenu.invalidate();
+                        break;
+                }
+                break;
+
+            case R.id.setting_submit:
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        btnSubmit.setBitmapDefault(R.drawable.setting_submit_clicked);
+                        btnSubmit.invalidate();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        btnSubmit.setBitmapDefault(R.drawable.setting_submit_noclicked);
+                        sendCmd(3);
+                        btnSubmit.invalidate();
+                        break;
+                }
+                break;
+
+            default:
+                break;
+        }
+        return true;
     }
 }
