@@ -2,7 +2,6 @@ package com.farsight.ji.farsightagriclture.UI;
 
 import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;

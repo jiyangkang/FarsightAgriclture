@@ -56,7 +56,11 @@ public class ShowState extends View {
         int heightMetrics = context.getResources().getDisplayMetrics().heightPixels;
 
         mPaint = new Paint();
-        mPaint.setTextSize(12);
+        if (widthMetrics < 1100) {
+            mPaint.setTextSize(12);
+        } else {
+            mPaint.setTextSize(24);
+        }
         mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
         mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
@@ -69,7 +73,7 @@ public class ShowState extends View {
         int oY = bitmapNode.getHeight();
         int rX, rY;
         rY = heightMetrics * 18 / 212;
-        rX = rY*oX / oY;
+        rX = rY * oX / oY;
         rectOri = new Rect(0, 0, oX, oY);
         rectDst = new Rect(0, 0, rX, rY);
 
@@ -90,7 +94,7 @@ public class ShowState extends View {
         }
 
         if (name != null) {
-            canvas.drawText(name, rectDst.width() / 5, rectDst.top + rectDst.height() / 2 -2, mPaint);
+            canvas.drawText(name, rectDst.width() / 5, rectDst.top + rectDst.height() / 2 - 2, mPaint);
         }
 
     }

@@ -105,7 +105,7 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
 
         checkUdp = new CheckUdp();
         checkUdp.start();
-        dialog = ProgressDialog.show(this, null, "正在扫描UPD...");
+        dialog = ProgressDialog.show(this, null, "正在扫描UDP...");
 
         btn.setOnTouchListener(this);
     }

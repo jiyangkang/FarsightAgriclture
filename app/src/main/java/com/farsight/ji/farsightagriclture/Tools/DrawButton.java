@@ -46,6 +46,13 @@ public class DrawButton extends View{
         this(context, attrs, 0);
     }
 
+    /**
+     *
+     * @param context
+     * @param attrs
+     * @param defStyleAttr
+     * @return
+     */
     public DrawButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 

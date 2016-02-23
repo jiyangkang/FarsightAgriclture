@@ -14,7 +14,7 @@
     <string name="temp">温度(0–120)：</string>
     <string name="hum">湿度(0–100)：</string>
     <string name="light">光照(0–10000)：</string>
-    <string name="co2">二氧化碳(0–100)：</string>
+    <string name="co2">二氧化碳(0–10000)：</string>
     <string name="high_level">上限</string>
     <string name="low_level">下限</string>
     <string name="submit">提交</string>
