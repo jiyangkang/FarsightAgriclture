@@ -28,6 +28,9 @@ public class DueDatasService extends Service {
     private NodeCtrl fan;
     private NodeCtrl lamp;
     private NodeCtrl drenching;
+
+
+
     private NodeCtrl shade;
     private NodeCtrl alarm;
 
