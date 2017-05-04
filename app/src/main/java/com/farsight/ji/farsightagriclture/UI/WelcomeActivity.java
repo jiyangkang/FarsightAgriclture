@@ -197,7 +197,7 @@ public class WelcomeActivity extends Activity implements View.OnTouchListener {
                     DatagramPacket packet = new DatagramPacket(datas, datas.length);
                     socket.receive(packet);
                     if (datas[0] == 0x21) {
-                        TotalDatas.hostsIp = packet.getAddress().getHostName();
+                        TotalDatas.hostsIp = packet.getAddress().getHostAddress();
                         TotalDatas.isUDP = true;
                     }
                     socket.close();

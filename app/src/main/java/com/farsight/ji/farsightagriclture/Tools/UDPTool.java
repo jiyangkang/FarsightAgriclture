@@ -40,16 +40,23 @@ public class UDPTool {
         this.host = host;
         this.receivPort = port;
         this.sendPort = sendPort;
-        try {
-            inetAddress = InetAddress.getByName(this.host);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    inetAddress = InetAddress.getByName(UDPTool.this.host);
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
         wifiManager = (WifiManager) this.context.getSystemService(Context.WIFI_SERVICE);
     }
 
     /**
      * 接收
+     *
      * @param num 要接收的数据长度
      * @return !=null接收到的数据byte[]数据， ==null出错
      */
@@ -78,6 +85,7 @@ public class UDPTool {
 
     /**
      * 发送
+     *
      * @param datas：要发送的数据
      * @return 是否发送成功
      */
